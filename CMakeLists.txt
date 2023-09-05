@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.21)
 project(libprg
         LANGUAGES C
         VERSION 0.0.1
-        DESCRIPTION "A minimal C library template using Modern CMake")
+        DESCRIPTION "Biblioteca Programação II")
 
 set(CMAKE_C_STANDARD 17)
 
