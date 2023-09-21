@@ -6,21 +6,25 @@ set(HEADERS
 )
 # Add source files here manually
 set(SOURCES
-        "${CMAKE_CURRENT_LIST_DIR}/src/libprg/libprg.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/libprg/lista_linear.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/libprg/fila.c"
 )
 
-add_library(libprg/libprg/src/libprg/libprg.c)
-target_sources(libprg PUBLIC include)
+add_library(libprg
+        src/libprg/lista_linear.c
+        src/libprg/fila.c
+)
+target_sources(libprg PUBLIC ${SOURCES})
 target_include_directories(libprg PUBLIC ${CMAKE_CURRENT_LIST_DIR}/src/include)
 
 target_compile_features(libprg PUBLIC c_std_17)
 
 # https://cmake.org/cmake/help/latest/prop_tgt/AUTOGEN_TARGETS_FOLDER.html
 source_group(
-       TREE "${PROJECT_SOURCE_DIR}/libprg/src/include"
-       PREFIX "Header Files"
-       FILES ${HEADERS})
+        TREE "${PROJECT_SOURCE_DIR}/libprg/src/include"
+        PREFIX "Header Files"
+        FILES ${HEADERS})
 
 # https://cmake.org/cmake/help/latest/command/install.html
-install(TARGETS libprg DESTINATION libprg/libprg/src/libprg/libprg.c)
-install(FILES ${HEADER_LIST} DESTINATION include)
+install(TARGETS libprg DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)
