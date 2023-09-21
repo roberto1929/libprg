@@ -23,7 +23,10 @@ typedef struct fila{
  */
 
 int criar_lista(int *vetor, int tam);
-
+int povoar(int *vetor, tam);
+int lista_nao_ord(int *vetor, int tam);
+int povoar_ordenada(int *vetor, int tam, char op);
+int povoar_nao_ordenada(int *vetor,int *total, int tamanho);
 /**
  * para inserir um elemento na lista não ordenada e não ordenada
  * @param elemento elemento a ser inserido
@@ -42,18 +45,18 @@ int inserir_ordenada(int elemento, int *vetor, int tam, int *total);
  * @param total total de elementos
  * @return
  */
-int remover(int elemento, int *vetor, int *total);
-int remover_ordenada(int elemento, int *vetor, int *total);
-
+int remover(int elemento, int *vetor, int *total, int tam);
+int remover_ordenada(int elemento, int *vetor, int *total, int tam);
+int libera_memoria(int *vetor,int tamanho);
 /**
  * para buscar o elemento na lista
  * @param elemento elemento inserido
  * @param vetor lista criada
  * @return
  */
-int busca_linear(int elemento, int *vetor);
-int busca_binaria_ite(int elemento, int *vetor);
-int busca_binaria_rec(int elemento, int *vetor);
+int busca_linear(int elemento, int *vetor, int *total, int tam);
+int busca_binaria_ite(int elemento, int *vetor, int total);
+int busca_binaria_rec(int elemento, int *vetor, int fim, int inicio);
 
 /**
  *

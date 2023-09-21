@@ -9,9 +9,8 @@ set(SOURCES
         "${CMAKE_CURRENT_LIST_DIR}/src/libprg/libprg.c"
 )
 
-add_library(libprg
-        src/libprg/lista_linear.c)
-target_sources(libprg PUBLIC ${SOURCES})
+add_library(libprg/libprg/src/libprg/libprg.c)
+target_sources(libprg PUBLIC include)
 target_include_directories(libprg PUBLIC ${CMAKE_CURRENT_LIST_DIR}/src/include)
 
 target_compile_features(libprg PUBLIC c_std_17)
@@ -23,5 +22,5 @@ source_group(
        FILES ${HEADERS})
 
 # https://cmake.org/cmake/help/latest/command/install.html
-install(TARGETS libprg DESTINATION lib)
+install(TARGETS libprg DESTINATION libprg/libprg/src/libprg/libprg.c)
 install(FILES ${HEADER_LIST} DESTINATION include)
