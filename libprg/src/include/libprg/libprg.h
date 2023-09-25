@@ -23,7 +23,6 @@ typedef struct fila{
  */
 
 int criar_lista(int *vetor, int tam);
-int povoar(int *vetor, tam);
 int lista_nao_ord(int *vetor, int tam);
 int povoar_ordenada(int *vetor, int tam, char op);
 int povoar_nao_ordenada(int *vetor,int *total, int tamanho);
@@ -47,7 +46,7 @@ int inserir_ordenada(int elemento, int *vetor, int tam, int *total);
  */
 int remover(int elemento, int *vetor, int *total, int tam);
 int remover_ordenada(int elemento, int *vetor, int *total, int tam);
-int libera_memoria(int *vetor,int tamanho);
+int libera_memoria(int *vetor,int tam);
 /**
  * para buscar o elemento na lista
  * @param elemento elemento inserido
@@ -55,8 +54,8 @@ int libera_memoria(int *vetor,int tamanho);
  * @return
  */
 int busca_linear(int elemento, int *vetor, int *total, int tam);
-int busca_binaria_ite(int elemento, int *vetor, int total);
-int busca_binaria_rec(int elemento, int *vetor, int fim, int inicio);
+int busca_binaria_ite(int elemento, int *vetor, int *total);
+int busca_binaria_rec(int *vetor, int inicio, int fim, int elemento);
 
 /**
  *
@@ -80,5 +79,19 @@ int size(fila_t *vetor);
 
 int empty(fila_t *vetor);
 int full(fila_t *vetor);
+
+//PILHA//
+typedef struct {
+    int total;
+    int tam;
+    int *vetor;
+}pilha_t;
+
+
+int push(pilha_t *vetor, int elemento);
+int pop(pilha_t *vetor);
+int size_p(pilha_t vetor);
+int empty_p(pilha_t vetor);
+
 
 #endif

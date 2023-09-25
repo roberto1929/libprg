@@ -1,7 +1,7 @@
 #include <libprg/libprg.h>
 
-int enqueue(fila_t *fila, int tam){
-    if(fila->total >= fila->tam){
+/*int enqueue(fila_t *fila, int tam){
+    //if(fila->total >= fila->tam){
         return -1
     }
     fila->vetor[fila-fim] = elemento;
@@ -34,3 +34,4 @@ int empty(fila_t *fila){
 int full(fila_t *fila){
 
 }
+*/
