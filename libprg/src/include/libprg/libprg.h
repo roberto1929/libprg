@@ -5,15 +5,11 @@
 #include <limits.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
-typedef struct fila{
-  int elemento;
-  int inicio;
-  int fim;
-  int tam;
-  int *vetor;
-  int total;
-}fila_t;
+typedef struct {
+    int a;
+} vetor_t;
 
 /**
  * para criar uma lista linear de alocação sequencial ordenada
@@ -66,32 +62,36 @@ int busca_binaria_rec(int *vetor, int inicio, int fim, int elemento);
 int destruir(int *vetor, int tam);
 
 // FILA //
+typedef struct{
+    int *vetor;
+    int total;
+    int inicio;
+    int fim;
+    int tamamho;
+}fila_t;
 
-int criar_fila(fila_t *vetor, int tam);
+int criar_fila(fila_t *vetor);
 
 int enqueue(int elemento, fila_t *vetor);
 int dequeue( fila_t *fila);
-
-int head(fila_t *vetor);
+int head(fila_t *fila);
 int tail(fila_t *vetor);
-
 int size(fila_t *vetor);
-
 int empty(fila_t *vetor);
 int full(fila_t *vetor);
 
 //PILHA//
 typedef struct {
-    int total;
+    int topo;
     int tam;
-    int *vetor;
+    int *pilha;
 }pilha_t;
 
 
-int push(pilha_t *vetor, int elemento);
-int pop(pilha_t *vetor);
-int size_p(pilha_t vetor);
-int empty_p(pilha_t vetor);
+int push(pilha_t *pilha, int elemento);
+int pop(pilha_t *pilha);
+int size_p(pilha_t pilha);
+int empty_p(pilha_t pilha);
 
 
 #endif
