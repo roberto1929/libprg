@@ -12,44 +12,21 @@ typedef struct {
     int tamanho;   
     int capacidade; 
 } ListaLinear;
-/**
- * para criar uma lista linear de alocação sequencial ordenada
- * @param vetor lista a ser criada
- * @param tam tamamho da lista
- * @return 0 se criou e -1 se não conseguiu
- */
+
 
 int criar_lista(ListaLinear *lista, int capacidade);
 
-int povoar_ordenada(ListaLinear *lista, int quantidade, int valorMaximo);
-int povoar_nao_ordenada(ListaLinear *lista, int quantidade, int valorMaximo);
-/**
- * para inserir um elemento na lista não ordenada e não ordenada
- * @param elemento elemento a ser inserido
- * @param vetor lista
- * @param tam tamanho da lista
- * @param total total de elementos da lista
- * @return
- */
+void povoar_ordenada(ListaLinear *lista, int quantidade, int valorMaximo);
+void povoar_nao_ordenada(ListaLinear *lista, int quantidade, int valorMaximo);
+
 int inserir(ListaLinear *lista, int elemento);
 int inserir_ordenada(ListaLinear *lista, int elemento);
 
-/**
- * para remover um elemento na lista ordenada e não ordenada
- * @param elemento elemento inserido pelo user
- * @param vetor lista
- * @param total total de elementos
- * @return
- */
+
 int remover(ListaLinear *lista, int elemento);
 int remover_ordenada(ListaLinear *lista, int elemento);
 int libera_memoria(ListaLinear *lista);
-/**
- * para buscar o elemento na lista
- * @param elemento elemento inserido
- * @param vetor lista criada
- * @return
- */
+
 int busca_linear(ListaLinear *lista, int elemento);
 int busca_binaria_ite(ListaLinear *lista, int elemento);
 int busca_binaria_rec(ListaLinear *lista, int elemento, int esquerda, int direita);
@@ -75,7 +52,7 @@ int empty(fila_t *vetor);
 int full(fila_t *vetor);
 
 //PILHA//
-typedef struct {
+typedef struct Pilha{
     int topo;
     int tam;
     int *pilha;

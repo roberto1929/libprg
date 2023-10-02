@@ -1,11 +1,8 @@
-//
-// Created by aluno on 25/09/23.
-//
 
 #include <libprg/libprg.h>
 
 int push(pilha_t *pilha, int elemento){
-if(pilha-> topo == 100 - 1){
+if(pilha-> topo == pilha->tam){
     return 0;
 } else {
     pilha->pilha[pilha->topo++] = elemento;
@@ -22,9 +19,9 @@ int pop(pilha_t *pilha){
 }
 
 int size_p(pilha_t pilha){
-    return pilha.topo +1;
+    return (pilha.topo == +1);
 }
 
 int empty_p(pilha_t pilha){
-    return pilha.topo -1;
+    return (pilha.topo == -1);
 }

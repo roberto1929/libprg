@@ -11,19 +11,19 @@ int criar_lista(ListaLinear *lista, int capacidade){
     lista->capacidade = capacidade;
 }
 
-int povoar_ordenada(ListaLinear *lista, int quantidade, int valorMaximo) {
+void povoar_ordenada(ListaLinear *lista, int quantidade, int valorMaximo) {
     srand((unsigned)time(NULL));
   for (int i = 0; i < quantidade; i++) {
         int elemento = rand() % valorMaximo;
-        inserirOrdenado(lista, elemento);
+        inserir_ordenada(lista, elemento);
     }
 }
 
-int povoar_nao_ordenada(ListaLinear *lista, int quantidade, int valorMaximo)
+void povoar_nao_ordenada(ListaLinear *lista, int quantidade, int valorMaximo)
 {
    for (int i = 0; i < quantidade; i++) {
         int elemento = rand() % valorMaximo;
-        inserirNaoOrdenado(lista, elemento);
+        inserir(lista, elemento);
     }
 }
 
@@ -35,7 +35,7 @@ int remover(ListaLinear *lista, int elemento){
                 lista->dados[j] = lista->dados[j + 1];
             }
             lista->tamanho--;
-            return;
+            return 0;
         }
     }
     fprintf(stderr, "Erro: Elemento não encontrado na lista.\n");
@@ -58,7 +58,7 @@ int remover_ordenada(ListaLinear *lista, int elemento){
 
 
 int inserir(ListaLinear *lista, int elemento) {
-   f (lista->tamanho < lista->capacidade) {
+   if (lista->tamanho < lista->capacidade) {
         lista->dados[lista->tamanho] = elemento;
         lista->tamanho++;
     } else {
@@ -83,52 +83,48 @@ int inserir(ListaLinear *lista, int elemento) {
 
 int busca_linear(ListaLinear *lista, int elemento){
      for (int i = 0; i < lista->tamanho; i++) {
-        if (lista->dados[i] == elemento) {
-            return i; 
-    }
-    return -1; 
+         if (lista->dados[i] == elemento) {
+             return i;
+         }
+         return -1;
 
-int busca_binaria_ite(ListaLinear *lista, int elemento){
-    int esquerda = 0;
-    int direita = lista->tamanho - 1;
+         int busca_binaria_ite(ListaLinear *lista, int elemento) {
+             int esquerda = 0;
+             int direita = lista->tamanho - 1;
 
-    while (esquerda <= direita) {
-        int meio = esquerda + (direita - esquerda) / 2;
+             while (esquerda <= direita) {
+                 int meio = esquerda + (direita - esquerda) / 2;
 
-        if (lista->dados[meio] == elemento) {
-            return meio; 
-        }
+                 if (lista->dados[meio] == elemento) {
+                     return meio;
+                 }
+                 if (lista->dados[meio] < elemento) {
+                     esquerda = meio + 1;
+                 } else {
+                     direita = meio - 1;
+                 }
+             }
+             return -1;
+         }}
 
-        if (lista->dados[meio] < elemento) {
-            esquerda = meio + 1;
-        } else {
-            direita = meio - 1;
-        }
-    }
+         int busca_binaria_rec(ListaLinear *lista, int elemento, int esquerda, int direita) {
+             if (esquerda > direita) {
+                 return -1;
+             }
+             int meio = esquerda + (direita - esquerda) / 2;
+             if (lista->dados[meio] == elemento) {
+                 return meio;
+             }
+             if (lista->dados[meio] < elemento) {
+                 return busca_binaria_rec(lista, elemento, meio + 1, direita);
+             } else {
+                 return busca_binaria_rec(lista, elemento, esquerda, meio - 1);
+             }
+         }
 
-    return -1;
-}
-
-int busca_binaria_rec(ListaLinear *lista, int elemento, int esquerda, int direita){
-    if (esquerda > direita) {
-        return -1; 
-    }
-
-    int meio = esquerda + (direita - esquerda) / 2;
-
-    if (lista->dados[meio] == elemento) {
-        return meio; 
-    }
-
-    if (lista->dados[meio] < elemento) {
-        return buscaBinariaRecursiva(lista, elemento, meio + 1, direita);
-    } else {
-        return buscaBinariaRecursiva(lista, elemento, esquerda, meio - 1);
-    }
-}
-
-int libera_memoria(ListaLinear *lista){
-  free(lista->dados);
-    lista->tamanho = 0;
-    lista->capacidade = 0;
-}
+         int libera_memoria(ListaLinear *lista){
+             free(lista->dados);
+             lista->tamanho = 0;
+             lista->capacidade = 0;
+         }
+     }
