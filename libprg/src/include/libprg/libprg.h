@@ -64,5 +64,48 @@ int pop(pilha_t *pilha);
 int size_p(pilha_t pilha);
 int empty_p(pilha_t pilha);
 
+//LISTA SEQUENCIAL ENCADEADA//
+
+typedef struct no_t{
+    int elemento;
+    struct no_t* proximo;
+}no_t;
+
+// a) //
+
+no_t* criar_lista_e(int dado);
+
+no_t* inserir_e(no_t* inicio, int dado);
+no_t* inserir_o(no_t* inicio, int dado);
+
+no_t* buscar_e(no_t* inicio, int dado);
+no_t* buscar_o(no_t* inicio, int dado);
+
+void excluir_e(no_t* inicio, int dado);
+//}
+
+//b)//
+
+typedef struct node_t {
+   int elemento;
+   struct node_t* anterior;
+   struct node_t* proximo;
+}node_t;
+
+node_t* criar_lista_de(node_t* inicio, int dado);
+
+node_t* inserir_de(node_t* inicio, int dado);
+node_t* inserir_de_o(node_t* inicio, int dado);
+
+node_t* buscar_de(node_t* inicio, int dado);
+node_t* buscar_de_o(node_t* inicio, int dado);
+
+void excluir_de(node_t* inicio, int dado);
+//}
+
+
+
+
+
 
 #endif
