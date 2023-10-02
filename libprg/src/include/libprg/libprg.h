@@ -52,7 +52,7 @@ int empty(fila_t *vetor);
 int full(fila_t *vetor);
 
 //PILHA//
-typedef struct Pilha{
+typedef struct{
     int topo;
     int tam;
     int *pilha;
