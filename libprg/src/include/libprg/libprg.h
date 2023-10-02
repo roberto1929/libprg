@@ -8,9 +8,10 @@
 #include <string.h>
 
 typedef struct {
-    int a;
-} vetor_t;
-
+    int *dados;    
+    int tamanho;   
+    int capacidade; 
+} ListaLinear;
 /**
  * para criar uma lista linear de alocação sequencial ordenada
  * @param vetor lista a ser criada
@@ -18,10 +19,10 @@ typedef struct {
  * @return 0 se criou e -1 se não conseguiu
  */
 
-int criar_lista(int *vetor, int tam);
-int lista_nao_ord(int *vetor, int tam);
-int povoar_ordenada(int *vetor, int tam, char op);
-int povoar_nao_ordenada(int *vetor,int *total, int tamanho);
+int criar_lista(ListaLinear *lista, int capacidade);
+
+int povoar_ordenada(ListaLinear *lista, int quantidade, int valorMaximo);
+int povoar_nao_ordenada(ListaLinear *lista, int quantidade, int valorMaximo);
 /**
  * para inserir um elemento na lista não ordenada e não ordenada
  * @param elemento elemento a ser inserido
@@ -30,8 +31,8 @@ int povoar_nao_ordenada(int *vetor,int *total, int tamanho);
  * @param total total de elementos da lista
  * @return
  */
-int inserir(int elemento, int *vetor, int tam, int *total);
-int inserir_ordenada(int elemento, int *vetor, int tam, int *total);
+int inserir(ListaLinear *lista, int elemento);
+int inserir_ordenada(ListaLinear *lista, int elemento);
 
 /**
  * para remover um elemento na lista ordenada e não ordenada
@@ -40,26 +41,19 @@ int inserir_ordenada(int elemento, int *vetor, int tam, int *total);
  * @param total total de elementos
  * @return
  */
-int remover(int elemento, int *vetor, int *total, int tam);
-int remover_ordenada(int elemento, int *vetor, int *total, int tam);
-int libera_memoria(int *vetor,int tam);
+int remover(ListaLinear *lista, int elemento);
+int remover_ordenada(ListaLinear *lista, int elemento);
+int libera_memoria(ListaLinear *lista);
 /**
  * para buscar o elemento na lista
  * @param elemento elemento inserido
  * @param vetor lista criada
  * @return
  */
-int busca_linear(int elemento, int *vetor, int *total, int tam);
-int busca_binaria_ite(int elemento, int *vetor, int *total);
-int busca_binaria_rec(int *vetor, int inicio, int fim, int elemento);
+int busca_linear(ListaLinear *lista, int elemento);
+int busca_binaria_ite(ListaLinear *lista, int elemento);
+int busca_binaria_rec(ListaLinear *lista, int elemento, int esquerda, int direita);
 
-/**
- *
- * @param vetor lista criada
- * @param tam tamanho da lista
- * @return
- */
-int destruir(int *vetor, int tam);
 
 // FILA //
 typedef struct{
