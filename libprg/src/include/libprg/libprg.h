@@ -84,7 +84,7 @@ no_t* buscar_o(no_t* inicio, int dado);
 void excluir_e(no_t* inicio, int dado);
 //}
 
-//b)//
+//b)
 
 typedef struct node_t {
    int elemento;
@@ -103,9 +103,20 @@ node_t* buscar_de_o(node_t* inicio, int dado);
 void excluir_de(node_t* inicio, int dado);
 //}
 
+//c)
 
+no_t* criar_fila_e(int dado);
 
+void enqueue_e(no_t** inicio, no_t** fim, int dado);
+void desenqueue_e(no_t** inicio);
+//}
 
+//d)
+
+no_t* criar_pilha_e(int dado);
+
+void empilhar_e(no_t** topo, int dados);
+void desempilhar_e(no_t** topo);
 
 
 #endif
