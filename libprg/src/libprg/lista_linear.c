@@ -1,10 +1,5 @@
 #include <libprg/libprg.h>
 
-typedef struct {
-    int *dados;    
-    int tamanho;   
-    int capacidade; 
-} ListaLinear;
 
 int criar_lista(ListaLinear *lista, int capacidade){
    lista->dados = (int *)malloc(capacidade * sizeof(int));
