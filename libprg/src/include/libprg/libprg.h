@@ -41,15 +41,13 @@ typedef struct{
     int tamamho;
 }fila_t;
 
-int criar_fila(fila_t *vetor);
-
-int enqueue(int elemento, fila_t *vetor);
+int enqueue(int elemento, fila_t *fila);
 int dequeue( fila_t *fila);
 int head(fila_t *fila);
-int tail(fila_t *vetor);
-int size(fila_t *vetor);
-int empty(fila_t *vetor);
-int full(fila_t *vetor);
+int tail(fila_t *fila);
+int size(fila_t *fila);
+int empty(fila_t *fila);
+int full(fila_t *fila);
 
 //PILHA//
 typedef struct{
