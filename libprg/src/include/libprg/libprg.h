@@ -122,7 +122,7 @@ void desempilhar_e(no_t** topo);
 void bubble_sort(int vetor[10]);
 void insert_sort(int vetor[], int tamanho);
 void selection_sort(int vetor[], int tamanho);
-int cria_arranjo();
+int * cria_arranjo(int tamanho);
 
 
 
