@@ -16,6 +16,10 @@ add_library(libprg
         src/libprg/fila.c
         src/libprg/pilha.c
         src/libprg/lista_encadeada.c
+        src/libprg/bubble_sort.c
+        src/libprg/selection_sort.c
+        src/libprg/insertion_sort.c
+        src/libprg/criar_arranjo.c
 )
 target_sources(libprg PUBLIC ${SOURCES})
 target_include_directories(libprg PUBLIC ${CMAKE_CURRENT_LIST_DIR}/src/include)

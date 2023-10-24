@@ -1,130 +1,114 @@
-#include <libprg/libprg.h>
-
-
-int criar_lista(ListaLinear *lista, int capacidade){
-   lista->dados = (int *)malloc(capacidade * sizeof(int));
-    if (lista->dados == NULL) {
-        fprintf(stderr, "Erro: Falha na alocação de memória.\n");
-        exit(1);
-    }
-    lista->tamanho = 0;
-    lista->capacidade = capacidade;
-}
-
-void povoar_ordenada(ListaLinear *lista, int quantidade, int valorMaximo) {
-    srand((unsigned)time(NULL));
-  for (int i = 0; i < quantidade; i++) {
-        int elemento = rand() % valorMaximo;
-        inserir_ordenada(lista, elemento);
-    }
-}
-
-void povoar_nao_ordenada(ListaLinear *lista, int quantidade, int valorMaximo)
-{
-   for (int i = 0; i < quantidade; i++) {
-        int elemento = rand() % valorMaximo;
-        inserir(lista, elemento);
-    }
-}
-
-int remover(ListaLinear *lista, int elemento){
-   int i, j;
-    for (i = 0; i < lista->tamanho; i++) {
-        if (lista->dados[i] == elemento) {
-            for (j = i; j < lista->tamanho - 1; j++) {
-                lista->dados[j] = lista->dados[j + 1];
-            }
-            lista->tamanho--;
-            return 0;
-        }
-    }
-    fprintf(stderr, "Erro: Elemento não encontrado na lista.\n");
-}
-
-int remover_ordenada(ListaLinear *lista, int elemento){
-    int i = 0;
-    while (i < lista->tamanho && lista->dados[i] < elemento) {
-        i++;
-    }
-    if (i < lista->tamanho && lista->dados[i] == elemento) {
-        for (int j = i; j < lista->tamanho - 1; j++) {
-            lista->dados[j] = lista->dados[j + 1];
-        }
-        lista->tamanho--;
-    } else {
-        fprintf(stderr, "Erro: Elemento não encontrado na lista.\n");
-    }
-}
-
-
-int inserir(ListaLinear *lista, int elemento) {
-   if (lista->tamanho < lista->capacidade) {
-        lista->dados[lista->tamanho] = elemento;
-        lista->tamanho++;
-    } else {
-        fprintf(stderr, "Erro: A lista está cheia. Não é possível inserir mais elementos.\n");
-    }
-}
-
-    int inserir_ordenada(ListaLinear *lista, int elemento){
-         if (lista->tamanho < lista->capacidade) {
-        int i = lista->tamanho - 1;
-        while (i >= 0 && lista->dados[i] > elemento) {
-            lista->dados[i + 1] = lista->dados[i];
-            i--;
-        }
-        lista->dados[i + 1] = elemento;
-        lista->tamanho++;
-    } else {
-        fprintf(stderr, "Erro: A lista está cheia. Não é possível inserir mais elementos.\n");
-    }
-}
-
-
-int busca_linear(ListaLinear *lista, int elemento){
-     for (int i = 0; i < lista->tamanho; i++) {
-         if (lista->dados[i] == elemento) {
-             return i;
-         }
-         return -1;
-
-         int busca_binaria_ite(ListaLinear *lista, int elemento) {
-             int esquerda = 0;
-             int direita = lista->tamanho - 1;
-
-             while (esquerda <= direita) {
-                 int meio = esquerda + (direita - esquerda) / 2;
-
-                 if (lista->dados[meio] == elemento) {
-                     return meio;
-                 }
-                 if (lista->dados[meio] < elemento) {
-                     esquerda = meio + 1;
-                 } else {
-                     direita = meio - 1;
-                 }
-             }
-             return -1;
-         }}
-
-         int busca_binaria_rec(ListaLinear *lista, int elemento, int esquerda, int direita) {
-             if (esquerda > direita) {
-                 return -1;
-             }
-             int meio = esquerda + (direita - esquerda) / 2;
-             if (lista->dados[meio] == elemento) {
-                 return meio;
-             }
-             if (lista->dados[meio] < elemento) {
-                 return busca_binaria_rec(lista, elemento, meio + 1, direita);
-             } else {
-                 return busca_binaria_rec(lista, elemento, esquerda, meio - 1);
-             }
-         }
-
-         int libera_memoria(ListaLinear *lista){
-             free(lista->dados);
-             lista->tamanho = 0;
-             lista->capacidade = 0;
-         }
-     }
+//#include <libprg/libprg.h>
+//
+//int criar_lista(int *vetor, int tam){
+//    vetor = (int* ) calloc(tam,sizeof (int));
+//    return 0;
+//}
+//
+//int povoar_ordenada(int *vetor, int tam, char op) {
+//    srand((unsigned)time(NULL));
+//
+//    if (op == 'a') {
+//        for (int i = 0; i < tam; i++) {
+//            vetor[i] = i + 1;
+//        }
+//    } else if (op == 'd') {
+//        for (int i = 0; i < tam; i++) {
+//            vetor[i] = tam - i;
+//        }
+//    }
+//
+//    return 0;
+//}
+//int povoar_nao_ordenada(int *vetor,int *total, int tamanho)
+//{
+//    srand((unsigned) time(NULL));
+//    for(int i = 0;i < tamanho;i++){
+//        vetor[i] = rand() % 1000+1;
+//}
+//}
+//
+//int remover(int elemento, int *vetor, int *total, int tam){
+//    for(int i = 0;i < total;i++){
+//        if(vetor[i] == elemento){
+//            vetor[i] = vetor[total - 1];
+//        }
+//    }
+//    return 0;
+//}
+//
+//int remover_ordenada(int elemento, int *vetor, int *total, int tam){
+//    for(int i = 0;i < total;i++){
+//        if(vetor[i] == elemento){
+//            for(;i < total; i++){
+//                vetor[i] = vetor[i + 1];
+//            }
+//            total--;
+//            return 1;
+//        }
+//}
+//
+//
+//int inserir(int elemento, int *vetor, int tam, int *total) {
+//    if(tamanho > total){
+//        vetor[(int) &total] = elemento;
+//        total++;
+//    }
+//    return 0;
+//}
+//
+//    int inserir_ordenada(int elemento, int *vetor, int tam, int *total){
+//        if(total < tamanho){
+//            for(int i = 0; i < total; i++){
+//                if(vetor[i] > elemento){
+//                    for(int j = total;j >= i; j--){
+//                        vetor[j + 1] = vetor[j]
+//                    }
+//                    vetor[i] = elemento;
+//                    break;
+//                }
+//            }
+//        }
+//        return 0;
+//    }
+//
+//
+//int busca_linear(int elemento, int *vetor, int total, int tam){
+//    for (int i = 0; i < *total;i++){
+//        if(vetor[i] == elemento){;
+//        return 1;
+//        }
+//    }
+//}
+//
+//int busca_binaria_ite(int elemento, int *vetor, int *total){
+//    for(int i = 0; i <= total; i++){
+//        int meio = i + (*total - i)/2
+//        if(vetor[meio] = elemento){
+//            return 1;
+//        } else if(vetor[meio] < elemento){
+//            i = meio+1;
+//        } else{
+//            *total = meio - 1;
+//        }
+//    }
+//
+//}
+//
+//
+//int busca_binaria_rec(int elemento, int *vetor, int fim, int inicio){
+//    if(inicio <= fim){
+//        int meio = incio + (fim - inicio) / 2;
+//        if(vetor[meio] = elemento){
+//            return 1;
+//        } if(vetor[meio] > elemento){
+//            return busca_bin_rec(*vetor,inicio, meio - 1, elemento);
+//        }
+//        return busca_bin_rec(*vetor, meio + 1, fim, elemento);
+//    }
+//    return 0;
+//}
+//}
+//int libera_memoria(int *vetor,int tamanho){
+//    free(vetor);
+//}

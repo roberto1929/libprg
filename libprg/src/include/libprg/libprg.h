@@ -8,9 +8,9 @@
 #include <string.h>
 
 typedef struct {
-    int *dados;    
-    int tamanho;   
-    int capacidade; 
+    int *dados;
+    int tamanho;
+    int capacidade;
 } ListaLinear;
 
 
@@ -58,7 +58,7 @@ typedef struct{
     int *pilha;
 }pilha_t;
 
-
+int criar_pilha(pilha_t *pilha);
 int push(pilha_t *pilha, int elemento);
 int pop(pilha_t *pilha);
 int size_p(pilha_t pilha);
@@ -87,9 +87,9 @@ void excluir_e(no_t* inicio, int dado);
 //b)
 
 typedef struct node_t {
-   int elemento;
-   struct node_t* anterior;
-   struct node_t* proximo;
+    int elemento;
+    struct node_t* anterior;
+    struct node_t* proximo;
 }node_t;
 
 node_t* criar_lista_de(node_t* inicio, int dado);
@@ -117,6 +117,15 @@ no_t* criar_pilha_e(int dado);
 
 void empilhar_e(no_t** topo, int dados);
 void desempilhar_e(no_t** topo);
+
+
+// ordenação
+
+void bubble_sort(int vetor[10]);
+void insert_sort(int vetor[], int tamanho);
+void selection_sort(int vetor[], int tamanho);
+int cria_arranjo();
+
 
 
 #endif
