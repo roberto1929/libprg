@@ -126,13 +126,15 @@ typedef struct{
 
         // Troca e seleção
 void bubble_sort(sort_t *sort);
+void bubble_sort_d(sort_t *sort);
 void insert_sort(sort_t *sort);
 void selection_sort(sort_t *sort);
+void selection_sort_d(sort_t *sort);
 
         // Divisão e conquista
 void merge_sort(sort_t *sort, int esquerda, int direita);
 void merge(sort_t *sort, int esquerda, int meio, int direita);
-int * quick_sort(sort_t *sort, int inicio, int fim);
-int particiona(sort_t * sort, int inicio, int fim);
-void troca_pos(sort_t *sort, int i, int j);
+int *quick_sort(sort_t *sort, int inicio, int fim);
+int particiona(int *vetor, int inicio, int fim);
+void troca_pos(int *vetor, int i, int j);
 #endif
