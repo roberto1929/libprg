@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <sys/time.h>
 
 typedef struct {
     int *dados;
@@ -123,6 +124,8 @@ typedef struct{
     int *vetor;
     int n;
 }sort_t;
+
+int * cria_arranjo(int tamanho);
 
         // Troca e seleção
 void bubble_sort(sort_t *sort);
