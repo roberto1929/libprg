@@ -117,13 +117,22 @@ void empilhar_e(no_t** topo, int dados);
 void desempilhar_e(no_t** topo);
 
 
-// ordenação
+//  Listas de ordenação
 
-void bubble_sort(int vetor[10]);
-void insert_sort(int vetor[], int tamanho);
-void selection_sort(int vetor[], int tamanho);
-int * cria_arranjo(int tamanho);
+typedef struct{
+    int *vetor;
+    int n;
+}sort_t;
 
+        // Troca e seleção
+void bubble_sort(sort_t *sort);
+void insert_sort(sort_t *sort);
+void selection_sort(sort_t *sort);
 
-
+        // Divisão e conquista
+void merge_sort(sort_t *sort, int esquerda, int direita);
+void merge(sort_t *sort, int esquerda, int meio, int direita);
+int * quick_sort(sort_t *sort, int inicio, int fim);
+int particiona(sort_t * sort, int inicio, int fim);
+void troca_pos(sort_t *sort, int i, int j);
 #endif
