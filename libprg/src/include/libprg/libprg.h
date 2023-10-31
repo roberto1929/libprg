@@ -125,7 +125,7 @@ typedef struct{
     int n;
 }sort_t;
 
-int * cria_arranjo(int tamanho);
+int *cria_arranjo(int tamanho);
 
         // Troca e seleção
 void bubble_sort(sort_t *sort);
