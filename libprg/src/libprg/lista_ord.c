@@ -61,10 +61,6 @@ void bubble_sort(sort_t *sort){
             }
         }
     }
-    for (int i = 0; i < 10; ++i) {
-        printf("%d ", sort->vetor[i]);
-    }
-    printf("\n");
 }
 
 void bubble_sort_d(sort_t *sort){
@@ -82,74 +78,69 @@ void bubble_sort_d(sort_t *sort){
 
 
 
-//
-//void merge_sort(sort_t *sort, int esquerda, int direita){
-//    if(esquerda < direita){
-//        int meio = esquerda + (direita - esquerda)/2;
-//        merge_sort(sort->vetor, esquerda , meio);
-//        merge_sort(sort->vetor, meio = 1, direita);
-//
-//        merge(sort->vetor, esquerda, meio, direita);
-//    }
-//}
-//
-//void merge(sort_t *sort, int esquerda, int meio, int direita){
-//    int *aux= (int *) malloc(sizeof direita - esquerda +1);
-//    int i = esquerda;
-//    int j = (meio + 1);
-//    int k = 0;
-//
-//    while (i <= meio && j <= direita){
-//        if(sort->vetor[i] <= sort->vetor[j]){
-//            aux[k] = sort->vetor[i];
-//            i++;
-//        } else {
-//            aux[k] = sort->vetor[j];
-//            j++;
-//        }
-//    }
-//    while (i <= meio){
-//        aux[k] = sort->vetor[i];
-//        i++;
-//        k++;
-//    }
-//    while (j <= (direita)){
-//        aux[k] = sort->vetor[j];
-//        j++;
-//        k++;
-//    }
-//    for (i = esquerda; esquerda < direita; ++i) {
-//        sort->vetor[i] = aux[i - esquerda];
-//    }
-//}
-//
-//int *quick_sort(sort_t *sort, int inicio, int fim){
-//    int p;
-//    if(inicio < fim){
-//    p = particiona(sort->vetor, inicio, fim);
-//        quick_sort(sort->vetor, inicio, p - 1);
-//        quick_sort(sort->vetor, p + 1, fim);
-//    }
-//    return sort->vetor;
-//}
-//
-//int particiona(int *vetor, int inicio, int fim){
-//    int pivo;
-//    pivo = vetor[fim];
-//    int i = inicio - 1;
-//    for (int j = inicio; j < fim; ++j) {
-//        if(vetor[j] <= pivo){
-//            i++;
-//            troca_pos(vetor, i,j);
-//        }
-//    }
-//    i++;
-//    troca_pos(vetor, i,fim);
-//    return i;
-//}
-//
-//void troca_pos(int *vetor, int i, int j){
-//    int aux = vetor[i];
-//    vetor[i] = vetor[j];
-//    vetor[j] = aux;
-//};
+void merge(sort_t *sort, int mid, int left, int right){
+    int *aux = (int *) malloc(sizeof(right - left + 1));
+    int i = left;
+    int j = mid + 1;
+    int k = 0;
+    while((i <= mid) && (j <= right)){
+        if(sort->vetor[i] <= sort->vetor[j]){
+            aux[k] = sort->vetor[i];
+            i++;
+        }else{
+            aux[k] = sort->vetor[j];
+            j++;
+        }
+        k++;
+    }
+    while(i <= mid){
+        aux[k] = sort->vetor[i];
+        i++; k++;
+    }
+    while(j <= right){
+        aux[k] = sort->vetor[j];
+        j++; k++;
+    }
+    for(i = left; i < right; i++){
+        sort->vetor[i] = aux[i - left];
+    }
+}
+
+
+void merge_sort(sort_t *sort, int left, int right){
+    int mid;
+    if(left < right){
+        mid = left + (right - left) / 2;
+        merge_sort(sort, left, mid);
+        merge_sort(sort, mid + 1, right);
+        merge(sort, mid, left, right);
+    }
+}
+
+void quick_sort(sort_t *sort, int start, int end){
+    int p;
+    if(start < end){
+        p = particiona(sort, start, end);
+        quick_sort(sort, start, p - 1);
+        quick_sort(sort, p + 1, end);
+    }
+}
+
+int particiona(sort_t *sort, int start, int end){
+    int pivot = sort->vetor[end];
+    int i = start - 1;
+    for(int j = start; j < end; j++){
+        if(sort->vetor[j] <= pivot){
+            i++;
+            troca_posicao(sort, i, j);
+        }
+    }
+    i++;
+    troca_posicao(sort, i, end);
+    return i;
+}
+bool troca_posicao(sort_t *sort, int i, int j){
+    int aux = sort->vetor[i];
+    sort->vetor[i] = sort->vetor[j];
+    sort->vetor[j] = aux;
+}

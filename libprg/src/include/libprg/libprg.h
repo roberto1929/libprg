@@ -7,7 +7,10 @@
 #include <time.h>
 #include <string.h>
 #include <sys/time.h>
+#include <stdbool.h>
 
+
+                   // LISTA LINEAR
 typedef struct {
     int *dados;
     int tamanho;
@@ -33,7 +36,7 @@ int busca_binaria_ite(ListaLinear *lista, int elemento);
 int busca_binaria_rec(ListaLinear *lista, int elemento, int esquerda, int direita);
 
 
-// FILA //
+                   // FILA //
 typedef struct{
     int *vetor;
     int total;
@@ -50,7 +53,7 @@ int size(fila_t *fila);
 int empty(fila_t *fila);
 int full(fila_t *fila);
 
-//PILHA//
+                    //PILHA//
 typedef struct{
     int topo;
     int tam;
@@ -63,7 +66,7 @@ int pop(pilha_t *pilha);
 int size_p(pilha_t pilha);
 int empty_p(pilha_t pilha);
 
-//LISTA SEQUENCIAL ENCADEADA//
+          //LISTA SEQUENCIAL ENCADEADA//
 
 typedef struct no_t{
     int elemento;
@@ -118,7 +121,12 @@ void empilhar_e(no_t** topo, int dados);
 void desempilhar_e(no_t** topo);
 
 
-//  Listas de ordenação
+//--------------// TOMADA DE TEMPO
+void comeca(struct timeval *inicio);
+double medir_tempo_cpu(clock_t start);
+double medir_tempo_parede(struct timeval *inicio);
+
+             //ALGORITMOS DE ORDENAÇÃO
 
 typedef struct{
     int *vetor;
@@ -133,11 +141,12 @@ void bubble_sort_d(sort_t *sort);
 void insert_sort(sort_t *sort);
 void selection_sort(sort_t *sort);
 void selection_sort_d(sort_t *sort);
+bool troca_posicao(sort_t *sort, int i, int j);
 
         // Divisão e conquista
-void merge_sort(sort_t *sort, int esquerda, int direita);
-void merge(sort_t *sort, int esquerda, int meio, int direita);
-int *quick_sort(sort_t *sort, int inicio, int fim);
-int particiona(int *vetor, int inicio, int fim);
-void troca_pos(int *vetor, int i, int j);
+
+int particiona(sort_t *sort, int start, int end);
+void merge(sort_t *sort, int mid, int left, int right);
+void merge_sort(sort_t *sort, int left, int right);
+void quick_sort(sort_t *sort, int start, int end);
 #endif
