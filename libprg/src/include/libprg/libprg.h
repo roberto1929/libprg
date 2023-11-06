@@ -12,28 +12,30 @@
 
                    // LISTA LINEAR
 typedef struct {
-    int *dados;
+    int *vetor;
     int tamanho;
-    int capacidade;
-} ListaLinear;
+    int total;
+    int inicio;
+    int pos;
+} lista_t;
 
 
-int criar_lista(ListaLinear *lista, int capacidade);
+int criar_lista(lista_t *lista);
 
-void povoar_ordenada(ListaLinear *lista, int quantidade, int valorMaximo);
-void povoar_nao_ordenada(ListaLinear *lista, int quantidade, int valorMaximo);
+void povoar_ordenada(lista_t *lista);
+void povoar_nao_ordenada(lista_t *lista);
 
-int inserir(ListaLinear *lista, int elemento);
-int inserir_ordenada(ListaLinear *lista, int elemento);
+int inserir_nao_ord(lista_t *lista, int elemento);
+int inserir_ordenada(lista_t *lista, int elemento);
 
 
-int remover(ListaLinear *lista, int elemento);
-int remover_ordenada(ListaLinear *lista, int elemento);
-int libera_memoria(ListaLinear *lista);
+int remover_nao_ord(lista_t *lista, int elemento);
+int remover_ordenada(lista_t *lista, int elemento);
+int libera_memoria(lista_t *lista);
 
-int busca_linear(ListaLinear *lista, int elemento);
-int busca_binaria_ite(ListaLinear *lista, int elemento);
-int busca_binaria_rec(ListaLinear *lista, int elemento, int esquerda, int direita);
+int busca_linear(lista_t *lista, int elemento);
+int busca_binaria_ite(lista_t *lista, int elemento);
+int busca_binaria_rec(lista_t *lista, int inicio, int fim, int elemento);
 
 
                    // FILA //
@@ -42,10 +44,10 @@ typedef struct{
     int total;
     int inicio;
     int fim;
-    int tamamho;
+    int tamanho;
 }fila_t;
 
-int enqueue(int elemento, fila_t *fila);
+int enqueue(fila_t *fila, int elemento);
 int dequeue( fila_t *fila);
 int head(fila_t *fila);
 int tail(fila_t *fila);
@@ -56,8 +58,8 @@ int full(fila_t *fila);
                     //PILHA//
 typedef struct{
     int topo;
-    int tam;
-    int *pilha;
+    int tamanho;
+    int *vetor;
 }pilha_t;
 
 int criar_pilha(pilha_t *pilha);
@@ -66,27 +68,40 @@ int pop(pilha_t *pilha);
 int size_p(pilha_t pilha);
 int empty_p(pilha_t pilha);
 
-          //LISTA SEQUENCIAL ENCADEADA//
+
+
+//-------------//LISTA SEQUENCIAL ENCADEADA//
+
+  //----------- Lista encadeada
 
 typedef struct no_t{
     int elemento;
     struct no_t* proximo;
 }no_t;
 
-// a) //
 
-no_t* criar_lista_e(int dado);
+typedef struct {
+    no_t *start;
+    int size;
+}lista_encadeada_t;
 
-no_t* inserir_e(no_t* inicio, int dado);
-no_t* inserir_o(no_t* inicio, int dado);
+typedef struct {
+    no_t *high;
+    int size;
+}Stackist_t;
 
-no_t* buscar_e(no_t* inicio, int dado);
-no_t* buscar_o(no_t* inicio, int dado);
 
-void excluir_e(no_t* inicio, int dado);
-//}
+void addList(lista_encadeada_t *listaEncadeada, no_t **no, int value);
+int removeList(lista_encadeada_t  *listaEncadeada, no_t **no);
+int searchList(no_t **no, int element);
 
-//b)
+void addStack(Stackist_t *stack,no_t **no,int elemento);
+int removeStack(Stackist_t *stack, no_t **no);
+int searchStack(no_t **no, int element);
+
+void print_no(no_t *no);
+
+//------------- lista duplamente encadeada
 
 typedef struct node_t {
     int elemento;

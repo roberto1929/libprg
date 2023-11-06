@@ -77,8 +77,7 @@ void bubble_sort_d(sort_t *sort){
 }
 
 
-
-void merge(sort_t *sort, int mid, int left, int right){
+void merge(sort_t *sort, int left, int mid, int right){
     int *aux = (int *) malloc(sizeof(right - left + 1));
     int i = left;
     int j = mid + 1;
@@ -101,11 +100,11 @@ void merge(sort_t *sort, int mid, int left, int right){
         aux[k] = sort->vetor[j];
         j++; k++;
     }
-    for(i = left; i < right; i++){
+    for(i = left; i <= right; i++){
         sort->vetor[i] = aux[i - left];
     }
+    free(aux);
 }
-
 
 void merge_sort(sort_t *sort, int left, int right){
     int mid;
@@ -113,34 +112,36 @@ void merge_sort(sort_t *sort, int left, int right){
         mid = left + (right - left) / 2;
         merge_sort(sort, left, mid);
         merge_sort(sort, mid + 1, right);
-        merge(sort, mid, left, right);
+        merge(sort, left, mid, right);
     }
 }
 
-void quick_sort(sort_t *sort, int start, int end){
+void troca_pos(sort_t *sort, int i, int j)
+{
+    sort->vetor[i] = sort->vetor[j];
+}
+
+int particiona(sort_t *sort, int start, int end)
+{
+    int pivo = sort->vetor[end];
+    int i = start - 1;
+    for(int j = start; j < end ; j++){
+        if(sort->vetor[j] <= pivo){
+            i++;
+            troca_pos(sort, i, j);
+        }
+    }
+    i++;
+    troca_pos(sort, i, end);
+    return i;
+}
+
+void quick_sort(sort_t *sort, int start, int end)
+{
     int p;
     if(start < end){
         p = particiona(sort, start, end);
         quick_sort(sort, start, p - 1);
         quick_sort(sort, p + 1, end);
     }
-}
-
-int particiona(sort_t *sort, int start, int end){
-    int pivot = sort->vetor[end];
-    int i = start - 1;
-    for(int j = start; j < end; j++){
-        if(sort->vetor[j] <= pivot){
-            i++;
-            troca_posicao(sort, i, j);
-        }
-    }
-    i++;
-    troca_posicao(sort, i, end);
-    return i;
-}
-bool troca_posicao(sort_t *sort, int i, int j){
-    int aux = sort->vetor[i];
-    sort->vetor[i] = sort->vetor[j];
-    sort->vetor[j] = aux;
 }

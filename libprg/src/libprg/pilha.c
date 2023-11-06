@@ -2,26 +2,31 @@
 #include <libprg/libprg.h>
 
 int push(pilha_t *pilha, int elemento){
-if(pilha-> topo == pilha->tam){
-    return 0;
-} else {
-    pilha->pilha[pilha->topo++] = elemento;
-    return 1;
+    if(pilha->tamanho == pilha->topo + 1){
+        return 0;
     }
+    pilha->vetor[++pilha->topo] = elemento;
+    return 1;
 }
 
+
+
 int pop(pilha_t *pilha){
-    if(pilha->topo == -1){
-        return -1;
-    } else{
-        return pilha->pilha[(pilha->topo)--];
+    if(pilha->vetor == NULL || pilha->topo == -1){
+        return 1;
     }
+    int num = pilha->vetor[pilha->topo];
+    pilha->topo--;
+    return num;
 }
 
 int size_p(pilha_t pilha){
-    return (pilha.topo == +1);
+    return pilha.topo + 1;
 }
 
 int empty_p(pilha_t pilha){
-    return (pilha.topo == -1);
+    if(pilha.topo >= 0){
+        return 1;
+    }
+    return 0;
 }
