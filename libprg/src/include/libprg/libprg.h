@@ -134,7 +134,8 @@ void empilhar_e(no_t** topo, int dados);
 void desempilhar_e(no_t** topo);
 
 
-//--------------// TOMADA DE TEMPO
+            // TOMADA DE TEMPO
+
 void comeca(struct timeval *inicio);
 double medir_tempo_cpu(clock_t start);
 double medir_tempo_parede(struct timeval *inicio);
