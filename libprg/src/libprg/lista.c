@@ -25,7 +25,7 @@ void povoar_ordenada(lista_t *lista) {
         }
     }
 }
-void povoar_nao_ordenada(lista_t *lista);{
+void povoar_nao_ordenada(lista_t *lista){
     srand(time(NULL));
         for(int i = 0;i < lista->tamanho;i++){
             lista->vetor[i] = rand() % 100 + 1;
@@ -33,7 +33,7 @@ void povoar_nao_ordenada(lista_t *lista);{
     lista->total = lista->tamanho;
 }
 
-int remover_nao_ord(lista_t *lista, int elemento);{
+int remover_nao_ord(lista_t *lista, int elemento){
     for(int i = 0;i < lista->total;i++){
         if(lista->vetor[i] == elemento){
             lista->vetor[i] = lista->vetor[lista->total - 1];
