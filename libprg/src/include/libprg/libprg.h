@@ -72,41 +72,30 @@ int empty_p(pilha_t pilha);
 
 //-------------//LISTA SEQUENCIAL ENCADEADA//
 
-  //----------- Lista encadeada
-
-typedef struct no_t{
+ typedef struct no_t{
     int elemento;
     struct no_t* proximo;
 }no_t;
 
+// a) //
 
-typedef struct {
-    no_t *start;
-    int size;
-}lista_encadeada_t;
+no_t* criar_lista_e(int dado);
 
-typedef struct {
-    no_t *high;
-    int size;
-}Stackist_t;
+no_t* inserir_e(no_t* inicio, int dado);
+no_t* inserir_o(no_t* inicio, int dado);
 
+no_t* buscar_e(no_t* inicio, int dado);
+no_t* buscar_o(no_t* inicio, int dado);
 
-void addList(lista_encadeada_t *listaEncadeada, no_t **no, int value);
-int removeList(lista_encadeada_t  *listaEncadeada, no_t **no);
-int searchList(no_t **no, int element);
+void excluir_e(no_t* inicio, int dado);
+//}
 
-void addStack(Stackist_t *stack,no_t **no,int elemento);
-int removeStack(Stackist_t *stack, no_t **no);
-int searchStack(no_t **no, int element);
-
-void print_no(no_t *no);
-
-//------------- lista duplamente encadeada
+//b)//
 
 typedef struct node_t {
-    int elemento;
-    struct node_t* anterior;
-    struct node_t* proximo;
+   int elemento;
+   struct node_t* anterior;
+   struct node_t* proximo;
 }node_t;
 
 node_t* criar_lista_de(node_t* inicio, int dado);
