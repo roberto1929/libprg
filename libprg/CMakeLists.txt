@@ -19,6 +19,7 @@ add_library(libprg
         src/libprg/criar_arranjo.c
         src/libprg/lista_ord.c
         src/libprg/tomada_de_tempo.c
+        src/libprg/arvore_binaria.c
 )
 target_sources(libprg PUBLIC ${SOURCES})
 target_include_directories(libprg PUBLIC ${CMAKE_CURRENT_LIST_DIR}/src/include)

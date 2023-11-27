@@ -155,3 +155,17 @@ void merge(sort_t *sort, int mid, int left, int right);
 void merge_sort(sort_t *sort, int left, int right);
 void quick_sort(sort_t *sort, int start, int end);
 #endif
+
+
+//ÁRVORE BINÁRIA
+
+typedef struct arvore{
+    int valor;
+    struct arvore *esquerda;
+    struct arvore *direita;
+} arvore_t;
+
+arvore_t *criar_arvore(int valor);
+void destruir_arvore(arvore_t *arvore);
+arvore_t *inserir_valor(arvore_t *raiz, int valor);
+bool busca(arvore_t *raiz, int valor);
