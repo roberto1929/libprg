@@ -29,9 +29,9 @@ arvore_t *inserir_valor(arvore_t *raiz, int valor){
     return raiz;
 }
 
-bool busca(arvore_t *raiz, int valor){
+bool busca_arvore(arvore_t *raiz, int valor){
     if (raiz == NULL) return false;
     if (valor == raiz->valor) return true;
-    if (valor < raiz->valor) return busca(raiz->esquerda, valor);
-    return busca(raiz->direita, valor);
+    if (valor < raiz->valor) return busca_arvore(raiz->esquerda, valor);
+    return busca_arvore(raiz->direita, valor);
 }

@@ -168,4 +168,4 @@ typedef struct arvore{
 arvore_t *criar_arvore(int valor);
 void destruir_arvore(arvore_t *arvore);
 arvore_t *inserir_valor(arvore_t *raiz, int valor);
-bool busca(arvore_t *raiz, int valor);
+bool busca_arvore(arvore_t *raiz, int valor);
