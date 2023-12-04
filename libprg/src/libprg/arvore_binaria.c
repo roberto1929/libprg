@@ -117,15 +117,14 @@ void imprime_arvore_post_order(arvore_t *raiz){
 
 void imprime_arvore_grafo(arvore_t *raiz){
     if(raiz != NULL){
-        printf("%d ", raiz->valor);
         if (raiz->esquerda != NULL) {
-            printf("--%d ", raiz->esquerda->valor);
-            imprime_arvore_pre_order(raiz->esquerda);
+            printf("%d -- %d\n", raiz->valor, raiz->esquerda->valor);
         }
-
         if (raiz->direita != NULL) {
-            printf("--%d ", raiz->direita->valor);
-            imprime_arvore_pre_order(raiz->direita);
+            printf("%d -- %d\n", raiz->valor, raiz->direita->valor);
         }
+        imprime_arvore_grafo(raiz->esquerda);
+        imprime_arvore_grafo(raiz->direita);
+
     }
 }
