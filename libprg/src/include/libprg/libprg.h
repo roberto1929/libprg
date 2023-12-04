@@ -169,3 +169,12 @@ arvore_t *criar_arvore(int valor);
 void destruir_arvore(arvore_t *arvore);
 arvore_t *inserir_valor(arvore_t *raiz, int valor);
 bool busca_arvore(arvore_t *raiz, int valor);
+void imprime_filho_nivel(arvore_t *raiz, int valor, int nivel);
+arvore_t *remover_numero(arvore_t *raiz, int valor);
+
+//------------// ARVORE DE BUSCA BINARIA
+void imprime_arvore_in_order(arvore_t *raiz);
+void imprime_arvore_pre_order(arvore_t *raiz);
+void imprime_arvore_post_order(arvore_t *raiz);
+
+void imprime_arvore_grafo(arvore_t *raiz);

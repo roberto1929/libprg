@@ -35,3 +35,97 @@ bool busca_arvore(arvore_t *raiz, int valor){
     if (valor < raiz->valor) return busca_arvore(raiz->esquerda, valor);
     return busca_arvore(raiz->direita, valor);
 }
+
+
+arvore_t *remover_numero(arvore_t *raiz, int valor) {
+    if (raiz == NULL)
+        return raiz;
+
+    if (valor < raiz->valor)
+        raiz->esquerda = remover_numero(raiz->esquerda, valor);
+    else if (valor > raiz->valor)
+        raiz->direita = remover_numero(raiz->direita, valor);
+    else {
+        if (raiz->esquerda == NULL) {
+            arvore_t *temp = raiz->direita;
+            free(raiz);
+            return temp;
+        } else if (raiz->direita == NULL) {
+            arvore_t *temp = raiz->esquerda;
+            free(raiz);
+            return temp;
+        }
+
+        arvore_t *temp = raiz->direita;
+        while (temp->esquerda != NULL)
+            temp = temp->esquerda;
+
+        raiz->valor = temp->valor;
+
+        raiz->direita = remover_numero(raiz->direita, temp->valor);
+    }
+    return raiz;
+}
+
+
+void imprime_filho_nivel(arvore_t *raiz, int valor, int nivel){
+    if(raiz == NULL){
+        printf("Número não encontrado na árvore\n");
+        return;
+    }
+    if (valor == raiz->valor) {
+        printf("Número encontrado na árvore.\n");
+        if (raiz->esquerda != NULL)
+            printf("Filho a esquerda: %d\n", raiz->esquerda->valor);
+        else
+            printf("Não tem filho à esquerda.\n");
+
+        if (raiz->direita != NULL)
+            printf("Filho a direita: %d\n", raiz->direita->valor);
+        else
+            printf("Não tem filho à direita.\n");
+
+        printf("O nível do número encontrado na árvore é: %d\n", nivel);
+        return;
+    }
+    if (valor < raiz->valor) {
+        imprime_filho_nivel(raiz->esquerda, valor, nivel + 1);
+    } else {
+        imprime_filho_nivel(raiz->direita, valor, nivel + 1);
+    }
+}
+
+void imprime_arvore_in_order(arvore_t *raiz){
+    if(raiz != NULL){
+        imprime_arvore_in_order(raiz->esquerda);
+        printf("%d ", raiz->valor);
+        imprime_arvore_in_order(raiz->direita);
+    }
+}
+void imprime_arvore_pre_order(arvore_t *raiz){
+    if (raiz != NULL){
+        printf("%d ", raiz->valor);
+        imprime_arvore_pre_order(raiz->esquerda);
+        imprime_arvore_pre_order(raiz->direita);
+    }
+}
+void imprime_arvore_post_order(arvore_t *raiz){
+    imprime_arvore_post_order(raiz->esquerda);
+    imprime_arvore_post_order(raiz->direita);
+    printf("%d ", raiz->valor);
+}
+
+void imprime_arvore_grafo(arvore_t *raiz){
+    if(raiz != NULL){
+        printf("%d ", raiz->valor);
+        if (raiz->esquerda != NULL) {
+            printf("--%d ", raiz->esquerda->valor);
+            imprime_arvore_pre_order(raiz->esquerda);
+        }
+
+        if (raiz->direita != NULL) {
+            printf("--%d ", raiz->direita->valor);
+            imprime_arvore_pre_order(raiz->direita);
+        }
+    }
+}
