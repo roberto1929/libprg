@@ -110,13 +110,25 @@ void imprime_arvore_pre_order(arvore_t *raiz){
     }
 }
 void imprime_arvore_post_order(arvore_t *raiz){
+    if(raiz != NULL){
     imprime_arvore_post_order(raiz->esquerda);
     imprime_arvore_post_order(raiz->direita);
     printf("%d ", raiz->valor);
+    }
+}
+
+void imprimir_texto_grafo(arvore_t *raiz){
+    printf("strict graph{\n");
+    printf("label=\"Árvore de busca binária\";\n");
+    printf("node [shape=\"circle\", color=\"#339966\", style=\"filled\",\n");
+    printf("\tfixedsize=true];\n");
+    imprime_arvore_grafo(raiz);
+    printf("}\n");
 }
 
 void imprime_arvore_grafo(arvore_t *raiz){
     if(raiz != NULL){
+
         if (raiz->esquerda != NULL) {
             printf("%d -- %d\n", raiz->valor, raiz->esquerda->valor);
         }
@@ -125,6 +137,9 @@ void imprime_arvore_grafo(arvore_t *raiz){
         }
         imprime_arvore_grafo(raiz->esquerda);
         imprime_arvore_grafo(raiz->direita);
-
     }
+}
+
+int exibir_altura(arvore_t *raiz, int valor){
+
 }

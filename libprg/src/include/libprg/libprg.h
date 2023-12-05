@@ -178,3 +178,5 @@ void imprime_arvore_pre_order(arvore_t *raiz);
 void imprime_arvore_post_order(arvore_t *raiz);
 
 void imprime_arvore_grafo(arvore_t *raiz);
+void imprimir_texto_grafo(arvore_t *raiz);
+int exibir_altura(arvore_t *raiz, int valor);
