@@ -1,6 +1,5 @@
 #include <libprg/libprg.h>
 
-
 int criar_lista(lista_t *lista)
 {
     lista->vetor = (int *) calloc(lista->tamanho, sizeof(int));
@@ -9,7 +8,6 @@ int criar_lista(lista_t *lista)
     }
     return 1;
 }
-
 
 void povoar_nao_ord(lista_t *lista)
 {
