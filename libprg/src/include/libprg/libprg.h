@@ -1,3 +1,7 @@
+#include "stdio.h"
+#include "stdlib.h"
+#include "stdbool.h"
+
 #ifndef LIBPRG_LIBPRG_H
 #define LIBPRG_LIBPRG_H
 
@@ -5,6 +9,8 @@ typedef struct {
     double value;
     int error;
 } result_t;
+
+typedef struct lista lista_t;
 
 typedef enum { SUM, SUB } operation_t;
 
