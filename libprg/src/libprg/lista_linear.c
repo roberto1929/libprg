@@ -3,12 +3,12 @@
 
 #define TAMANHO_LISTA 10
 
- struct Lista {
+ typedef struct Lista {
     int* elementos;
     int capacidade;
     int tamanho;
     bool ordenada;
-};
+} Lista;
 
 Lista* criarLista() {
     Lista* lista = (Lista*) malloc(sizeof (lista));
