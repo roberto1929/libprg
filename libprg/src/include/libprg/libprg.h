@@ -21,13 +21,8 @@ typedef struct {
 } lista_t;
 
 //Irá criar um vetor de tamanho n, alocado de forma dinâmica
-int criar_lista(lista_t *lista);
+int criar(lista_t *lista);
 
-//Irá povoar o vetor criado se for não ordenado
-void povoar_nao_ord(lista_t *lista);
-
-//Irá povoar o vetor criado se for ordenado
-void povoar_ord(lista_t *lista);
 
 //Irá inserir número em uma lista ordenada
 int insere_ord(lista_t *lista, int elemento);
@@ -50,8 +45,6 @@ int busca_bin_int(lista_t *lista, int elemento);
 //Irá fazer uma busca binaria de forma recursiva pelo vetor e retorna a posição do elemento no vetor
 int busca_bin_rec(lista_t *lista, int inicio, int fim, int elemento);
 
-//Irá liberar a memório alocado pelo vetor
-int libera_memoria(lista_t *lista);
 
 // FILA
 
@@ -77,6 +70,15 @@ int empty(fila_t *fila);
 // Indica se a ﬁla está vazia ou não
 int full(fila_t *fila);
 // indica se a ﬁla está cheia ou não
+
+//Irá povoar o vetor criado se for não ordenado
+void povoar_nao_ord(lista_t *lista);
+
+//Irá povoar o vetor criado se for ordenado
+void povoar_ord(lista_t *lista);
+
+//Irá liberar a memório alocado pelo vetor
+int libera_memoria(lista_t *lista);
 
 
 #endif
