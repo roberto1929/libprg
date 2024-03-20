@@ -19,7 +19,7 @@ Lista* criarLista() {
     return lista;
 }
 
-int inserir(Lista* lista, int elemento) {
+int inserirElemento(Lista* lista, int elemento) {
     lista->elementos[lista->tamanho] = elemento;
     lista->tamanho++;
     return lista->tamanho - 1;
