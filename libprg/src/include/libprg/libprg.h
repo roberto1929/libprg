@@ -10,7 +10,14 @@ typedef struct {
     int error;
 } result_t;
 
-typedef struct lista lista_t;
+typedef struct Lista Lista;
+Lista* criarLista();
+int inserirElemento(Lista* lista, int n);
+int removerElemento(Lista* lista, int n);
+int buscaLinear(Lista* lista, int n);
+int buscaBinariaInterativa(Lista* lista, int n);
+int buscaBinariaRecursiva(Lista* lista, int n, int inicio, int fim);
+
 
 typedef enum { SUM, SUB } operation_t;
 

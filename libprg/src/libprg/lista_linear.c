@@ -3,23 +3,24 @@
 
 #define TAMANHO_LISTA 10
 
-typedef struct lista {
+ struct Lista {
     int* elementos;
     int capacidade;
     int tamanho;
-    bool ordenado;
-} lista_t;
+    bool ordenada;
+};
 
-void criaLista () {
-    lista_t* lista = (lista_t*) malloc(sizeof (lista_t));
+Lista* criarLista() {
+    Lista* lista = (Lista*) malloc(sizeof (lista));
     lista->capacidade = TAMANHO_LISTA;
     lista->elementos = (int*) malloc(sizeof (int) * TAMANHO_LISTA);
     lista->tamanho = 0;
-    lista->ordenado = false;
+    lista->ordenada = false;
 }
 
-void inserir (lista_t* lista, int elemento) {
-    int tamanho = lista->tamanho;
-    lista->elementos[tamanho] = elemento;
+int inserir(Lista* lista, int elemento) {
+    lista->elementos[lista->tamanho] = elemento;
     lista->tamanho++;
+    return lista->tamanho - 1;
 }
+
