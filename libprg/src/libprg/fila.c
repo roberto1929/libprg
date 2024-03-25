@@ -32,7 +32,11 @@ int head(Fila* fila) {
 }
 
 int tail(Fila* fila) {
-    fila->fim = fila->tamanho % fila->inicio;
+    if (fila->tamanho == 0) {
+        fila->fim = 0;
+    } else {
+        fila->fim = fila->tamanho % fila->inicio;
+    }
     return fila->fim;
 }
 
