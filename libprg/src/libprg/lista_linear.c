@@ -44,8 +44,10 @@ int buscaLinear(Lista* lista, int n) {
 
 void removerElemento(Lista* lista, int n) {
     int pos = buscaLinear(lista, n);
-    for (int i = pos; i < lista->tamanho; ++i) {
-        lista->elementos[i] = lista->elementos[pos + 1];
-    }
+    lista->elementos[pos] = lista->elementos[lista->tamanho];
+//    Aqui é para lista ordenada
+//    for (int i = pos; i < lista->tamanho; ++i) {
+//        lista->elementos[i] = lista->elementos[pos + 1];
+//    }
     lista->tamanho = lista->tamanho - 1;
 }
