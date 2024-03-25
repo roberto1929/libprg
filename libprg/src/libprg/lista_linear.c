@@ -26,6 +26,11 @@ int inserirElemento(Lista* lista, int n) {
 }
 
 int buscaLinear(Lista* lista, int n) {
-
+    for (int i = 0; i < lista->tamanho; i++) {
+        if (lista->elementos[i] == n) {
+            return i;
+        }
+    }
+    return -1;
 }
 
