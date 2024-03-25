@@ -47,5 +47,5 @@ void removerElemento(Lista* lista, int n) {
     for (int i = pos; i < lista->tamanho; ++i) {
         lista->elementos[i] = lista->elementos[pos + 1];
     }
-    lista->tamanho = lista->tamanho--;
+    lista->tamanho = lista->tamanho - 1;
 }
