@@ -13,6 +13,7 @@ typedef struct {
 typedef struct Lista Lista;
 Lista* criarLista();
 int* getElementos(Lista* lista);
+int getTamanho (Lista* lista);
 int inserirElemento(Lista* lista, int n);
 void removerElemento(Lista* lista, int n);
 int buscaLinear(Lista* lista, int n);

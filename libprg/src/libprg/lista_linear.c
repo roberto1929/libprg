@@ -23,6 +23,10 @@ int* getElementos(Lista* lista) {
     return lista->elementos;
 }
 
+int getTamanho (Lista* lista) {
+    return lista->tamanho;
+}
+
 int inserirElemento(Lista* lista, int n) {
     lista->elementos[lista->tamanho] = n;
     lista->tamanho++;
