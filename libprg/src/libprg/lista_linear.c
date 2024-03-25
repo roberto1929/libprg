@@ -11,7 +11,7 @@
 };
 
 Lista* criarLista() {
-    Lista* lista = (Lista*) malloc(sizeof (lista));
+    Lista* lista = (Lista*) malloc(sizeof (&lista));
     lista->capacidade = TAMANHO_LISTA;
     lista->elementos = (int*) malloc(sizeof (int) * TAMANHO_LISTA);
     lista->tamanho = 0;
