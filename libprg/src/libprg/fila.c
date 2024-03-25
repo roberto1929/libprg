@@ -26,38 +26,43 @@ int* getFila(Fila* fila){
     return fila->elementos;
 }
 
-int calculaFim(Fila* fila) {
-    int fimPrevisto = fila->inicio + fila->tamanho;
-    if (fimPrevisto < fila->capacidade) {
-        return fimPrevisto - 1;
+int head(Fila* fila) {
+    return fila->inicio;
+}
+
+int tail(Fila* fila) {
+    fila->fim = fila->tamanho % fila->inicio;
+    return fila->fim;
+}
+
+bool full(Fila* fila) {
+    if(fila->tamanho == fila->capacidade) {
+        return true;
     } else {
-        int fimVetor = fila->capacidade - fila->inicio;
-        fimPrevisto = fila->tamanho - fimVetor - 1;
-        return fimPrevisto;
+        return false;
     }
-};
+}
+
+bool empty(Fila* fila) {
+    if(fila->tamanho == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 void enqueue(Fila* fila, int n) {
-    if (fila->tamanho > fila->capacidade) {
-        fila->elementos[fila->inicio] = n;
-        fila->tamanho = fila->tamanho + 1;
-        fila->fim = calculaFim(fila);
+    if (full(fila)) {
+        printf("A lista está cheia.");
     } else {
-        printf("A lista está cheia;");
+        fila->tamanho = fila->tamanho + 1;
+        fila->elementos[tail(fila)] = n;
     }
 }
 
 void dequeue(Fila* fila) {
     fila->inicio = fila->inicio + 1;
     fila->tamanho = fila->tamanho - 1;
-    fila->fim = calculaFim(fila);
+    fila->fim = tail(fila);
 }
 
-int head(Fila* fila) {
-    return fila->inicio;
-}
-
-int tail(Fila* fila) {
-    fila->fim = calculaFim(fila);
-    return fila->inicio + fila->tamanho;
-}

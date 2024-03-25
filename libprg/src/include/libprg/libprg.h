@@ -32,11 +32,11 @@ typedef struct Fila Fila;
 Fila* criaFila(int capacidade);
 int* getFila(Fila* fila);
 void enqueue(Fila* fila, int n);
-void dequeue(Fila* fila, );
+void dequeue(Fila* fila);
 int head(Fila* fila);
 int tail(Fila* fila);
 int size(Fila* fila);
-int empty(Fila* fila);
-int full(Fila* fila);
+bool empty(Fila* fila);
+bool full(Fila* fila);
 
 #endif
