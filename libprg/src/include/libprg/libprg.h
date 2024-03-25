@@ -12,8 +12,9 @@ typedef struct {
 
 typedef struct Lista Lista;
 Lista* criarLista();
+int* getElementos(Lista* lista);
 int inserirElemento(Lista* lista, int n);
-int removerElemento(Lista* lista, int n);
+void removerElemento(Lista* lista, int n);
 int buscaLinear(Lista* lista, int n);
 int buscaBinariaInterativa(Lista* lista, int n);
 int buscaBinariaRecursiva(Lista* lista, int n, int inicio, int fim);

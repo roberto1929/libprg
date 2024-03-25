@@ -19,6 +19,10 @@ Lista* criarLista() {
     return lista;
 }
 
+int* getElementos(Lista* lista) {
+    return lista->elementos;
+}
+
 int inserirElemento(Lista* lista, int n) {
     lista->elementos[lista->tamanho] = n;
     lista->tamanho++;
@@ -34,3 +38,10 @@ int buscaLinear(Lista* lista, int n) {
     return -1;
 }
 
+void removerElemento(Lista* lista, int n) {
+    int pos = buscaLinear(lista, n);
+    for (int i = pos; i < lista->tamanho; ++i) {
+        lista->elementos[i] = lista->elementos[pos + 1];
+    }
+    lista->tamanho = lista->tamanho--;
+}
