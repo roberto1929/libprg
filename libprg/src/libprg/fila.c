@@ -1,38 +1,62 @@
-#include "libprg/libprg.h"
+#include <libprg/libprg.h>
 
-int enqueue(fila_t *fila, int elemento){
-    if(full(fila)){
-        return -1; // retorna erro fila cheia
+int criar_fila(fila_t *fila, int tamanho)
+{
+    fila->vetor = (int*) calloc(tamanho,sizeof(int));
+
+    if(fila->vetor == NULL){
+        return 0;
     }
-    fila->fila->vetor[fila->fim] = elemento;
-    fila->fila->total++;
-    fila->fim = (fila->fim + 1) % fila->fila->tamanho;
+    return 1;
+}
+
+int enqueue(fila_t *fila , int elemento)
+{
+    if(fila->tamanho == fila->total){
+        return 1;
+    }
+    fila->vetor[fila->fim] = elemento;
+    fila->fim = (fila->fim + 1)% fila ->tamanho;
+    fila->total++;
+
     return 0;
 }
 
-int dequeue(fila_t *fila){
-    if(empty(fila)){
-        return -1; //retorna fila vazia
+int dequeue(fila_t *fila)
+{
+    if(fila->vetor)
+        fila->inicio = (fila->inicio + 1) % fila ->tamanho;
+    fila->total--;
+    return fila->vetor[fila->inicio];
+}
+
+int head(fila_t *fila)
+{
+    return fila->vetor[fila->inicio];
+}
+
+int tail(fila_t *fila)
+{
+    return fila->vetor[fila->fim];
+}
+
+int size(fila_t *fila)
+{
+    return fila->total;
+}
+
+int empty(fila_t *fila)
+{
+    if(fila->total == 0){
+        return 0;
     }
-    fila->fila->total--;
-    fila->inicio = (fila->inicio - 1) % fila->fila->tamanho;
-    return fila->fila->vetor[fila->fim];
+    return 1;
 }
 
-int head(fila_t *fila){
-    return fila->fila->vetor[fila->inicio];
-}
-
-int tail(fila_t *fila){
-    return fila->fila->vetor[fila->fim];
-}
-int size(fila_t *fila){
-    return (fila->fila->total);
+int full(fila_t *fila)
+{
+    if(fila->total == fila->tamanho){
+        return 0;
     }
-int empty(fila_t *fila){
-    return (fila->inicio == fila->fim);
-}
-
-int full(fila_t *fila){
-    return (fila->fila->total == fila->fila->tamanho);
+    return 1;
 }

@@ -57,12 +57,15 @@ int libera_memoria(lista_t *lista);
 // FILA
 
 typedef struct{
-    lista_t *fila;
+    int *vetor;
+    int total;
     int inicio;
     int fim;
+    int tamanho;
 } fila_t;
 
-int cria(lista_t *lista, int elemento);
+int criar_fila(fila_t *fila, int tamanho);
+
 int enqueue(fila_t *fila, int elemento);
 // adiciona um elemento na lista
 int dequeue(fila_t *fila);
