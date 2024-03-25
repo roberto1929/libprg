@@ -1,6 +1,14 @@
 #include <libprg/libprg.h>
 
+int cria(lista_t *lista, int tamanho){
+    lista->vetor = (int*) calloc(tamanho, sizeof (int));
+    lista->tamanho = tamanho;
 
+    if(lista->vetor == NULL){
+        return -1;
+    }
+    return 0;
+}
 int criar(lista_t *lista)
 {
     lista->vetor = (int*) calloc(lista->tamanho,sizeof(int));
