@@ -23,7 +23,7 @@ int* getElementos(Lista* lista) {
     return lista->elementos;
 }
 
-int getTamanho (Lista* lista) {
+int getTamanho(Lista* lista) {
     return lista->tamanho;
 }
 
