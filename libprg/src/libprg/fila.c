@@ -20,6 +20,7 @@ Fila* criaFila(int capacidade) {
     fila->tamanho = 0;
     fila->inicio = 0;
     fila->fim = 0;
+    return fila;
 }
 
 int* getFila(Fila* fila){
