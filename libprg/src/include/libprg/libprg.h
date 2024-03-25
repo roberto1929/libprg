@@ -30,6 +30,7 @@ result_t compute(double a, double b, operation_t op);
 // Fila
 typedef struct Fila Fila;
 Fila* criaFila(int capacidade);
+int* getFila(Fila* fila);
 void enqueue(Fila* fila, int n);
 void dequeue(Fila* fila, );
 int head(Fila* fila);
