@@ -7,6 +7,10 @@ int criar_fila(fila_t *fila, int tamanho)
     if(fila->vetor == NULL){
         return 0;
     }
+    fila->total = 0; // Inicializa o total de elementos como 0
+    fila->inicio = 0; // Inicializa o índice de início como 0
+    fila->fim = 0; // Inicializa o índice de fim como 0
+    fila->tamanho = tamanho; // Define o tamanho da fila
     return 1;
 }
 
@@ -24,10 +28,13 @@ int enqueue(fila_t *fila , int elemento)
 
 int dequeue(fila_t *fila)
 {
-    if(fila->vetor)
-        fila->inicio = (fila->inicio + 1) % fila ->tamanho;
+    if (empty(fila)) {
+        return -1;
+    }
+    int elemento = fila->vetor[fila->inicio];
+    fila->inicio = (fila->inicio + 1) % fila->tamanho;
     fila->total--;
-    return fila->vetor[fila->inicio];
+    return elemento;
 }
 
 int head(fila_t *fila)
@@ -60,3 +67,13 @@ int full(fila_t *fila)
     }
     return 1;
 }
+
+void imprime_fila(fila_t *fila){
+    printf("Fila: ");
+    int i;
+    for (i = 0; i < fila->total; i++) {
+        printf("%d ", fila->vetor[(fila->inicio + i) % fila->tamanho]);
+    }
+    printf("\n");
+}
+

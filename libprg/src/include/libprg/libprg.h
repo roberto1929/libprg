@@ -80,6 +80,6 @@ int empty(fila_t *fila);
 // Indica se a ﬁla está vazia ou não
 int full(fila_t *fila);
 // indica se a ﬁla está cheia ou não
-
+void imprimir_fila(fila_t *fila);
 
 #endif
