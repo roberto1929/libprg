@@ -16,11 +16,15 @@ Fila* criaFila(int capacidade) {
     Fila* fila = (Fila*) malloc(sizeof(&fila));
     if (fila != NULL) {
         fila->elementos = (int*) malloc(sizeof(int) * capacidade);
-        fila->capacidade = capacidade;
-        fila->tamanho = 0;
-        fila->inicio = 0;
-        fila->fim = 0;
-        return fila;
+        if (fila->elementos != NULL) {
+            fila->capacidade = capacidade;
+            fila->tamanho = 0;
+            fila->inicio = 0;
+            fila->fim = 0;
+            return fila;
+        } else {
+            printf("Não foi posssível criar a fila.");
+        }
     } else {
         printf("Não foi posssível criar a fila.");
     }
