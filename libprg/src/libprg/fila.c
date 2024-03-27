@@ -35,7 +35,7 @@ int tail(Fila* fila) {
     if (fila->tamanho == 0) {
         fila->fim = 0;
     } else {
-        fila->fim = fila->tamanho % fila->inicio;
+        fila->fim = (fila->fim + 1) % fila->tamanho;
     }
     return fila->fim;
 }
