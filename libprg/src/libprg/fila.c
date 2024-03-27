@@ -60,7 +60,7 @@ bool isEmpty(Fila* fila) {
 
 void enqueue(Fila* fila, int n) {
     if (isFull(fila)) {
-        printf("A lista está cheia.\n");
+        printf("A fila está cheia.\n");
     } else {
         fila->elementos[fila->fim] = n;
         fila->fim = (fila->fim + 1) % fila->capacidade;
