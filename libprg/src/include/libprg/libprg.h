@@ -56,7 +56,7 @@ int libera_memoria(lista_t *lista);
 
 // FILA
 
-typedef struct{
+typedef struct Fila{
     int *vetor;
     int total;
     int inicio;
@@ -64,9 +64,9 @@ typedef struct{
     int tamanho;
 } fila_t;
 
-int criar_fila(fila_t *fila, int tamanho);
+fila_t* criar_fila(int tamanho);
 
-int enqueue(fila_t *fila, int elemento);
+void enqueue(fila_t *fila, int elemento);
 // adiciona um elemento na lista
 int dequeue(fila_t *fila);
 // remove o elemento que está no início da ﬁla
@@ -80,6 +80,6 @@ int empty(fila_t *fila);
 // Indica se a ﬁla está vazia ou não
 int full(fila_t *fila);
 // indica se a ﬁla está cheia ou não
-void imprimir_fila(fila_t *fila);
+
 
 #endif
