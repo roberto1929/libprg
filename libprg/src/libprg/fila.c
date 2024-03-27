@@ -14,12 +14,16 @@ struct Fila {
 
 Fila* criaFila(int capacidade) {
     Fila* fila = (Fila*) malloc(sizeof(&fila));
-    fila->elementos = (int*) malloc(sizeof(int) * capacidade);
-    fila->capacidade = capacidade;
-    fila->tamanho = 0;
-    fila->inicio = 0;
-    fila->fim = 0;
-    return fila;
+    if (fila != NULL) {
+        fila->elementos = (int*) malloc(sizeof(int) * capacidade);
+        fila->capacidade = capacidade;
+        fila->tamanho = 0;
+        fila->inicio = 0;
+        fila->fim = 0;
+        return fila;
+    } else {
+        printf("Não foi posssível criar a fila.");
+    }
 }
 
 int* getFila(Fila* fila) {
@@ -56,7 +60,7 @@ bool isEmpty(Fila* fila) {
 
 void enqueue(Fila* fila, int n) {
     if (isFull(fila)) {
-        printf("A lista está cheia.");
+        printf("A lista está cheia.\n");
     } else {
         fila->elementos[fila->fim] = n;
         fila->fim = (fila->fim + 1) % fila->capacidade;
