@@ -3,7 +3,6 @@
 //
 
 #include "libprg/libprg.h"
-#include <stdlib.h>
 
 struct Fila {
     int* elementos;
@@ -23,8 +22,12 @@ Fila* criaFila(int capacidade) {
     return fila;
 }
 
-int* getFila(Fila* fila){
+int* getFila(Fila* fila) {
     return fila->elementos;
+}
+
+int getSize(Fila* fila) {
+    return fila->tamanho;
 }
 
 int head(Fila* fila) {
@@ -32,15 +35,10 @@ int head(Fila* fila) {
 }
 
 int tail(Fila* fila) {
-    if (fila->tamanho == 0) {
-        fila->fim = 0;
-    } else {
-        fila->fim = (fila->fim + 1) % fila->tamanho;
-    }
     return fila->fim;
 }
 
-bool full(Fila* fila) {
+bool isFull(Fila* fila) {
     if(fila->tamanho == fila->capacidade) {
         return true;
     } else {
@@ -48,7 +46,7 @@ bool full(Fila* fila) {
     }
 }
 
-bool empty(Fila* fila) {
+bool isEmpty(Fila* fila) {
     if(fila->tamanho == 0) {
         return true;
     } else {
@@ -57,17 +55,19 @@ bool empty(Fila* fila) {
 }
 
 void enqueue(Fila* fila, int n) {
-    if (full(fila)) {
+    if (isFull(fila)) {
         printf("A lista está cheia.");
     } else {
+        fila->elementos[fila->fim] = n;
+        fila->fim = (fila->fim + 1) % fila->capacidade;
         fila->tamanho = fila->tamanho + 1;
-        fila->elementos[tail(fila)] = n;
     }
 }
 
-void dequeue(Fila* fila) {
-    fila->inicio = fila->inicio + 1;
+int dequeue(Fila* fila) {
+    int n = fila->elementos[fila->inicio];
+    fila->inicio = (fila->inicio + 1) % fila->capacidade;
     fila->tamanho = fila->tamanho - 1;
-    fila->fim = tail(fila);
+    return n;
 }
 

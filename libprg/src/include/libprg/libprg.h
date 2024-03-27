@@ -14,7 +14,7 @@ typedef struct {
 typedef struct Lista Lista;
 Lista* criarLista();
 int* getElementos(Lista* lista);
-int getTamanho (Lista* lista);
+int getTamanho(Lista* lista);
 int inserirElemento(Lista* lista, int n);
 void removerElemento(Lista* lista, int n);
 int buscaLinear(Lista* lista, int n);
@@ -29,14 +29,14 @@ result_t compute(double a, double b, operation_t op);
 
 // Fila
 typedef struct Fila Fila;
-Fila* criaFila(int capacidade);
-int* getFila(Fila* fila);
-void enqueue(Fila* fila, int n);
-void dequeue(Fila* fila);
-int head(Fila* fila);
-int tail(Fila* fila);
-int size(Fila* fila);
-bool empty(Fila* fila);
-bool full(Fila* fila);
+Fila* criaFila(int capacidade); // OK
+int* getFila(Fila* fila); // OK
+int getSize(Fila* fila); // OK
+bool isEmpty(Fila* fila); // OK
+bool isFull(Fila* fila); // OK
+void enqueue(Fila* fila, int n); // OK
+int dequeue(Fila* fila); // OK
+int head(Fila* fila); // OK
+int tail(Fila* fila); // OK
 
 #endif
