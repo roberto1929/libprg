@@ -23,14 +23,6 @@ contato_t* criar_contato(int tamanho){
     return contato;
 }
 
-void ler_contato(pessoa_t* pesssoa){
-    printf("Entre com o nome: ");
-    scanf("%s", pesssoa->nome);
-    printf("Entre com o email: ");
-    scanf("%s", pesssoa->email);
-    printf("Entre com o numero: ");
-    scanf("%s", pesssoa->telefone);
-}
 
 bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char telefone[15]){
     return 0;
