@@ -54,6 +54,20 @@ int busca_bin_rec(lista_t *lista, int inicio, int fim, int elemento);
 int libera_memoria(lista_t *lista);
 
 
+// LISTA PROJETO
+
+typedef struct Contato contato_t;
+typedef struct Pessoa pessoa_t;
+
+contato_t* criar_contato(int tamanho);
+void adicionar_contato();
+void vizualizar_contato();
+int busca_contato();
+int editar_contato();
+int excluir_contato();
+
+
+
 // FILA
 
 typedef struct Fila{
