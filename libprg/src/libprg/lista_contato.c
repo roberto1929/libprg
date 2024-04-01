@@ -21,3 +21,4 @@ Contatos* criarContatos() {
     contatos->tamanho = 0;
     return contatos;
 }
+
