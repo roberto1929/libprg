@@ -62,9 +62,9 @@ typedef struct Pessoa pessoa_t;
 contato_t* criar_contato(int tamanho);
 bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char telefone[15]);
 pessoa_t* vizualizar_contato(contato_t* contato);
-int busca_contato(contato_t* contato);
-int editar_contato(contato_t* contato);
-int excluir_contato(contato_t* contato);
+int busca_contato(contato_t* contato, char nome[100]);
+bool editar_contato(contato_t* contato, char nome[100], char novo_email[50], char novo_telefone[15]);
+bool excluir_contato(contato_t* contato, char nome[100]);
 
 
 
