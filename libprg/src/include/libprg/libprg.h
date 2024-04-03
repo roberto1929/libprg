@@ -103,7 +103,7 @@ typedef struct Pilha pilha_t;
 int criar_pilha(pilha_t* pilha);
 int push(pilha_t* pilha, int elemento);
 int pop(pilha_t* pilha);
-int size_p(pilha_t* pilha);
+int size_p(pilha_t pilha);
 int empty_p(pilha_t* pilha);
 
 #endif
