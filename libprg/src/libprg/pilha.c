@@ -1,7 +1,13 @@
 #include <libprg/libprg.h>
 
+typedef struct Pilha{
+    int* vetor;
+    int topo;
+    int capacidade;
+}pilha_t;
+
 int criar_pilha(pilha_t* pilha){
-    pilha->vetor = calloc()
+   // pilha->vetor = calloc();
 }
 int push(pilha_t* pilha, int elemento){
 
