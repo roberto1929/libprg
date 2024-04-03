@@ -66,7 +66,8 @@ int busca_contato(contato_t* contato, char nome[100]);
 bool editar_contato(contato_t* contato, char nome[100], char novo_email[50], char novo_telefone[15]);
 bool excluir_contato(contato_t* contato, char nome[100]);
 
-
+int getTamanho(contato_t* contato);
+pessoa_t* getPessoa(contato_t* contato);
 
 // FILA
 
@@ -97,11 +98,7 @@ int full(fila_t *fila);
 
 // PILHA
 
-typedef struct Pilha{
-    int* vetor;
-    int topo;
-    int tamanho;
-}pilha_t;
+typedef struct Pilha pilha_t;
 
 int criar_pilha(pilha_t* pilha);
 int push(pilha_t* pilha, int elemento);

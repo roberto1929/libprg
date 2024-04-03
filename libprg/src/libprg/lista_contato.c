@@ -87,3 +87,11 @@ int busca_contato(contato_t* contato, char nome[100]){
         }
     }
 
+
+int getTamanho(contato_t* contato){
+    return contato->tamanho;
+}
+pessoa_t* getPessoa(contato_t* contato){
+    return contato->vetor;
+}
+
