@@ -40,9 +40,11 @@ int getTamanhoContatos(Contatos* contatos) {
 
 void getPessoas(Contatos* contatos) {
     int tamanho = getTamanhoContatos(contatos);
-    printf("ID | Nome \t | E-mail \t | Telefone\n");
+    printf("---------------------------------------------");
+    printf("ID | Nome \t | Telefone \t\t | E-mail\n");
+    printf("---------------------------------------------");
     for (int i = 0; i < tamanho; ++i) {
-        printf("%-2d | %s \t| %s \t| %s\n", i, contatos->pessoa[i].nome, contatos->pessoa[i].telefone, contatos->pessoa[i].email);
+        printf("%-2d | %-8s | %-16s \t| %s\n", i, contatos->pessoa[i].nome, contatos->pessoa[i].telefone, contatos->pessoa[i].email);
     }
     printf("\n");
 }
