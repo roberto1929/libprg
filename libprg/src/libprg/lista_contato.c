@@ -41,8 +41,9 @@ int getTamanhoContatos(Contatos* contatos) {
 void getPessoas(Contatos* contatos) {
     int tamanho = getTamanhoContatos(contatos);
     for (int i = 0; i < tamanho; ++i) {
-        printf("%s | %s | %s", contatos->pessoa[i].nome, contatos->pessoa[i].telefone, contatos->pessoa[i].email);
+        printf("%d | %s | %s | %s", i, contatos->pessoa[i].nome, contatos->pessoa[i].telefone, contatos->pessoa[i].email);
     }
+    printf("\n");
 }
 
 bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char email[50]) {
@@ -72,12 +73,12 @@ bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char
 }
 
 int buscarPessoa(Contatos* contatos, char nome[100]) {
-    float vRef = 10000, vAtual;
+    double vRef = 10000, vAtual;
     int indice;
 
     for (int i = 0; i < contatos->tamanho; ++i) {
-        vAtual = (float) strcasecmp(contatos->pessoa[i].nome, nome);
-        vAtual = (vAtual * vAtual);
+        vAtual = (double) strcasecmp(contatos->pessoa[i].nome, nome);
+        vAtual = sqrt(pow(vAtual, 2));
         if (vAtual < vRef) {
             vRef = vAtual;
             indice = i;
