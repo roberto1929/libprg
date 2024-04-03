@@ -41,10 +41,10 @@ int getTamanhoContatos(Contatos* contatos) {
 void getPessoas(Contatos* contatos) {
     int tamanho = getTamanhoContatos(contatos);
     printf("---------------------------------------------\n");
-    printf("ID | Nome \t | Telefone \t\t | E-mail\n");
+    printf("ID | Nome \t\t | Telefone \t\t | E-mail\n");
     printf("---------------------------------------------\n");
     for (int i = 0; i < tamanho; ++i) {
-        printf("%-2d | %-8s | %-16s \t| %s\n", i, contatos->pessoa[i].nome, contatos->pessoa[i].telefone, contatos->pessoa[i].email);
+        printf("%-2d | %-14s | %-14s \t| %s\n", i, contatos->pessoa[i].nome, contatos->pessoa[i].telefone, contatos->pessoa[i].email);
     }
     printf("\n");
 }
@@ -90,7 +90,7 @@ void buscarPessoas(Contatos* contatos, char nome[100]) {
 //    }
 
     for (int i = 0; i < contatos->tamanho; ++i) {
-        if (strstr(contatos->pessoa[i].nome, nome) != NULL) {
+        if (strcasestr(contatos->pessoa[i].nome, nome) != NULL) {
             resultados[contagem] = i;
             contagem++;
         }
@@ -100,7 +100,7 @@ void buscarPessoas(Contatos* contatos, char nome[100]) {
     printf("ID | Nome \t\t | Telefone \t\t | E-mail\n");
     printf("---------------------------------------------\n");
     for (int i = 0; i < contagem; ++i) {
-        printf("%-2d | %-16s | %-16s \t| %s\n", i, contatos->pessoa[resultados[i]].nome, contatos->pessoa[resultados[i]].telefone, contatos->pessoa[resultados[i]].email);
+        printf("%-2d | %-14s | %-14s \t| %s\n", i, contatos->pessoa[resultados[i]].nome, contatos->pessoa[resultados[i]].telefone, contatos->pessoa[resultados[i]].email);
     }
     printf("\n");
 }
