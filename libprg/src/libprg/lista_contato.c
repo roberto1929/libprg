@@ -77,7 +77,7 @@ int buscarPessoa(Contatos* contatos, char nome[100]) {
 
     for (int i = 0; i < contatos->tamanho; ++i) {
         vAtual = (float) strcasecmp(contatos->pessoa[i].nome, nome);
-        vAtual = sqrt(vAtual * vAtual);
+        vAtual = (vAtual * vAtual);
         if (vAtual < vRef) {
             vRef = vAtual;
             indice = i;
