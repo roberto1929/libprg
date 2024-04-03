@@ -67,7 +67,7 @@ bool editar_contato(contato_t* contato, char nome[100], char novo_email[50], cha
 bool excluir_contato(contato_t* contato, char nome[100]);
 
 int getTamanho(contato_t* contato);
-pessoa_t* getPessoa(contato_t* contato);
+void getPessoas(contato_t* contato);
 
 // FILA
 

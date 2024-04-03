@@ -91,7 +91,9 @@ int busca_contato(contato_t* contato, char nome[100]){
 int getTamanho(contato_t* contato){
     return contato->tamanho;
 }
-pessoa_t* getPessoa(contato_t* contato){
-    return contato->vetor;
+void getPessoas(contato_t* contato){
+    for (int i = 0; i < contato->total; ++i) {
+        printf("%s - %s - %s", contato->vetor->nome, contato->vetor->email, contato->vetor->telefone);
+    }
 }
 
