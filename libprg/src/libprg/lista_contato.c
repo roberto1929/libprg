@@ -6,7 +6,7 @@
 
 struct Pessoa {
     char nome[100];
-    char telefone[15];
+    char telefone[16];
     char email[50];
 };
 
