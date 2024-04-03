@@ -40,8 +40,8 @@ int getTamanhoContatos(Contatos* contatos) {
 
 void getPessoas(Contatos* contatos) {
     int tamanho = getTamanhoContatos(contatos);
+    printf("ID | Nome \t | E-mail \t | Telefone");
     for (int i = 0; i < tamanho; ++i) {
-        printf("ID | Nome \t | E-mail \t | Telefone");
         printf("%-2d | %s | %s | %s\n", i, contatos->pessoa[i].nome, contatos->pessoa[i].telefone, contatos->pessoa[i].email);
     }
     printf("\n");
