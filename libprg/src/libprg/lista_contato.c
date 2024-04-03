@@ -25,11 +25,11 @@ Contatos* criarContatos() {
         if (contatos->pessoa != NULL) {
             return contatos;
         } else {
-            printf("Erro ao criar lista de contatos.");
+            printf("Erro ao criar lista de contatos.\n");
             return contatos;
         }
     } else {
-        printf("Erro ao criar lista de contatos.");
+        printf("Erro ao criar lista de contatos.\n");
         return contatos;
     }
 }
@@ -38,8 +38,11 @@ int getTamanhoContatos(Contatos* contatos) {
     return contatos->tamanho;
 }
 
-Pessoa* getPessoas(Contatos* contatos) {
-    return contatos->pessoa;
+void getPessoas(Contatos* contatos) {
+    int tamanho = getTamanhoContatos(contatos);
+    for (int i = 0; i < tamanho; ++i) {
+        printf("%s | %s | %s", contatos->pessoa[i].nome, contatos->pessoa[i].telefone, contatos->pessoa[i].email);
+    }
 }
 
 bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char email[50]) {
