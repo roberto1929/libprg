@@ -71,16 +71,16 @@ bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char
     }
 }
 
-//int buscarPessoa(Contatos* contatos, char nome[100]) {
-//    int vRef = 32767;
-//    int vAtual, indice;
-//    for (int i = 0; i < contatos->tamanho; ++i) {
-//        vAtual = strcasecmp(contatos->pessoa[i].nome, nome);
-//        vAtual = (int) sqrt(vAtual * vAtual);
-//        if (vAtual < vRef) {
-//            vRef = vAtual;
-//            indice = i;
-//        }
-//    }
-//    return indice;
-//}
+int buscarPessoa(Contatos* contatos, char nome[100]) {
+    int vRef = 32767;
+    int vAtual, indice;
+    for (int i = 0; i < contatos->tamanho; ++i) {
+        vAtual = strcasecmp(contatos->pessoa[i].nome, nome);
+        vAtual = (int) sqrt(vAtual * vAtual);
+        if (vAtual < vRef) {
+            vRef = vAtual;
+            indice = i;
+        }
+    }
+    return indice;
+}
