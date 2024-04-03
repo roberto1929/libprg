@@ -40,9 +40,9 @@ int getTamanhoContatos(Contatos* contatos) {
 
 void getPessoas(Contatos* contatos) {
     int tamanho = getTamanhoContatos(contatos);
-    printf("---------------------------------------------");
+    printf("---------------------------------------------\n");
     printf("ID | Nome \t | Telefone \t\t | E-mail\n");
-    printf("---------------------------------------------");
+    printf("---------------------------------------------\n");
     for (int i = 0; i < tamanho; ++i) {
         printf("%-2d | %-8s | %-16s \t| %s\n", i, contatos->pessoa[i].nome, contatos->pessoa[i].telefone, contatos->pessoa[i].email);
     }
@@ -75,17 +75,32 @@ bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char
     }
 }
 
-int buscarPessoa(Contatos* contatos, char nome[100]) {
-    double vRef = 10000, vAtual;
-    int indice;
+void buscarPessoas(Contatos* contatos, char nome[100]) {
+//    double vRef = 10000, vAtual;
+    int resultados[5];
+    int contagem = 0;
+//
+//    for (int i = 0; i < contatos->tamanho; ++i) {
+//        vAtual = (double) strcasecmp(contatos->pessoa[i].nome, nome);
+//        vAtual = sqrt(pow(vAtual, 2));
+//        if (vAtual < vRef) {
+//            vRef = vAtual;
+//            indice = i;
+//        }
+//    }
 
     for (int i = 0; i < contatos->tamanho; ++i) {
-        vAtual = (double) strcasecmp(contatos->pessoa[i].nome, nome);
-        vAtual = sqrt(pow(vAtual, 2));
-        if (vAtual < vRef) {
-            vRef = vAtual;
-            indice = i;
+        if (strstr(contatos->pessoa[i].nome, nome) != NULL) {
+            resultados[contagem] = i;
+            contagem++;
         }
     }
-    return indice;
+
+    printf("---------------------------------------------\n");
+    printf("ID | Nome \t\t | Telefone \t\t | E-mail\n");
+    printf("---------------------------------------------\n");
+    for (int i = 0; i < contagem; ++i) {
+        printf("%-2d | %-16s | %-16s \t| %s\n", i, contatos->pessoa[resultados[i]].nome, contatos->pessoa[resultados[i]].telefone, contatos->pessoa[resultados[i]].email);
+    }
+    printf("\n");
 }
