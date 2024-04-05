@@ -60,15 +60,13 @@ typedef struct Contato contato_t;
 typedef struct Pessoa pessoa_t;
 
 contato_t* criar_contato(int tamanho);
-void destruir_contato(contato_t* lista_contatos);
-void adicionar_contato(contato_t* lista_contatos, char nome[100], char telefone[15], char email[50]);
-void visualizar_contatos(contato_t* lista_contatos);
-void buscar_contato(contato_t* lista_contatos, char nome[100]);
-void editar_contato(contato_t* lista_contatos, char nome[100], char novo_telefone[15], char novo_email[50]);
-void excluir_contato(contato_t* lista_contatos, char nome[100]);
+bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char telefone[15]);
+int visualizar_contatos(contato_t* lista_contatos);
+int busca_contato(contato_t* contato, char nome[100]);
+bool editar_contato(contato_t* contato, char nome[100], char novo_email[50], char novo_telefone[15]);
+bool excluir_contato(contato_t* contato, char nome[100]);
+int comparar_contatos(const void* a, const void* b);
 
-int getTamanho(contato_t* contato);
-void getPessoas(contato_t* contato);
 
 // FILA
 
@@ -97,14 +95,5 @@ int empty(fila_t *fila);
 int full(fila_t *fila);
 // indica se a ﬁla está cheia ou não
 
-// PILHA
-
-typedef struct Pilha pilha_t;
-
-int criar_pilha(pilha_t* pilha);
-int push(pilha_t* pilha, int elemento);
-int pop(pilha_t* pilha);
-int size_p(pilha_t pilha);
-int empty_p(pilha_t* pilha);
 
 #endif
