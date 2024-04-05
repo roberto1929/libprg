@@ -1,6 +1,5 @@
 #include <libprg/libprg.h>
 #include <string.h>
-#include <math.h>
 
 #define TAMANHO_LISTA_CONTATO 10
 
@@ -15,6 +14,12 @@ struct Contatos {
     int capacidade;
     int tamanho;
 };
+
+void cabecalhoTabela() {
+    printf("----------------------------------------------------------------------\n");
+    printf("%-2s | %-24s | %-16s | %s\n", "ID", "Nome", "Telefone", "E-mail");
+    printf("----------------------------------------------------------------------\n");
+}
 
 Contatos* criarContatos() {
     Contatos* contatos = (Contatos*) malloc(sizeof (&contatos));
@@ -40,11 +45,14 @@ int getTamanhoContatos(Contatos* contatos) {
 
 void getPessoas(Contatos* contatos) {
     int tamanho = getTamanhoContatos(contatos);
-    printf("---------------------------------------------\n");
-    printf("ID | Nome \t\t | Telefone \t\t | E-mail\n");
-    printf("---------------------------------------------\n");
+    cabecalhoTabela();
     for (int i = 0; i < tamanho; ++i) {
-        printf("%-2d | %-14s | %-14s \t| %s\n", i, contatos->pessoa[i].nome, contatos->pessoa[i].telefone, contatos->pessoa[i].email);
+        printf("%-2d | %-24s | %-16s | %s\n",
+               i,
+               contatos->pessoa[i].nome,
+               contatos->pessoa[i].telefone,
+               contatos->pessoa[i].email
+               );
     }
     printf("\n");
 }
@@ -75,19 +83,14 @@ bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char
     }
 }
 
+void removerPessoa(Contatos* contatos, int id) {
+    contatos->tamanho = contatos->tamanho - 1;
+    contatos->pessoa[id] = contatos->pessoa[contatos->tamanho];
+}
+
 void buscarPessoas(Contatos* contatos, char nome[100]) {
-//    double vRef = 10000, vAtual;
     int resultados[5];
     int contagem = 0;
-//
-//    for (int i = 0; i < contatos->tamanho; ++i) {
-//        vAtual = (double) strcasecmp(contatos->pessoa[i].nome, nome);
-//        vAtual = sqrt(pow(vAtual, 2));
-//        if (vAtual < vRef) {
-//            vRef = vAtual;
-//            indice = i;
-//        }
-//    }
 
     for (int i = 0; i < contatos->tamanho; ++i) {
         if (strcasestr(contatos->pessoa[i].nome, nome) != NULL) {
@@ -96,11 +99,14 @@ void buscarPessoas(Contatos* contatos, char nome[100]) {
         }
     }
 
-    printf("---------------------------------------------\n");
-    printf("ID | Nome \t\t | Telefone \t\t | E-mail\n");
-    printf("---------------------------------------------\n");
+    cabecalhoTabela();
     for (int i = 0; i < contagem; ++i) {
-        printf("%-2d | %-14s | %-14s \t| %s\n", i, contatos->pessoa[resultados[i]].nome, contatos->pessoa[resultados[i]].telefone, contatos->pessoa[resultados[i]].email);
+        printf("%-2d | %-24s | %-16s | %s\n",
+               resultados[i],
+               contatos->pessoa[resultados[i]].nome,
+               contatos->pessoa[resultados[i]].telefone,
+               contatos->pessoa[resultados[i]].email);
     }
     printf("\n");
 }
+

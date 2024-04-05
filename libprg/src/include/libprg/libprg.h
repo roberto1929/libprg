@@ -29,8 +29,9 @@ Contatos* criarContatos();
 void getPessoas(Contatos* contatos);
 int getTamanhoContatos(Contatos* contatos);
 bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[14], char email[50]);
+void removerPessoa(Contatos* contatos, int id);
 void buscarPessoas(Contatos* contatos, char nome[100]);
-
+void editarPessoa(Contatos* contatos, int id);
 
 
 
