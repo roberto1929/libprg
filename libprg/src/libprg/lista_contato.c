@@ -50,6 +50,7 @@ int comparar_contatos(const void* a, const void* b){
     pessoa_t* pessoa_a = (pessoa_t*)a;
     pessoa_t* pessoa_b = (pessoa_t*)b;
     return strcmp(pessoa_a->nome, pessoa_b->nome);
+
 }
 
 
