@@ -60,7 +60,7 @@ int visualizar_contatos(contato_t* lista_contatos) {
     }
 
     // Ordena os contatos por nome
-    qsort(lista_contatos->vetor, lista_contatos->total, sizeof(pessoa_t), comparar_nomes);
+    qsort(lista_contatos->vetor, lista_contatos->total, sizeof(pessoa_t), comparar_contatos);
 
     // Exibe os contatos ordenados
     printf("Contatos em ordem alfabética:\n");
