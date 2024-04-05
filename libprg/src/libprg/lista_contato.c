@@ -1,17 +1,5 @@
 #include <libprg/libprg.h>
 
-typedef struct Pessoa{
-    char nome[100];
-    char telefone[15];
-    char email[50];
-}pessoa_t;
-
-typedef struct Contato{
-    pessoa_t *vetor;
-    int tamanho;
-    int total;
-}contato_t;
-
 
 
 contato_t* criar_contato(int tamanho){
@@ -76,36 +64,81 @@ pessoa_t *visualizar_contatos(contato_t *lista_contatos, pessoa_t *contatos_orde
 
 return contatos_ordenados;
 }
-int busca_contato(contato_t* contato, char nome[100]){
-    for (int i = 0; i < contato->total; i++) {
-        if (strcmp(contato->vetor[i].nome, nome) == 0) {
-            return i;
-        }
-    }
-    return -1;
-}
-    bool editar_contato(contato_t* contato, char nome[100], char novo_email[50], char novo_telefone[15]) {
-        int indice = busca_contato(contato, nome);
-        if (indice != -1) {
-            strcpy(contato->vetor[indice].email, novo_email);
-            strcpy(contato->vetor[indice].telefone, novo_telefone);
-            return true;
-        } else {
-            printf("Contato não encontrado.\n");
-            return false;
-        }
-    }
-    bool excluir_contato(contato_t* contato, char nome[100]) {
-        int indice = busca_contato(contato, nome);
-        if (indice != -1) {
-            for (int i = indice; i < contato->total - 1; i++) {
-                contato->vetor[i] = contato->vetor[i + 1];
-            }
-            contato->total--;
-            return true;
-        } else {
-            printf("Contato não encontrado.\n");
-            return false;
+
+void buscar_contato(contato_t* lista_contatos, const char* nome_busca) {
+    bool encontrado = false;
+
+    // Percorre a lista de contatos
+    for (int i = 0; i < lista_contatos->total; i++) {
+        // Verifica se o nome do contato atual contém a string de busca
+        if (strstr(lista_contatos->vetor[i].nome, nome_busca) != NULL) {
+            // Se encontrado, exibe as informações do contato e marca como encontrado
+            printf("Contato encontrado:\n");
+            printf("Nome: %s\n", lista_contatos->vetor[i].nome);
+            printf("Telefone: %s\n", lista_contatos->vetor[i].telefone);
+            printf("Email: %s\n", lista_contatos->vetor[i].email);
+            encontrado = true;
         }
     }
 
+    // Se o contato não for encontrado, exibe uma mensagem
+    if (!encontrado) {
+        printf("Nenhum contato encontrado para '%s'.\n", nome_busca);
+    }
+}
+void editar_contato(contato_t* lista_contatos) {
+    char nome_busca[100];
+    printf("Digite o nome do contato que deseja editar: ");
+    scanf("%99s", nome_busca);
+
+    // Busca o contato pelo nome
+    pessoa_t* contato = buscar_contato(lista_contatos, nome_busca);
+
+    if (contato != NULL) {
+        // Se o contato for encontrado, solicita as novas informações
+        char novo_telefone[15], novo_email[50];
+        printf("Digite o novo email do contato: ");
+        scanf("%49s", novo_email);
+        printf("Digite o novo telefone do contato: ");
+        scanf("%14s", novo_telefone);
+
+        // Atualiza as informações do contato
+        strcpy(contato->telefone, novo_telefone);
+        strcpy(contato->email, novo_email);
+
+        printf("Informacoes do contato atualizadas com sucesso.\n");
+    }
+}
+
+// Função para excluir um contato
+void excluir_contato(contato_t* lista_contatos) {
+    char nome_busca[100];
+    printf("Digite o nome do contato que deseja excluir: ");
+    scanf("%99s", nome_busca);
+
+    // Busca o contato pelo nome
+    pessoa_t* contato = buscar_contato(lista_contatos, nome_busca);
+
+    if (contato != NULL) {
+        // Se o contato for encontrado, remove-o da lista
+        // Encontra o índice do contato na lista
+        int indice_contato = -1;
+        for (int i = 0; i < lista_contatos->total; i++) {
+            if (&lista_contatos->vetor[i] == contato) {
+                indice_contato = i;
+                break;
+            }
+        }
+
+        if (indice_contato != -1) {
+            // Desloca os contatos restantes para preencher o espaço
+            for (int i = indice_contato; i < lista_contatos->total - 1; i++) {
+                lista_contatos->vetor[i] = lista_contatos->vetor[i + 1];
+            }
+            lista_contatos->total--;
+            printf("Contato excluido com sucesso.\n");
+        } else {
+            printf("Erro ao excluir contato.\n");
+        }
+    }
+}
