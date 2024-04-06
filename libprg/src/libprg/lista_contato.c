@@ -46,16 +46,20 @@ int getTamanhoContatos(Contatos* contatos) {
 
 void getPessoas(Contatos* contatos) {
     int tamanho = getTamanhoContatos(contatos);
-    cabecalhoTabela();
-    for (int i = 0; i < tamanho; ++i) {
-        printf("%-2d | %-24s | %-15s | %s\n",
-               i,
-               contatos->pessoa[i].nome,
-               contatos->pessoa[i].telefone,
-               contatos->pessoa[i].email
-               );
+
+    if (tamanho > 0) {
+        cabecalhoTabela();
+        for (int i = 0; i < tamanho; ++i) {
+            printf("%-2d | %-24s | %-15s | %s\n",
+                   i,
+                   contatos->pessoa[i].nome,
+                   contatos->pessoa[i].telefone,
+                   contatos->pessoa[i].email
+            );
+        }
+    } else {
+        printf("Não há contatos cadastrados.");
     }
-    printf("\n");
 }
 
 void adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char email[50]) {
@@ -85,8 +89,11 @@ void adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char
 }
 
 void removerPessoa(Contatos* contatos, int id) {
+    char nome[100];
+    strcpy(contatos->pessoa[id].nome, nome);
     contatos->tamanho = contatos->tamanho - 1;
     contatos->pessoa[id] = contatos->pessoa[contatos->tamanho];
+    printf("'%s' foi removido(a) da lista de contatos.", nome);
 }
 
 void buscarPessoas(Contatos* contatos, char nome[100]) {
@@ -100,14 +107,17 @@ void buscarPessoas(Contatos* contatos, char nome[100]) {
         }
     }
 
-    cabecalhoTabela();
-    for (int i = 0; i < contagem; ++i) {
-        printf("%-2d | %-24s | %-15s | %s\n",
-               resultados[i],
-               contatos->pessoa[resultados[i]].nome,
-               contatos->pessoa[resultados[i]].telefone,
-               contatos->pessoa[resultados[i]].email);
+    if (contagem > 0) {
+        cabecalhoTabela();
+        for (int i = 0; i < contagem; ++i) {
+            printf("%-2d | %-24s | %-15s | %s\n",
+                   resultados[i],
+                   contatos->pessoa[resultados[i]].nome,
+                   contatos->pessoa[resultados[i]].telefone,
+                   contatos->pessoa[resultados[i]].email);
+        }
+    } else {
+        printf("Não foi encontrada nenhuma pessoa com '%s'", nome);
     }
-    printf("\n");
 }
 
