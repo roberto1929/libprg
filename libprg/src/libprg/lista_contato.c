@@ -93,7 +93,7 @@ void removerPessoa(Contatos* contatos, int id) {
     strcpy(contatos->pessoa[id].nome, nome);
     contatos->tamanho = contatos->tamanho - 1;
     contatos->pessoa[id] = contatos->pessoa[contatos->tamanho];
-    printf("'%s' foi removido(a) da lista de contatos.", nome);
+    printf("%s foi removido(a) da lista de contatos.", nome);
 }
 
 void buscarPessoas(Contatos* contatos, char nome[100]) {
@@ -121,3 +121,23 @@ void buscarPessoas(Contatos* contatos, char nome[100]) {
     }
 }
 
+Pessoa verPessoa(Contatos* contatos, int id) {
+    return contatos->pessoa[id];
+}
+
+void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14], char email[50]) {
+    strcpy(contatos->pessoa[id].nome, nome);
+    strcpy(contatos->pessoa[id].telefone, telefone);
+    strcpy(contatos->pessoa[id].email, email);
+    // Compara o conteúdo das strings
+    int cmp1 = strcmp(contatos->pessoa[id].nome, nome);
+    int cmp2 = strcmp(contatos->pessoa[id].telefone, telefone);
+    int cmp3 = strcmp(contatos->pessoa[id].email, email);
+    // Verifica se os valores são iguais
+    if (cmp1 == 0 && cmp2 == 0 & cmp3 == 0) {
+        contatos->tamanho = contatos->tamanho + 1;
+        printf("Pessoa editada com sucesso!\n");
+    } else {
+        printf("Erro ao editar pessoa\n");
+    }
+}
