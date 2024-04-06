@@ -58,7 +58,7 @@ void getPessoas(Contatos* contatos) {
             );
         }
     } else {
-        printf("Não há contatos cadastrados.");
+        printf("Não há contatos cadastrados.\n");
     }
 }
 
