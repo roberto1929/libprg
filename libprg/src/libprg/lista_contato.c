@@ -16,9 +16,9 @@ struct Contatos {
 };
 
 void cabecalhoTabela() {
-    printf("----------------------------------------------------------------------\n");
-    printf("%-2s | %-24s | %-16s | %s\n", "ID", "Nome", "Telefone", "E-mail");
-    printf("----------------------------------------------------------------------\n");
+    printf("--------------------------------------------------------------------------------\n");
+    printf("%-2s | %-24s | %-15s | %s\n", "ID", "Nome", "Telefone", "E-mail");
+    printf("--------------------------------------------------------------------------------\n");
 }
 
 Contatos* criarContatos() {
@@ -28,6 +28,7 @@ Contatos* criarContatos() {
         contatos->pessoa = (Pessoa*) malloc(sizeof (Pessoa) * contatos->capacidade);
         contatos->tamanho = 0;
         if (contatos->pessoa != NULL) {
+            printf("Lista de contatos criada com sucesso.\n");
             return contatos;
         } else {
             printf("Erro ao criar lista de contatos.\n");
@@ -47,7 +48,7 @@ void getPessoas(Contatos* contatos) {
     int tamanho = getTamanhoContatos(contatos);
     cabecalhoTabela();
     for (int i = 0; i < tamanho; ++i) {
-        printf("%-2d | %-24s | %-16s | %s\n",
+        printf("%-2d | %-24s | %-15s | %s\n",
                i,
                contatos->pessoa[i].nome,
                contatos->pessoa[i].telefone,
@@ -57,7 +58,7 @@ void getPessoas(Contatos* contatos) {
     printf("\n");
 }
 
-bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char email[50]) {
+void adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char email[50]) {
     if (contatos->tamanho >= contatos->capacidade) {
         contatos->capacidade = contatos->capacidade * 2;
         contatos->pessoa = (Pessoa*) realloc(&contatos->pessoa, sizeof (Pessoa) * contatos->capacidade);
@@ -74,12 +75,12 @@ bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char
         // Verifica se os valores são iguais
         if (cmp1 == 0 && cmp2 == 0 & cmp3 == 0) {
             contatos->tamanho = contatos->tamanho + 1;
-            return true;
+            printf("Pessoa adicionada com sucesso!\n");
         } else {
-            return false;
+            printf("Erro ao adicionar pessoa\n");
         }
     } else {
-        return false;
+        printf("Erro ao adicionar pessoa\n");
     }
 }
 
@@ -101,7 +102,7 @@ void buscarPessoas(Contatos* contatos, char nome[100]) {
 
     cabecalhoTabela();
     for (int i = 0; i < contagem; ++i) {
-        printf("%-2d | %-24s | %-16s | %s\n",
+        printf("%-2d | %-24s | %-15s | %s\n",
                resultados[i],
                contatos->pessoa[resultados[i]].nome,
                contatos->pessoa[resultados[i]].telefone,
