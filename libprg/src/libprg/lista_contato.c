@@ -121,9 +121,9 @@ void buscarPessoas(Contatos* contatos, char nome[100]) {
     }
 }
 
-Pessoa verPessoa(Contatos* contatos, int id) {
-    Pessoa p = contatos->pessoa[id];
-    return p;
+Pessoa* verPessoa(Contatos* contatos, int id) {
+    Pessoa* P = &contatos->pessoa[id];
+    return P;
 }
 
 void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14], char email[50]) {
