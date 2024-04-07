@@ -65,80 +65,72 @@ pessoa_t *visualizar_contatos(contato_t *lista_contatos, pessoa_t *contatos_orde
 return contatos_ordenados;
 }
 
-void buscar_contato(contato_t* lista_contatos, const char* nome_busca) {
-    bool encontrado = false;
-
-    // Percorre a lista de contatos
+int buscar_contato(contato_t* lista_contatos, const char* nome_busca) {
+        // Percorre a lista de contatos
     for (int i = 0; i < lista_contatos->total; i++) {
         // Verifica se o nome do contato atual contém a string de busca
-        if (strstr(lista_contatos->vetor[i].nome, nome_busca) != NULL) {
-            // Se encontrado, exibe as informações do contato e marca como encontrado
-            printf("Contato encontrado:\n");
+        if (strcmp(lista_contatos->vetor[i].nome, nome_busca) == 0) {
+            printf("O contato encontrado:\n");
             printf("Nome: %s\n", lista_contatos->vetor[i].nome);
             printf("Telefone: %s\n", lista_contatos->vetor[i].telefone);
             printf("Email: %s\n", lista_contatos->vetor[i].email);
-            encontrado = true;
+            return i;
         }
     }
 
-    // Se o contato não for encontrado, exibe uma mensagem
-    if (!encontrado) {
-        printf("Nenhum contato encontrado para '%s'.\n", nome_busca);
-    }
+    printf("O contato não foi encontrado.\n");
+    return -1;
 }
-void editar_contato(contato_t* lista_contatos) {
-    char nome_busca[100];
-    printf("Digite o nome do contato que deseja editar: ");
-    scanf("%99s", nome_busca);
+void editar_contato(contato_t* lista_contatos, char nome[100], char novo_telefone[15], char novo_email[50]) {
+    // Variável para controlar se o contato foi encontrado e editado
+    int editado = 0;
 
-    // Busca o contato pelo nome
-    pessoa_t* contato = buscar_contato(lista_contatos, nome_busca);
+    // Percorre a lista de contatos
+    for (int i = 0; i < lista_contatos->total; i++) {
+        // Verifica se o nome do contato é igual ao fornecido pelo usuário
+        if (strcmp(lista_contatos->vetor[i].nome, nome) == 0) {
+            // Atualiza as informações do contato
+            strcpy(lista_contatos->vetor[i].telefone, novo_telefone);
+            strcpy(lista_contatos->vetor[i].email, novo_email);
 
-    if (contato != NULL) {
-        // Se o contato for encontrado, solicita as novas informações
-        char novo_telefone[15], novo_email[50];
-        printf("Digite o novo email do contato: ");
-        scanf("%49s", novo_email);
-        printf("Digite o novo telefone do contato: ");
-        scanf("%14s", novo_telefone);
+            // Define que o contato foi editado
+            editado = 1;
+            printf("Contato editado com sucesso!\n");
+            break; // Interrompe o loop assim que o contato é encontrado e editado
+        }
+    }
 
-        // Atualiza as informações do contato
-        strcpy(contato->telefone, novo_telefone);
-        strcpy(contato->email, novo_email);
-
-        printf("Informacoes do contato atualizadas com sucesso.\n");
+    // Verifica se o contato não foi encontrado
+    if (!editado) {
+        printf("Contato não encontrado.\n");
     }
 }
 
 // Função para excluir um contato
-void excluir_contato(contato_t* lista_contatos) {
-    char nome_busca[100];
-    printf("Digite o nome do contato que deseja excluir: ");
-    scanf("%99s", nome_busca);
 
-    // Busca o contato pelo nome
-    pessoa_t* contato = buscar_contato(lista_contatos, nome_busca);
+void excluir_contato(contato_t* lista_contatos, char nome[100]){
+    // Variável para controlar se o contato foi encontrado e excluído
+    int excluido = 0;
 
-    if (contato != NULL) {
-        // Se o contato for encontrado, remove-o da lista
-        // Encontra o índice do contato na lista
-        int indice_contato = -1;
-        for (int i = 0; i < lista_contatos->total; i++) {
-            if (&lista_contatos->vetor[i] == contato) {
-                indice_contato = i;
-                break;
+    // Percorre a lista de contatos
+    for (int i = 0; i < lista_contatos->total; i++) {
+        // Verifica se o nome do contato é igual ao fornecido pelo usuário
+        if (strcmp(lista_contatos->vetor[i].nome, nome) == 0) {
+            // Remove o contato da lista (deslocando os contatos restantes para preencher o espaço)
+            for (int j = i; j < lista_contatos->total - 1; j++) {
+                lista_contatos->vetor[j] = lista_contatos->vetor[j + 1];
             }
-        }
+            lista_contatos->total--; // Decrementa o total de contatos na lista
 
-        if (indice_contato != -1) {
-            // Desloca os contatos restantes para preencher o espaço
-            for (int i = indice_contato; i < lista_contatos->total - 1; i++) {
-                lista_contatos->vetor[i] = lista_contatos->vetor[i + 1];
-            }
-            lista_contatos->total--;
-            printf("Contato excluido com sucesso.\n");
-        } else {
-            printf("Erro ao excluir contato.\n");
+            // Define que o contato foi excluído
+            excluido = 1;
+            printf("Contato excluído com sucesso!\n");
+            break; // Interrompe o loop assim que o contato é encontrado e excluído
         }
+    }
+
+    // Verifica se o contato não foi encontrado
+    if (!excluido) {
+        printf("Contato não encontrado.\n");
     }
 }
