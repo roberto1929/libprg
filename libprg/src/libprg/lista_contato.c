@@ -144,7 +144,7 @@ void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14],
 }
 
 void salvarArquivo(Contatos* contatos) {
-    FILE *arq = fopen("./contatos.txt", "w");
+    FILE *arq = fopen("contatos.txt", "w");
     if (arq) {
         int tamanho = getTamanhoContatos(contatos);
         if (tamanho > 0) {
