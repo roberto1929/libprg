@@ -149,7 +149,7 @@ void salvarArquivo(Contatos* contatos) {
         int tamanho = getTamanhoContatos(contatos);
         if (tamanho > 0) {
             for (int i = 0; i < tamanho; ++i) {
-                fprintf(arq, "%-2d | %-24s | %-15s | %s\n",
+                fprintf(arq, "%d %s %s %s\n",
                        i,
                        contatos->pessoa[i].nome,
                        contatos->pessoa[i].telefone,
