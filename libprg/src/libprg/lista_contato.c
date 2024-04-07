@@ -121,15 +121,34 @@ void buscarPessoas(Contatos* contatos, char nome[100]) {
     }
 }
 
-Pessoa* verPessoa(Contatos* contatos, int id) {
-    Pessoa* P = &contatos->pessoa[id];
-    return P;
+void verPessoa(Contatos* contatos, int id) {
+    cabecalhoTabela();
+    printf("%-2d | %-24s | %-15s | %s\n",
+           id,
+           contatos->pessoa[id].nome,
+           contatos->pessoa[id].telefone,
+           contatos->pessoa[id].email);
 }
 
 void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14], char email[50]) {
-    strcpy(contatos->pessoa[id].nome, nome);
-    strcpy(contatos->pessoa[id].telefone, telefone);
-    strcpy(contatos->pessoa[id].email, email);
+    if (strcmp(nome, "") == 0) {
+        strcpy(contatos->pessoa[id].nome, contatos->pessoa[id].nome);
+    } else {
+        strcpy(contatos->pessoa[id].nome, nome);
+    }
+
+    if (strcmp(telefone, "") == 0) {
+        strcpy(contatos->pessoa[id].telefone, contatos->pessoa[id].telefone);
+    } else {
+        strcpy(contatos->pessoa[id].telefone, telefone);
+    }
+
+    if (strcmp(email, "") == 0) {
+        strcpy(contatos->pessoa[id].email, contatos->pessoa[id].email);
+    } else {
+        strcpy(contatos->pessoa[id].email, email);
+    }
+
     // Compara o conteúdo das strings
     int cmp1 = strcmp(contatos->pessoa[id].nome, nome);
     int cmp2 = strcmp(contatos->pessoa[id].telefone, telefone);
