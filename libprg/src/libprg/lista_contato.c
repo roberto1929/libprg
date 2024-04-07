@@ -90,7 +90,7 @@ void adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char
 
 void removerPessoa(Contatos* contatos, int id) {
     char nome[100];
-    strcpy(contatos->pessoa[id].nome, nome);
+    strcpy(nome, contatos->pessoa[id].nome);
     contatos->tamanho = contatos->tamanho - 1;
     contatos->pessoa[id] = contatos->pessoa[contatos->tamanho];
     printf("%s foi removido(a) da lista de contatos.", nome);
@@ -141,4 +141,24 @@ void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14],
         strcpy(contatos->pessoa[id].email, email);
     }
     printf("Pessoa editada com sucesso!\n");
+}
+
+void salvarArquivo(Contatos* contatos) {
+    FILE *arq = fopen("./contatos.txt", "w");
+    if (arq) {
+        int tamanho = getTamanhoContatos(contatos);
+        if (tamanho > 0) {
+            for (int i = 0; i < tamanho; ++i) {
+                fprintf(arq, "%-2d | %-24s | %-15s | %s\n",
+                       i,
+                       contatos->pessoa[i].nome,
+                       contatos->pessoa[i].telefone,
+                       contatos->pessoa[i].email
+                );
+            }
+        }
+        fclose(arq);
+    } else {
+        printf("Não foi possível abrir o arquivo\n");
+    }
 }
