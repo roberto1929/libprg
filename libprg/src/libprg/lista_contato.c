@@ -131,33 +131,14 @@ void verPessoa(Contatos* contatos, int id) {
 }
 
 void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14], char email[50]) {
-    if (strcmp(nome, "") == 0) {
-        strcpy(contatos->pessoa[id].nome, contatos->pessoa[id].nome);
-    } else {
+    if (strcmp(nome, "") != 0) {
         strcpy(contatos->pessoa[id].nome, nome);
     }
-
-    if (strcmp(telefone, "") == 0) {
-        strcpy(contatos->pessoa[id].telefone, contatos->pessoa[id].telefone);
-    } else {
+    if (strcmp(telefone, "") != 0) {
         strcpy(contatos->pessoa[id].telefone, telefone);
     }
-
-    if (strcmp(email, "") == 0) {
-        strcpy(contatos->pessoa[id].email, contatos->pessoa[id].email);
-    } else {
+    if (strcmp(email, "") != 0) {
         strcpy(contatos->pessoa[id].email, email);
     }
-
-    // Compara o conteúdo das strings
-    int cmp1 = strcmp(contatos->pessoa[id].nome, nome);
-    int cmp2 = strcmp(contatos->pessoa[id].telefone, telefone);
-    int cmp3 = strcmp(contatos->pessoa[id].email, email);
-    // Verifica se os valores são iguais
-    if (cmp1 == 0 && cmp2 == 0 & cmp3 == 0) {
-        contatos->tamanho = contatos->tamanho + 1;
-        printf("Pessoa editada com sucesso!\n");
-    } else {
-        printf("Erro ao editar pessoa\n");
-    }
+    printf("Pessoa editada com sucesso!\n");
 }
