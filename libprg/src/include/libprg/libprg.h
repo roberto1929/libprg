@@ -9,6 +9,7 @@
 #include <string.h>
 #include <sys/time.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 //LISTA LINEAR
 
