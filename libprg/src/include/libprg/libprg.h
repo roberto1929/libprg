@@ -109,4 +109,23 @@ int full(fila_t *fila);
 // indica se a ﬁla está cheia ou não
 
 
+// PILHA
+
+typedef struct {
+    int* vetor;
+    int tamanho;
+    int topo;
+}pilha_t;
+
+
+
+int criar_pilha(pilha_t* pilha);
+int push(pilha_t* pilha, int elemento);
+int pop(pilha_t* pilha);
+int size_p(pilha_t pilha);
+int empty_p(pilha_t* pilha);
+
+
+
+
 #endif
