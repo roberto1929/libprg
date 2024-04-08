@@ -144,18 +144,34 @@ void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14],
 }
 
 void salvarArquivo(Contatos* contatos) {
-    FILE *arq = fopen("contatos.txt", "w");
+    FILE *arq = fopen("./contatos.txt", "w");
     if (arq) {
         int tamanho = getTamanhoContatos(contatos);
         if (tamanho > 0) {
+            fprintf(arq, "%d\n", tamanho);
             for (int i = 0; i < tamanho; ++i) {
-                fprintf(arq, "%d %s %s %s\n",
-                       i,
-                       contatos->pessoa[i].nome,
-                       contatos->pessoa[i].telefone,
-                       contatos->pessoa[i].email
-                );
+                fprintf(arq, "%s\n", contatos->pessoa[i].nome);
+                fprintf(arq, "%s\n", contatos->pessoa[i].telefone);
+                fprintf(arq, "%s\n", contatos->pessoa[i].email);
             }
+        }
+        fclose(arq);
+    } else {
+        printf("Não foi possível abrir o arquivo\n");
+    }
+}
+
+void lerArquivo(Contatos* contatos) {
+    FILE *arq = fopen("./contatos.txt", "r");
+    char nome[100], telefone[20], email[50];
+    if (arq) {
+        int tamanho;
+        fscanf(arq, "%d\n", &tamanho);
+        for (int i = 0; i < tamanho; ++i) {
+            fgets(nome, 100, arq);
+            fgets(telefone, 100, arq);
+            fgets(email, 100, arq);
+            adicionarPessoa(contatos, nome, telefone, email);
         }
         fclose(arq);
     } else {

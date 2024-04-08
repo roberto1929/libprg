@@ -21,7 +21,6 @@ int buscaLinear(Lista* lista, int n);
 int buscaBinariaInterativa(Lista* lista, int n);
 int buscaBinariaRecursiva(Lista* lista, int n, int inicio, int fim);
 
-
 // Lista Contato
 typedef struct Contatos Contatos;
 typedef struct Pessoa Pessoa;
@@ -34,9 +33,7 @@ void buscarPessoas(Contatos* contatos, char nome[100]);
 void verPessoa(Contatos* contatos, int id);
 void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14], char email[50]);
 void salvarArquivo(Contatos* contatos);
-
-
-
+void lerArquivo(Contatos* contatos);
 
 // Soma
 typedef enum { SUM, SUB } operation_t;
