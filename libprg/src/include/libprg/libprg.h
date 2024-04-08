@@ -119,7 +119,7 @@ typedef struct {
 
 
 
-int criar_pilha(pilha_t* pilha);
+int criar_pilha(pilha_t* pilha, int tamanho);
 int push(pilha_t* pilha, int elemento);
 int pop(pilha_t* pilha);
 int size_p(pilha_t pilha);

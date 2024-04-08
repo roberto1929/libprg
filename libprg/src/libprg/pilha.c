@@ -1,7 +1,7 @@
 #include <libprg/libprg.h>
 
 
-int criar_pilha(pilha_t* pilha){
+int criar_pilha(pilha_t* pilha, int tamanho){
     pilha->vetor =(int *) calloc(pilha->tamanho,sizeof(int));
     pilha->topo = -1;
     if(pilha->vetor == NULL){
