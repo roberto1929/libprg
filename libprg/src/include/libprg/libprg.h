@@ -55,4 +55,9 @@ int dequeue(Fila* fila); // OK
 int head(Fila* fila); // OK
 int tail(Fila* fila); // OK
 
+// pilha
+typedef struct Pilha Pilha;
+Pilha* criarPilha();
+void push()
+
 #endif

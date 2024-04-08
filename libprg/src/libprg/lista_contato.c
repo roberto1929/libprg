@@ -28,14 +28,9 @@ Contatos* criarContatos() {
         contatos->pessoa = (Pessoa*) malloc(sizeof (Pessoa) * contatos->capacidade);
         contatos->tamanho = 0;
         if (contatos->pessoa != NULL) {
-            printf("Lista de contatos criada com sucesso.\n");
-            return contatos;
-        } else {
-            printf("Erro ao criar lista de contatos.\n");
             return contatos;
         }
     } else {
-        printf("Erro ao criar lista de contatos.\n");
         return contatos;
     }
 }
