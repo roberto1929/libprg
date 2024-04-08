@@ -1,5 +1,5 @@
 #include <libprg/libprg.h>
-#include <string.h>;
+#include <string.h>
 
 
 contato_t* criar_contato(int tamanho){
