@@ -42,28 +42,36 @@ int comparar_contatos(const void* a, const void* b){
 }
 
 
-pessoa_t *visualizar_contatos(contato_t *lista_contatos, pessoa_t *contatos_ordenados) {
-    if (lista_contatos->total == 0) {
-        printf("Lista de contatos vazia.\n");
+
+pessoa_t* vizualizar_contato(contato_t* contato) {
+    if (contato->total == 0) {
+        printf("A lista de contatos está vazia.\n");
         return NULL;
+    } else {
+        return contato->vetor;
     }
-
-    for (int i = 0; i < lista_contatos->total; i++) {
-        contatos_ordenados[i] = lista_contatos->vetor[i];
-    }
-
-    qsort(contatos_ordenados, lista_contatos->total, sizeof(pessoa_t), comparar_contatos);
-
-    printf("Contatos em ordem alfabética:\n");
-    for (int i = 0; i < lista_contatos->total; i++) {
-        printf("Nome: %s\n", contatos_ordenados[i].nome);
-        printf("Telefone: %s\n", contatos_ordenados[i].telefone);
-        printf("Email: %s\n", contatos_ordenados[i].email);
-        printf("\n");
-    }
-
-return contatos_ordenados;
 }
+//pessoa_t *visualizar_contatos(contato_t *lista_contatos, pessoa_t *contatos_ordenados) {
+//    if (lista_contatos->total == 0) {
+//        printf("Lista de contatos vazia.\n");
+//        return NULL;
+//    }
+//
+//    for (int i = 0; i < lista_contatos->total; i++) {
+//        contatos_ordenados[i] = lista_contatos->vetor[i];
+//    }
+//
+//    qsort(contatos_ordenados, lista_contatos->total, sizeof(pessoa_t), comparar_contatos);
+//
+//    for (int i = 0; i < lista_contatos->total; i++) {
+//        printf("Nome: %s\n", contatos_ordenados[i].nome);
+//        printf("Telefone: %s\n", contatos_ordenados[i].telefone);
+//        printf("Email: %s\n", contatos_ordenados[i].email);
+//        printf("\n");
+//    }
+//
+//return contatos_ordenados;
+//}
 
 int buscar_contato(contato_t* lista_contatos, const char* nome_busca) {
         // Percorre a lista de contatos
