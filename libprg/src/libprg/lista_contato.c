@@ -166,7 +166,7 @@ void salvarArquivoBin(Contatos* contatos) {
     if (arq) {
         int tamanho = getTamanhoContatos(contatos);
         fprintf(arq, "%d\n", tamanho);
-        fwrite(contatos->pessoa, sizeof(Pessoa), tamanho, arq);
+        fwrite(&contatos->pessoa, sizeof(Pessoa), tamanho, arq);
         fclose(arq);
     } else {
         printf("Não foi possível abrir o arquivo\n");
@@ -199,7 +199,7 @@ void lerArquivoBin(Contatos* contatos) {
     if (arq) {
         int tamanho;
         fscanf(arq, "%d\n", &tamanho);
-        fread(contatos->pessoa, sizeof(Pessoa), tamanho, arq);
+        fread(&contatos->pessoa, sizeof(Pessoa), tamanho, arq);
         fclose(arq);
     } else {
         printf("Não foi possível abrir o arquivo\n");
