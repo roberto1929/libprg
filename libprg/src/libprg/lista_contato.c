@@ -169,8 +169,11 @@ void lerArquivo(Contatos* contatos) {
         fscanf(arq, "%d\n", &tamanho);
         for (int i = 0; i < tamanho; ++i) {
             fgets(nome, 100, arq);
+            nome[strcspn(nome, "\n\r")] = 0;
             fgets(telefone, 100, arq);
+            telefone[strcspn(telefone, "\n\r")] = 0;
             fgets(email, 100, arq);
+            email[strcspn(email, "\n\r")] = 0;
             adicionarPessoa(contatos, nome, telefone, email);
         }
         fclose(arq);
