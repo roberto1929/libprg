@@ -78,8 +78,8 @@ bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char t
 pessoa_t *visualizar_contatos(contato_t *lista_contatos, pessoa_t *contatos_ordenados);
 int buscar_contato(contato_t* lista_contatos, const char* nome_busca);
 void editar_contato(contato_t* lista_contatos, char nome[100], char novo_telefone[15], char novo_email[50]);
-    void excluir_contato(contato_t* lista_contatos, char nome[100]);
-    int comparar_contatos(const void* a, const void* b);
+void excluir_contato(contato_t* lista_contatos, char nome[100]);
+int comparar_contatos(const void* a, const void* b);
 
 
 // FILA
