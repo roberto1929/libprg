@@ -161,6 +161,18 @@ void salvarArquivo(Contatos* contatos) {
     }
 }
 
+void salvarArquivoBin(Contatos* contatos) {
+    FILE *arq = fopen("./contatosbin.txt", "wb");
+    if (arq) {
+        int tamanho = getTamanhoContatos(contatos);
+        fprintf(arq, "%d\n", tamanho);
+        fwrite(contatos->pessoa, sizeof(Pessoa), tamanho, arq);
+        fclose(arq);
+    } else {
+        printf("Não foi possível abrir o arquivo\n");
+    }
+}
+
 void lerArquivo(Contatos* contatos) {
     FILE *arq = fopen("./contatos.txt", "r");
     char nome[100], telefone[20], email[50];
@@ -176,6 +188,18 @@ void lerArquivo(Contatos* contatos) {
             email[strcspn(email, "\n\r")] = 0;
             adicionarPessoa(contatos, nome, telefone, email);
         }
+        fclose(arq);
+    } else {
+        printf("Não foi possível abrir o arquivo\n");
+    }
+}
+
+void lerArquivoBin(Contatos* contatos) {
+    FILE *arq = fopen("./contatosbin.txt", "rb");
+    if (arq) {
+        int tamanho;
+        fscanf(arq, "%d\n", &tamanho);
+        fread(contatos->pessoa, sizeof(Pessoa), tamanho, arq);
         fclose(arq);
     } else {
         printf("Não foi possível abrir o arquivo\n");
