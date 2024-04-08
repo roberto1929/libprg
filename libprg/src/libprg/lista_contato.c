@@ -1,5 +1,5 @@
 #include <libprg/libprg.h>
-
+#include <string.h>;
 
 
 contato_t* criar_contato(int tamanho){
@@ -68,8 +68,7 @@ return contatos_ordenados;
 int buscar_contato(contato_t* lista_contatos, const char* nome_busca) {
         // Percorre a lista de contatos
     for (int i = 0; i < lista_contatos->total; i++) {
-        // Verifica se o nome do contato atual contém a string de busca
-        if (strcmp(lista_contatos->vetor[i].nome, nome_busca) == 0) {
+        if (strstr(lista_contatos->vetor[i].nome, nome_busca) == 0) {
             printf("O contato encontrado:\n");
             printf("Nome: %s\n", lista_contatos->vetor[i].nome);
             printf("Telefone: %s\n", lista_contatos->vetor[i].telefone);
