@@ -82,31 +82,25 @@ int buscar_contato(contato_t* lista_contatos, const char* nome_busca) {
     return -1;
 }
 void editar_contato(contato_t* lista_contatos, char nome[100], char novo_telefone[15], char novo_email[50]) {
-    // Variável para controlar se o contato foi encontrado e editado
     int editado = 0;
 
-    // Percorre a lista de contatos
+    /* Percorre a lista de contatos*/
     for (int i = 0; i < lista_contatos->total; i++) {
-        // Verifica se o nome do contato é igual ao fornecido pelo usuário
         if (strcmp(lista_contatos->vetor[i].nome, nome) == 0) {
             // Atualiza as informações do contato
             strcpy(lista_contatos->vetor[i].telefone, novo_telefone);
             strcpy(lista_contatos->vetor[i].email, novo_email);
 
-            // Define que o contato foi editado
             editado = 1;
             printf("Contato editado com sucesso!\n");
-            break; // Interrompe o loop assim que o contato é encontrado e editado
+            break;
         }
     }
-
-    // Verifica se o contato não foi encontrado
     if (!editado) {
         printf("Contato não encontrado.\n");
     }
 }
 
-// Função para excluir um contato
 
 void excluir_contato(contato_t* lista_contatos, char nome[100]){
     // Variável para controlar se o contato foi encontrado e excluído
