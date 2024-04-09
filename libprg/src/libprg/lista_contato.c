@@ -73,15 +73,15 @@ Pessoa* buscarPessoas(Contatos* contatos, char nome[100]) {
         }
     }
 
-    Pessoa* busca;
+    Pessoa* busca[5];
 
     if (contagem> 0) {
         for (int i = 0; i < contagem; ++i) {
-            busca[i] = contatos->pessoa[resultados[i]];
+            busca[i] = &contatos->pessoa[resultados[i]];
         }
     }
 
-    return busca;
+    return (Pessoa*) busca;
 
 
 //    if (contagem > 0) {
