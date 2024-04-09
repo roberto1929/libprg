@@ -3,18 +3,6 @@
 
 #define TAMANHO_LISTA_CONTATO 10
 
-struct Pessoa {
-    char nome[100];
-    char telefone[20];
-    char email[50];
-};
-
-struct Contatos {
-    struct Pessoa* pessoa;
-    int capacidade;
-    int tamanho;
-};
-
 void cabecalhoTabela() {
     printf("--------------------------------------------------------------------------------\n");
     printf("%-2s | %-24s | %-15s | %s\n", "ID", "Nome", "Telefone", "E-mail");
@@ -22,10 +10,10 @@ void cabecalhoTabela() {
 }
 
 Contatos* criarContatos() {
-    Contatos* contatos = (Contatos*) malloc(sizeof (&contatos));
+    Contatos* contatos = malloc(sizeof (Contatos));
     if (contatos != NULL) {
         contatos->capacidade = TAMANHO_LISTA_CONTATO;
-        contatos->pessoa = (Pessoa*) malloc(sizeof (Pessoa) * contatos->capacidade);
+        contatos->pessoa = malloc(sizeof (Pessoa) * contatos->capacidade);
         contatos->tamanho = 0;
         if (contatos->pessoa != NULL) {
             return contatos;
@@ -39,7 +27,7 @@ int getTamanhoContatos(Contatos* contatos) {
     return contatos->tamanho;
 }
 
-struct Pessoa* getPessoas(Contatos* contatos) {
+Pessoa* getPessoas(Contatos* contatos) {
 //    int tamanho = getTamanhoContatos(contatos);
 //
 //    if (tamanho > 0) {
