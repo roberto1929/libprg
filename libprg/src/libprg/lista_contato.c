@@ -39,7 +39,7 @@ int getTamanhoContatos(Contatos* contatos) {
     return contatos->tamanho;
 }
 
-Pessoa* getPessoas(Contatos* contatos) {
+struct Pessoa* getPessoas(Contatos* contatos) {
 //    int tamanho = getTamanhoContatos(contatos);
 //
 //    if (tamanho > 0) {
