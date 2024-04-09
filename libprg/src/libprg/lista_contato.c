@@ -62,40 +62,32 @@ void removerPessoa(Contatos* contatos, int id) {
     contatos->pessoa[id] = contatos->pessoa[contatos->tamanho];
 }
 
-Pessoa* buscarPessoas(Contatos* contatos, char nome[100]) {
-    int resultados[5];
+int* buscarPessoas(Contatos* contatos, char nome[100]) {
+    int* resultados = malloc(5 * sizeof(int));;
     int contagem = 0;
 
     for (int i = 0; i < contatos->tamanho; ++i) {
         if (strcasestr(contatos->pessoa[i].nome, nome) != NULL) {
-            resultados[contagem] = i;
+            resultados[contagem + 1] = i;
             contagem++;
         }
     }
 
-    Pessoa* busca[5];
+    // Quantidade de registros encontrados.
+    resultados[0] = contagem;
 
-    if (contagem> 0) {
-        for (int i = 0; i < contagem; ++i) {
-            busca[i] = &contatos->pessoa[resultados[i]];
-        }
+    return resultados;
+}
+
+Pessoa* exibirPessoas(Contatos* contatos, const int* resultados) {
+
+    Pessoa* busca = malloc(sizeof (Pessoa) * resultados[0]);
+
+    for (int i = 0; i < resultados[0]; ++i) {
+        busca[i] = contatos->pessoa[resultados[i + 1]];
     }
 
     return busca;
-
-
-//    if (contagem > 0) {
-//        cabecalhoTabela();
-//        for (int i = 0; i < contagem; ++i) {
-//            printf("%-2d | %-24s | %-15s | %s\n",
-//                   resultados[i],
-//                   contatos->pessoa[resultados[i]].nome,
-//                   contatos->pessoa[resultados[i]].telefone,
-//                   contatos->pessoa[resultados[i]].email);
-//        }
-//    } else {
-//        printf("Não foi encontrada nenhuma pessoa com '%s'", nome);
-//    }
 }
 
 void verPessoa(Contatos* contatos, int id) {

@@ -39,7 +39,7 @@ Pessoa* getPessoas(Contatos* contatos);
 int getTamanhoContatos(Contatos* contatos);
 bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[14], char email[50]);
 void removerPessoa(Contatos* contatos, int id);
-Pessoa* buscarPessoas(Contatos* contatos, char nome[100]);
+int* buscarPessoas(Contatos* contatos, char nome[100]);
 void verPessoa(Contatos* contatos, int id);
 void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14], char email[50]);
 void salvarArquivo(Contatos* contatos);
