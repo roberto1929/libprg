@@ -19,6 +19,18 @@ contato_t* criar_contato(int tamanho){
     return contato;
 }
 
+bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char telefone[15]){
+    if (contato->total < contato->tamanho) {
+        pessoa_t nova_pessoa;
+        strcpy(nova_pessoa.nome, nome);
+        strcpy(nova_pessoa.email, email);
+        strcpy(nova_pessoa.telefone, telefone);
+        contato->vetor[contato->total++] = nova_pessoa;
+        return true;
+    } else {
+        return false;
+    }
+}
 
 int buscar_contatos(contato_t *contato, const char *sequencia) {
 
