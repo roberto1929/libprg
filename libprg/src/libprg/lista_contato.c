@@ -37,8 +37,8 @@ void imprimir_contatos(contato_t *contato){
     printf("Contatos:\n");
         for (int i = 0; i < contato->total; ++i) {
             printf("[%d] Nome: %s\n", i, contato->vetor[i].nome);
-            printf("     Telefone: %s\n", contato->vetor[i].telefone);
-            printf("     Email: %s\n\n", contato->vetor[i].email);
+            printf("    Telefone: %s\n", contato->vetor[i].telefone);
+            printf("    Email: %s\n\n", contato->vetor[i].email);
     }
 }
 
