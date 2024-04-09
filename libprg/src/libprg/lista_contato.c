@@ -70,7 +70,7 @@ int editar_contato(contato_t *contato, int pos_lista, char *nome, char *email, c
 }
 
 
-int deletar_contato(contato_t *contato, int indice) {
+int excluir_contato(contato_t *contato, int indice) {
     if (indice < 0 || indice >= contato->total) {
         return 0;
     }
