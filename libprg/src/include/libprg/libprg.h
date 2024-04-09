@@ -58,6 +58,6 @@ int tail(Fila* fila); // OK
 // pilha
 typedef struct Pilha Pilha;
 Pilha* criarPilha();
-void push()
+void push();
 
 #endif
