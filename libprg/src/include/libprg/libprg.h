@@ -34,12 +34,12 @@ typedef struct Contato {
     int tamanho;
 } Contatos;
 
-Contatos * criarContatos();
-Pessoa * getPessoas(Contatos* contatos);
+Contatos* criarContatos();
+Pessoa* getPessoas(Contatos* contatos);
 int getTamanhoContatos(Contatos* contatos);
 bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[14], char email[50]);
 void removerPessoa(Contatos* contatos, int id);
-void buscarPessoas(Contatos* contatos, char nome[100]);
+Pessoa* buscarPessoas(Contatos* contatos, char nome[100]);
 void verPessoa(Contatos* contatos, int id);
 void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14], char email[50]);
 void salvarArquivo(Contatos* contatos);

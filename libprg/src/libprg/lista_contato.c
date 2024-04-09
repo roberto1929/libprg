@@ -28,21 +28,6 @@ int getTamanhoContatos(Contatos* contatos) {
 }
 
 Pessoa* getPessoas(Contatos* contatos) {
-//    int tamanho = getTamanhoContatos(contatos);
-//
-//    if (tamanho > 0) {
-//        cabecalhoTabela();
-//        for (int i = 0; i < tamanho; ++i) {
-//            printf("%-2d | %-24s | %-15s | %s\n",
-//                   i,
-//                   contatos->pessoa[i].nome,
-//                   contatos->pessoa[i].telefone,
-//                   contatos->pessoa[i].email
-//            );
-//        }
-//    } else {
-//        printf("Não há contatos cadastrados.\n");
-//    }
     return contatos->pessoa;
 }
 
@@ -77,7 +62,7 @@ void removerPessoa(Contatos* contatos, int id) {
     contatos->pessoa[id] = contatos->pessoa[contatos->tamanho];
 }
 
-void buscarPessoas(Contatos* contatos, char nome[100]) {
+Pessoa* buscarPessoas(Contatos* contatos, char nome[100]) {
     int resultados[5];
     int contagem = 0;
 
@@ -88,18 +73,29 @@ void buscarPessoas(Contatos* contatos, char nome[100]) {
         }
     }
 
-    if (contagem > 0) {
-        cabecalhoTabela();
+    Pessoa* busca;
+
+    if (contagem> 0) {
         for (int i = 0; i < contagem; ++i) {
-            printf("%-2d | %-24s | %-15s | %s\n",
-                   resultados[i],
-                   contatos->pessoa[resultados[i]].nome,
-                   contatos->pessoa[resultados[i]].telefone,
-                   contatos->pessoa[resultados[i]].email);
+            busca[i] = contatos->pessoa[resultados[i]];
         }
-    } else {
-        printf("Não foi encontrada nenhuma pessoa com '%s'", nome);
     }
+
+    return busca;
+
+
+//    if (contagem > 0) {
+//        cabecalhoTabela();
+//        for (int i = 0; i < contagem; ++i) {
+//            printf("%-2d | %-24s | %-15s | %s\n",
+//                   resultados[i],
+//                   contatos->pessoa[resultados[i]].nome,
+//                   contatos->pessoa[resultados[i]].telefone,
+//                   contatos->pessoa[resultados[i]].email);
+//        }
+//    } else {
+//        printf("Não foi encontrada nenhuma pessoa com '%s'", nome);
+//    }
 }
 
 void verPessoa(Contatos* contatos, int id) {
