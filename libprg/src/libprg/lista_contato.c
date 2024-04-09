@@ -39,7 +39,7 @@ int getTamanhoContatos(Contatos* contatos) {
     return contatos->tamanho;
 }
 
-Pessoa* getPessoas(Contatos* contatos) {
+Pessoa getPessoas(Contatos* contatos) {
 //    int tamanho = getTamanhoContatos(contatos);
 //
 //    if (tamanho > 0) {
@@ -55,7 +55,7 @@ Pessoa* getPessoas(Contatos* contatos) {
 //    } else {
 //        printf("Não há contatos cadastrados.\n");
 //    }
-    return contatos->pessoa;
+    return *contatos->pessoa;
 }
 
 void adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char email[50]) {
