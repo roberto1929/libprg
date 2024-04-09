@@ -32,20 +32,6 @@ bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char t
     }
 }
 
-contato_t *buscar_contatos(contato_t *contato, const char *sequencia) {
-
-    for (int i = 0; i < contato->total; i++) {
-        if (strcasestr(contato->vetor[i].nome, sequencia) != NULL) {
-            printf("Nome: %s\n", contato->vetor[i].nome);
-            printf("Telefone: %s\n", contato->vetor[i].telefone);
-            printf("Email: %s\n\n", contato->vetor[i].email);
-            return 1;
-        } else{
-            return 0;
-        }
-    }
-}
-
 
 void imprimir_contatos(contato_t *contato){
     printf("Contatos:\n");
