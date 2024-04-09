@@ -10,7 +10,7 @@ struct Pessoa {
 };
 
 struct Contatos {
-    Pessoa* pessoa;
+    struct Pessoa* pessoa;
     int capacidade;
     int tamanho;
 };
