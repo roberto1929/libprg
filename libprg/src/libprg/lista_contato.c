@@ -21,7 +21,6 @@ contato_t* criar_contato(int tamanho){
 
 
 int buscar_contatos(contato_t *contato, const char *sequencia) {
-    printf("Resultados da busca por '%s':\n", sequencia);
 
     for (int i = 0; i < contato->total; i++) {
         if (strcasestr(contato->vetor[i].nome, sequencia) != NULL) {
