@@ -58,7 +58,7 @@ Pessoa* getPessoas(Contatos* contatos) {
     return contatos->pessoa;
 }
 
-void adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char email[50]) {
+bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char email[50]) {
     if (contatos->tamanho >= contatos->capacidade) {
         contatos->capacidade = contatos->capacidade * 2;
         contatos->pessoa = (Pessoa*) realloc(&contatos->pessoa, sizeof (Pessoa) * contatos->capacidade);
@@ -75,21 +75,18 @@ void adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char
         // Verifica se os valores são iguais
         if (cmp1 == 0 && cmp2 == 0 & cmp3 == 0) {
             contatos->tamanho = contatos->tamanho + 1;
-            printf("Pessoa adicionada com sucesso!\n");
+            return true;
         } else {
-            printf("Erro ao adicionar pessoa\n");
+            return false;
         }
     } else {
-        printf("Erro ao adicionar pessoa\n");
+        return false;
     }
 }
 
 void removerPessoa(Contatos* contatos, int id) {
-    char nome[100];
-    strcpy(nome, contatos->pessoa[id].nome);
     contatos->tamanho = contatos->tamanho - 1;
     contatos->pessoa[id] = contatos->pessoa[contatos->tamanho];
-    printf("%s foi removido(a) da lista de contatos.", nome);
 }
 
 void buscarPessoas(Contatos* contatos, char nome[100]) {
@@ -136,7 +133,6 @@ void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14],
     if (strcmp(email, "") != 0) {
         strcpy(contatos->pessoa[id].email, email);
     }
-    printf("Pessoa editada com sucesso!\n");
 }
 
 void salvarArquivo(Contatos* contatos) {

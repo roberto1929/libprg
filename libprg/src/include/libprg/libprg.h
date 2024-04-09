@@ -27,7 +27,7 @@ typedef struct Pessoa Pessoa;
 Contatos * criarContatos();
 Pessoa * getPessoas(Contatos* contatos);
 int getTamanhoContatos(Contatos* contatos);
-void adicionarPessoa(Contatos* contatos, char nome[100], char telefone[14], char email[50]);
+bool adicionarPessoa(Contatos* contatos, char nome[100], char telefone[14], char email[50]);
 void removerPessoa(Contatos* contatos, int id);
 void buscarPessoas(Contatos* contatos, char nome[100]);
 void verPessoa(Contatos* contatos, int id);
