@@ -59,7 +59,7 @@ void imprimir_contatos(contato_t *contato){
 
 int buscar_contato(contato_t* lista_contatos, const char* nome_busca) {
         // Percorre a lista de contatos
-    for (int i = 0; i < lista_contatos->total; i++) {
+    for (int i = 0; i < lista_contatos->tamanho; i++) {
         if (strstr(lista_contatos->vetor[i].nome, nome_busca) == 0) {
             printf("O contato encontrado:\n");
             printf("Nome: %s\n", lista_contatos->vetor[i].nome);
