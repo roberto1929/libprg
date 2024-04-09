@@ -24,8 +24,8 @@ int buscaBinariaRecursiva(Lista* lista, int n, int inicio, int fim);
 // Lista Contato
 typedef struct Contatos Contatos;
 typedef struct Pessoa Pessoa;
-Contatos* criarContatos();
-Contatos* getPessoas(Contatos* contatos);
+Contatos * criarContatos();
+Pessoa * getPessoas(Contatos* contatos);
 int getTamanhoContatos(Contatos* contatos);
 void adicionarPessoa(Contatos* contatos, char nome[100], char telefone[14], char email[50]);
 void removerPessoa(Contatos* contatos, int id);
