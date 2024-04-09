@@ -68,8 +68,8 @@ int buscar_contato(contato_t* lista_contatos, const char* nome_busca) {
     printf("O contato não foi encontrado.\n");
     return -1;
 }
-void editar_contato(contato_t* lista_contatos, char nome[100], char novo_telefone[15], char novo_email[50]) {
-    int editado = 0;
+int editar_contato(contato_t* lista_contatos, char nome[100], char novo_telefone[15], char novo_email[50]) {
+
 
     /* Percorre a lista de contatos*/
     for (int i = 0; i < lista_contatos->total; i++) {
@@ -78,21 +78,15 @@ void editar_contato(contato_t* lista_contatos, char nome[100], char novo_telefon
             strcpy(lista_contatos->vetor[i].telefone, novo_telefone);
             strcpy(lista_contatos->vetor[i].email, novo_email);
 
-            editado = 1;
-            printf("Contato editado com sucesso!\n");
-            break;
+            return 1;
+        } else{
+            return 0;
         }
-    }
-    if (!editado) {
-        printf("Contato não encontrado.\n");
     }
 }
 
 
-void excluir_contato(contato_t* lista_contatos, char nome[100]){
-    // Variável para controlar se o contato foi encontrado e excluído
-    int excluido = 0;
-
+int excluir_contato(contato_t* lista_contatos, char nome[100]){
     // Percorre a lista de contatos
     for (int i = 0; i < lista_contatos->total; i++) {
         // Verifica se o nome do contato é igual ao fornecido pelo usuário
@@ -101,17 +95,11 @@ void excluir_contato(contato_t* lista_contatos, char nome[100]){
             for (int j = i; j < lista_contatos->total - 1; j++) {
                 lista_contatos->vetor[j] = lista_contatos->vetor[j + 1];
             }
-            lista_contatos->total--; // Decrementa o total de contatos na lista
-
-            // Define que o contato foi excluído
-            excluido = 1;
-            printf("Contato excluído com sucesso!\n");
-            break; // Interrompe o loop assim que o contato é encontrado e excluído
+            lista_contatos->total--;
+            return 1;
+        } else{
+            return 0;
         }
-    }
 
-    // Verifica se o contato não foi encontrado
-    if (!excluido) {
-        printf("Contato não encontrado.\n");
     }
 }
