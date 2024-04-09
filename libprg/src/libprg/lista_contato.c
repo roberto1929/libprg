@@ -39,22 +39,23 @@ int getTamanhoContatos(Contatos* contatos) {
     return contatos->tamanho;
 }
 
-void getPessoas(Contatos* contatos) {
-    int tamanho = getTamanhoContatos(contatos);
-
-    if (tamanho > 0) {
-        cabecalhoTabela();
-        for (int i = 0; i < tamanho; ++i) {
-            printf("%-2d | %-24s | %-15s | %s\n",
-                   i,
-                   contatos->pessoa[i].nome,
-                   contatos->pessoa[i].telefone,
-                   contatos->pessoa[i].email
-            );
-        }
-    } else {
-        printf("Não há contatos cadastrados.\n");
-    }
+Contatos getPessoas(Contatos* contatos) {
+//    int tamanho = getTamanhoContatos(contatos);
+//
+//    if (tamanho > 0) {
+//        cabecalhoTabela();
+//        for (int i = 0; i < tamanho; ++i) {
+//            printf("%-2d | %-24s | %-15s | %s\n",
+//                   i,
+//                   contatos->pessoa[i].nome,
+//                   contatos->pessoa[i].telefone,
+//                   contatos->pessoa[i].email
+//            );
+//        }
+//    } else {
+//        printf("Não há contatos cadastrados.\n");
+//    }
+    return *contatos;
 }
 
 void adicionarPessoa(Contatos* contatos, char nome[100], char telefone[15], char email[50]) {
