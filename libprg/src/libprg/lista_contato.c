@@ -81,7 +81,7 @@ Pessoa* buscarPessoas(Contatos* contatos, char nome[100]) {
         }
     }
 
-    return (Pessoa*) busca;
+    return busca;
 
 
 //    if (contagem > 0) {
