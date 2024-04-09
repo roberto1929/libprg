@@ -73,9 +73,7 @@ int excluir_contato(contato_t *contato, int indice) {
     }
 
     for (int i = indice; i < contato->total - 1; i++) {
-        strcpy(contato->vetor[i].nome, contato->vetor[i + 1].nome);
-        strcpy(contato->vetor[i].telefone, contato->vetor[i + 1].telefone);
-        strcpy(contato->vetor[i].email, contato->vetor[i + 1].email);
+        contato->vetor[i] = contato->vetor[i+1];
     }
     contato->total --;
     return 1;
