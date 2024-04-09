@@ -33,25 +33,16 @@ bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char t
     }
 }
 
-
-pessoa_t *visualizar_contatos(contato_t *lista_contatos, pessoa_t *contatos_ordenados) {
-    if (lista_contatos->total == 0) {
-        printf("Lista de contatos vazia.\n");
-        return NULL;
+void imprimir_contatos(contato_t *contato){
+    printf("Contatos:\n");
+        for (int i = 0; i < contato->total; ++i) {
+            printf("[%d] Nome: %s\n", i, contato->vetor[i].nome);
+            printf("     Telefone: %s\n", contato->vetor[i].telefone);
+            printf("     Email: %s\n\n", contato->vetor[i].email);
     }
-
-    for (int i = 0; i < lista_contatos->total; i++) {
-        contatos_ordenados[i] = lista_contatos->vetor[i];
-    }
-    for (int i = 0; i < lista_contatos->total; i++) {
-        printf("Nome: %s\n", contatos_ordenados[i].nome);
-        printf("Telefone: %s\n", contatos_ordenados[i].telefone);
-        printf("Email: %s\n", contatos_ordenados[i].email);
-        printf("\n");
-    }
-
-return contatos_ordenados;
 }
+
+
 
 int buscar_contato(contato_t* lista_contatos, const char* nome_busca) {
         // Percorre a lista de contatos
