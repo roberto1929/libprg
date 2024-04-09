@@ -43,7 +43,6 @@ void imprimir_contatos(contato_t *contato){
 }
 
 
-
 int buscar_contato(contato_t* lista_contatos, const char* nome_busca) {
         // Percorre a lista de contatos
     for (int i = 0; i < lista_contatos->total; i++) {
@@ -59,38 +58,28 @@ int buscar_contato(contato_t* lista_contatos, const char* nome_busca) {
     printf("O contato não foi encontrado.\n");
     return -1;
 }
-int editar_contato(contato_t* lista_contatos, char nome[100], char novo_telefone[15], char novo_email[50]) {
-
-
-    /* Percorre a lista de contatos*/
-    for (int i = 0; i < lista_contatos->total; i++) {
-        if (strcmp(lista_contatos->vetor[i].nome, nome) == 0) {
-            // Atualiza as informações do contato
-            strcpy(lista_contatos->vetor[i].telefone, novo_telefone);
-            strcpy(lista_contatos->vetor[i].email, novo_email);
-
-            return 1;
-        } else{
-            return 0;
-        }
+int editar_contato(contato_t *contato, int pos_lista, char *nome, char *email, char *telefone) {
+    if (pos_lista >= 0 && pos_lista < contato->total) {
+        strcpy(contato->vetor[pos_lista].nome, nome);
+        strcpy(contato->vetor[pos_lista].telefone, telefone);
+        strcpy(contato->vetor[pos_lista].email, email);
+        return 1;
+    } else {
+        return 0;
     }
 }
 
 
-int excluir_contato(contato_t* lista_contatos, char nome[100]){
-    // Percorre a lista de contatos
-    for (int i = 0; i < lista_contatos->total; i++) {
-        // Verifica se o nome do contato é igual ao fornecido pelo usuário
-        if (strcmp(lista_contatos->vetor[i].nome, nome) == 0) {
-            // Remove o contato da lista (deslocando os contatos restantes para preencher o espaço)
-            for (int j = i; j < lista_contatos->total - 1; j++) {
-                lista_contatos->vetor[j] = lista_contatos->vetor[j + 1];
-            }
-            lista_contatos->total--;
-            return 1;
-        } else{
-            return 0;
-        }
-
+int deletar_contato(contato_t *contato, int indice) {
+    if (indice < 0 || indice >= contato->total) {
+        return 0;
     }
+
+    for (int i = indice; i < contato->total - 1; i++) {
+        strcpy(contato->vetor[i].nome, contato->vetor[i + 1].nome);
+        strcpy(contato->vetor[i].telefone, contato->vetor[i + 1].telefone);
+        strcpy(contato->vetor[i].email, contato->vetor[i + 1].email);
+    }
+    contato->total --;
+    return 1;
 }
