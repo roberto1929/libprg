@@ -29,19 +29,9 @@ bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char t
         contato->vetor[contato->total++] = nova_pessoa;
         return true;
     } else {
-        printf("A lista de contatos está cheia.\n");
         return false;
     }
 }
-
-int comparar_contatos(const void* a, const void* b){
-    pessoa_t* pessoa_a = (pessoa_t*)a;
-    pessoa_t* pessoa_b = (pessoa_t*)b;
-    return strcmp(pessoa_a->nome, pessoa_b->nome);
-
-}
-
-
 
 
 pessoa_t *visualizar_contatos(contato_t *lista_contatos, pessoa_t *contatos_ordenados) {
@@ -53,9 +43,6 @@ pessoa_t *visualizar_contatos(contato_t *lista_contatos, pessoa_t *contatos_orde
     for (int i = 0; i < lista_contatos->total; i++) {
         contatos_ordenados[i] = lista_contatos->vetor[i];
     }
-
-    qsort(contatos_ordenados, lista_contatos->total, sizeof(pessoa_t), comparar_contatos);
-
     for (int i = 0; i < lista_contatos->total; i++) {
         printf("Nome: %s\n", contatos_ordenados[i].nome);
         printf("Telefone: %s\n", contatos_ordenados[i].telefone);
