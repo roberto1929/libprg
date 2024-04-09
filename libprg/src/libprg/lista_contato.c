@@ -57,26 +57,17 @@ void imprimir_contatos(contato_t *contato){
 }
 
 
-int buscar_contato(contato_t* lista_contatos, const char* nome_busca) {
+int buscar_contato(contato_t* lista_contatos, char nome[100], int* resultados) {
 
-    int contatos[7];
-    int count;
+    int contagem = 0;
 
     for (int i = 0; i < lista_contatos->total; ++i) {
-
+        if (strcasestr(lista_contatos->vetor[i].nome, nome) != NULL) {
+            resultados[contagem] = i;
+            contagem++;
+        }
     }
-
-    for (int i = 0; i < lista_contatos->tamanho; i++) {
-
-            printf("O contato encontrado:\n");
-            printf("Nome: %s\n", lista_contatos->vetor[i].nome);
-            printf("Telefone: %s\n", lista_contatos->vetor[i].telefone);
-            printf("Email: %s\n", lista_contatos->vetor[i].email);
-            return i;
-    }
-
-    printf("O contato não foi encontrado.\n");
-    return -1;
+    return contagem;
 }
 int editar_contato(contato_t *contato, int pos_lista, char *nome, char *email, char *telefone) {
     if (pos_lista >= 0 && pos_lista < contato->total) {
