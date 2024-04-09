@@ -90,13 +90,8 @@ Pessoa* exibirPessoas(Contatos* contatos, const int* resultados) {
     return busca;
 }
 
-void verPessoa(Contatos* contatos, int id) {
-    cabecalhoTabela();
-    printf("%-2d | %-24s | %-15s | %s\n",
-           id,
-           contatos->pessoa[id].nome,
-           contatos->pessoa[id].telefone,
-           contatos->pessoa[id].email);
+Pessoa* exibirPessoa(Contatos* contatos, int id) {
+    return &contatos->pessoa[id];
 }
 
 void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14], char email[50]) {
