@@ -75,6 +75,8 @@ int buscar_contato(contato_t* lista_contatos, char nome[100], int* resultados);
 int editar_contato(contato_t *contato, int pos_lista, char *nome, char *email, char *telefone);
 int excluir_contato(contato_t *contato, int indice);
 void imprimir_contatos(contato_t *contato);
+void salvar_contatos(contato_t* lista_contatos);
+void carregar_contatos(contato_t* lista_contatos);
 
 // FILA
 

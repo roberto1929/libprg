@@ -80,3 +80,27 @@ int excluir_contato(contato_t *contato, int indice) {
     contato->total --;
     return 1;
 }
+void salvar_contatos(contato_t* lista_contatos){
+    FILE* arquivo = fopen("contatos.dat", "wb");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo %s.\n", "contatos.dat");
+        return;
+    }
+
+    fwrite(&lista_contatos->total, sizeof(int), 1, arquivo);
+    fwrite(lista_contatos->vetor, sizeof(pessoa_t), lista_contatos->total, arquivo);
+
+    fclose(arquivo);
+}
+void carregar_contatos(contato_t* lista_contatos){
+    FILE* arquivo = fopen("contatos.dat", "rb");
+    if (arquivo == NULL) {
+        printf("Arquivo %s nao encontrado ou vazio. Criando novo arquivo...\n", "contatos.dat");
+        return;
+    }
+
+    fread(&lista_contatos->total, sizeof(int), 1, arquivo);
+    fread(lista_contatos->vetor, sizeof(pessoa_t), lista_contatos->total, arquivo);
+
+    fclose(arquivo);
+}
