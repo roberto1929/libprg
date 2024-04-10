@@ -116,7 +116,7 @@ bool salvarArquivoBin(Contatos* contatos) {
     FILE *arq = fopen("./contatosbin.bin", "wb+");
     if (arq) {
         int tamanho = getTamanhoContatos(contatos);
-        fwrite(&contatos->pessoa, sizeof(Pessoa), tamanho, arq);
+        fwrite(&contatos->pessoa, sizeof(Pessoa), 1, arq);
         fclose(arq);
         return true;
     } else {
@@ -148,11 +148,11 @@ void lerArquivo(Contatos* contatos) {
 bool lerArquivoBin(Contatos* contatos) {
     FILE *arq = fopen("./contatosbin.bin", "rb");
     if (arq) {
-        fseek(arq, 0, SEEK_END);
-        long tamanho_arq = ftell(arq);
-        rewind(arq);
-        long tamanho = tamanho_arq / sizeof(Pessoa);
-        fread(&contatos->pessoa, sizeof (Pessoa), tamanho, arq);
+//        fseek(arq, 0, SEEK_END);
+//        long tamanho_arq = ftell(arq);
+//        rewind(arq);
+//        long tamanho = tamanho_arq / sizeof(Pessoa);
+        fread(&contatos->pessoa, sizeof (Pessoa), 1, arq);
         fclose(arq);
         return true;
     } else {
