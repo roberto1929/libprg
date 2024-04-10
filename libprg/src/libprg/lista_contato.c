@@ -3,18 +3,55 @@
 
 #define TAMANHO_LISTA_CONTATO 10
 
+//Contatos* criarContatos() {
+//    Contatos* contatos = malloc(sizeof (Contatos));
+//    if (contatos != NULL) {
+//        contatos->capacidade = TAMANHO_LISTA_CONTATO;
+//        contatos->pessoa = malloc(sizeof (Pessoa) * contatos->capacidade);
+//        contatos->tamanho = 0;
+//        if (contatos->pessoa != NULL) {
+//            return contatos;
+//        }
+//    } else {
+//        return contatos;
+//    }
+//}
+
 Contatos* criarContatos() {
     Contatos* contatos = malloc(sizeof (Contatos));
     if (contatos != NULL) {
         contatos->capacidade = TAMANHO_LISTA_CONTATO;
         contatos->pessoa = malloc(sizeof (Pessoa) * contatos->capacidade);
         contatos->tamanho = 0;
+
+        // Verifica se há contatos em arquivo binário para carregar.
+        FILE *arq = fopen("./contatosbin.bin", "rb");
+
+        if (arq) {
+            fseek(arq, 0, SEEK_END);
+            long tam_arq = ftell(arq);
+            rewind(arq);
+
+            contatos->tamanho = tam_arq / sizeof(Pessoa);
+
+            while (contatos->tamanho >= contatos->capacidade) {
+                contatos->capacidade = contatos->capacidade * 2;
+                contatos->pessoa = (Pessoa*) realloc(&contatos->pessoa, sizeof (Pessoa) * contatos->capacidade);
+            }
+
+            if (contatos->pessoa != NULL) {
+                fread(contatos->pessoa, sizeof(Pessoa), contatos->tamanho, arq);
+                fclose(arq);
+            }
+        }
+
         if (contatos->pessoa != NULL) {
             return contatos;
         }
     } else {
-        return contatos;
+        free(contatos);
     }
+    return NULL;
 }
 
 int getTamanhoContatos(Contatos* contatos) {
@@ -115,8 +152,8 @@ void salvarArquivo(Contatos* contatos) {
 bool salvarArquivoBin(Contatos* contatos) {
     FILE *arq = fopen("./contatosbin.bin", "wb+");
     if (arq) {
-        int tamanho = getTamanhoContatos(contatos);
-        fwrite(&contatos->pessoa, sizeof(Pessoa), tamanho, arq);
+        int t = getTamanhoContatos(contatos);
+        fwrite(contatos->pessoa, sizeof(Pessoa), t, arq);
         fclose(arq);
         return true;
     } else {
