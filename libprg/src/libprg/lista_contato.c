@@ -4,41 +4,46 @@
 #define TAMANHO_P 10
 
 contato_t* criar_contato(){
-    contato_t* contato = (contato_t*) malloc(sizeof (&contato));
+    contato_t* contato = (contato_t*) malloc(sizeof(contato_t));
     if (contato == NULL) {
         printf("Erro ao alocar memória para o contato.\n");
         return NULL;
     }
-    if(contato != NULL){
-        contato->total = TAMANHO_P;
-        contato->vetor = malloc(sizeof(pessoa_t) * contato->total);
-        contato->tamanho = 0;
-    }
-    FILE *arq = fopen("contato.bin", "rb");
 
-    if(arq){
+    contato->total = TAMANHO_P;
+    contato->vetor = malloc(sizeof(pessoa_t) * contato->total);
+    if (contato->vetor == NULL) {
+        printf("Erro ao alocar memória para o vetor de contatos.\n");
+        free(contato);
+        return NULL;
+    }
+    contato->tamanho = 0;
+
+    FILE *arq = fopen("contato.bin", "rb");
+    if (arq != NULL) {
         fseek(arq, 0, SEEK_END);
         long tam_arq = ftell(arq);
         rewind(arq);
 
         contato->tamanho = tam_arq / sizeof(pessoa_t);
 
-        while (contato->tamanho >= contato->total) {
-            contato->total = contato->total * 2;
-            contato->vetor = (pessoa_t *) realloc(&contato->vetor, sizeof (pessoa_t) * contato->total);
+        if (contato->tamanho >= contato->total) {
+            while (contato->tamanho >= contato->total) {
+                contato->total = contato->total * 2;
+                contato->vetor = realloc(contato->vetor, sizeof(pessoa_t) * contato->total);
+                if (contato->vetor == NULL) {
+                    printf("Erro ao realocar memória para o vetor de contatos.\n");
+                    fclose(arq);
+                    free(contato);
+                    return NULL;
+                }
+            }
         }
-        if (contato->vetor != NULL) {
-            fread(contato->vetor, sizeof(pessoa_t), contato->tamanho, arq);
-            fclose(arq);
-        }
+        fread(contato->vetor, sizeof(pessoa_t), contato->tamanho, arq);
+        fclose(arq);
     }
-    if (contato->vetor != NULL) {
-        return contato;
-    }else {
-        free(contato);
-    }
-    return NULL;
 
+    return contato;
 }
 
 bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char telefone[15]){
