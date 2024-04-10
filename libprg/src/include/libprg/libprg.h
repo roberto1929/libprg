@@ -45,8 +45,8 @@ Pessoa* exibirPessoa(Contatos* contatos, int id);
 void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14], char email[50]);
 void salvarArquivo(Contatos* contatos);
 void lerArquivo(Contatos* contatos);
-void salvarArquivoBin(Contatos* contatos);
-void lerArquivoBin(Contatos* contatos);
+bool salvarArquivoBin(Contatos* contatos);
+bool lerArquivoBin(Contatos* contatos);
 
 // Soma
 typedef enum { SUM, SUB } operation_t;

@@ -3,12 +3,6 @@
 
 #define TAMANHO_LISTA_CONTATO 10
 
-void cabecalhoTabela() {
-    printf("--------------------------------------------------------------------------------\n");
-    printf("%-2s | %-24s | %-15s | %s\n", "ID", "Nome", "Telefone", "E-mail");
-    printf("--------------------------------------------------------------------------------\n");
-}
-
 Contatos* criarContatos() {
     Contatos* contatos = malloc(sizeof (Contatos));
     if (contatos != NULL) {
@@ -65,28 +59,22 @@ void removerPessoa(Contatos* contatos, int id) {
 int* buscarPessoas(Contatos* contatos, char nome[100]) {
     int* resultados = malloc(5 * sizeof(int));;
     int contagem = 0;
-
     for (int i = 0; i < contatos->tamanho; ++i) {
         if (strcasestr(contatos->pessoa[i].nome, nome) != NULL) {
             resultados[contagem + 1] = i;
             contagem++;
         }
     }
-
     // Quantidade de registros encontrados.
     resultados[0] = contagem;
-
     return resultados;
 }
 
 Pessoa* exibirPessoas(Contatos* contatos, const int* resultados) {
-
     Pessoa* busca = malloc(sizeof (Pessoa) * resultados[0]);
-
     for (int i = 0; i < resultados[0]; ++i) {
         busca[i] = contatos->pessoa[resultados[i + 1]];
     }
-
     return busca;
 }
 
@@ -124,15 +112,15 @@ void salvarArquivo(Contatos* contatos) {
     }
 }
 
-void salvarArquivoBin(Contatos* contatos) {
+bool salvarArquivoBin(Contatos* contatos) {
     FILE *arq = fopen("./contatosbin.bin", "wb+");
     if (arq) {
         int tamanho = getTamanhoContatos(contatos);
-//        fprintf(arq, "%d\n", tamanho);
-        fwrite((Pessoa*) &contatos->pessoa, sizeof (Pessoa), tamanho, arq);
+        fwrite(contatos->pessoa, sizeof(Pessoa), tamanho, arq);
         fclose(arq);
+        return true;
     } else {
-        printf("Não foi possível abrir o arquivo\n");
+        return false;
     }
 }
 
@@ -157,18 +145,17 @@ void lerArquivo(Contatos* contatos) {
     }
 }
 
-void lerArquivoBin(Contatos* contatos) {
+bool lerArquivoBin(Contatos* contatos) {
     FILE *arq = fopen("./contatosbin.bin", "rb");
     if (arq) {
         fseek(arq, 0, SEEK_END);
         long tamanho_arq = ftell(arq);
         rewind(arq);
-
-        int tamanho = tamanho_arq / sizeof(Pessoa);
-//        fscanf(arq, "%d\n", &tamanho);
-        fread((Pessoa*) &contatos->pessoa, sizeof (Pessoa), tamanho, arq);
+        long tamanho = tamanho_arq / sizeof(Pessoa);
+        fread(contatos->pessoa, sizeof (Pessoa), tamanho, arq);
         fclose(arq);
+        return true;
     } else {
-        printf("Não foi possível abrir o arquivo\n");
+        return false;
     }
 }
