@@ -27,11 +27,18 @@ contato_t* criar_contato(){
             contato->total = contato->total * 2;
             contato->vetor = (pessoa_t *) realloc(&contato->vetor, sizeof (pessoa_t) * contato->total);
         }
+        if (contato->vetor != NULL) {
+            fread(contato->vetor, sizeof(pessoa_t), contato->tamanho, arq);
+            fclose(arq);
+        }
     }
+    if (contato->vetor != NULL) {
+        return contato;
+    }else {
+        free(contato);
+    }
+    return NULL;
 
-
-
-    return contato;
 }
 
 bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char telefone[15]){
