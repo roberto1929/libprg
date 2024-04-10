@@ -116,7 +116,7 @@ bool salvarArquivoBin(Contatos* contatos) {
     FILE *arq = fopen("./contatosbin.bin", "wb+");
     if (arq) {
         int tamanho = getTamanhoContatos(contatos);
-        fwrite(&contatos->pessoa, sizeof(Pessoa), 1, arq);
+        fwrite(&contatos->pessoa[0], sizeof(Pessoa), tamanho, arq);
         fclose(arq);
         return true;
     } else {
