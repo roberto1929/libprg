@@ -37,7 +37,7 @@ bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char t
 
 void imprimir_contatos(contato_t *contato){
     printf("Contatos:\n");
-        for (int i = 0; i < contato->tamanho; ++i) {
+        for (int i = 0; i < contato->total; ++i) {
             printf("[%d] Nome: %s\n", i, contato->vetor[i].nome);
             printf("    Telefone: %s\n", contato->vetor[i].telefone);
             printf("    Email: %s\n\n", contato->vetor[i].email);
