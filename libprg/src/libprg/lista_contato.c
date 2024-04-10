@@ -46,9 +46,7 @@ void imprimir_contatos(contato_t *contato){
 
 
 int buscar_contato(contato_t* lista_contatos, char nome[100], int* resultados) {
-
     int contagem = 0;
-
     for (int i = 0; i < lista_contatos->total; ++i) {
         if (strcasestr(lista_contatos->vetor[i].nome, nome) != NULL) {
             resultados[contagem] = i;
