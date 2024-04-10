@@ -23,11 +23,11 @@ An example to demonstrate how to organize files for writing a library in the C l
 
 ## How to use this library in a C application using CMake
 
-CMake [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) can download this library directly from his GitHub repository and you must indicate which tag. In this example I will use the `0.0.1` tag from this repository.
+CMake [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) can download this library directly from his GitHub repository and you must indicate from which branch or tag. In this example I will use the `main` branch or the `0.0.1` tag.
 
 Create a new project (C executable) using CMake and your `CMakeLists.txt` file should look like this:
 
-```cpp
+```cmake
 cmake_minimum_required(VERSION 3.21)
 project(myapp C)
 
@@ -36,9 +36,11 @@ set(CMAKE_C_STANDARD 17)
 include(FetchContent)
 
 FetchContent_Declare(
-       libprg
-       GIT_REPOSITORY https://github.com/emersonmello/libprg.git
-       GIT_TAG 0.0.1
+    libprg
+    GIT_REPOSITORY https://github.com/emersonmello/libprg.git
+    GIT_TAG origin/main 
+    # or GIT_TAG 0.0.1
+    
     # You can reference a local directory instead
     # URL file:///${CMAKE_CURRENT_SOURCE_DIR}/../libprg
 )
@@ -64,7 +66,6 @@ int main(void) {
     return 0;
 }
 ```
-
 
 # References
 
