@@ -45,7 +45,6 @@ Pessoa* exibirPessoa(Contatos* contatos, int id);
 void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14], char email[50]);
 bool salvarArquivoTxt(Contatos* contatos);
 bool lerArquivoTxt(Contatos* contatos);
-bool salvarArquivoBin(Contatos* contatos);
 bool lerArquivoBin(Contatos* contatos);
 
 // Soma
