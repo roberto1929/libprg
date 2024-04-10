@@ -3,20 +3,6 @@
 
 #define TAMANHO_LISTA_CONTATO 10
 
-//Contatos* criarContatos() {
-//    Contatos* contatos = malloc(sizeof (Contatos));
-//    if (contatos != NULL) {
-//        contatos->capacidade = TAMANHO_LISTA_CONTATO;
-//        contatos->pessoa = malloc(sizeof (Pessoa) * contatos->capacidade);
-//        contatos->tamanho = 0;
-//        if (contatos->pessoa != NULL) {
-//            return contatos;
-//        }
-//    } else {
-//        return contatos;
-//    }
-//}
-
 Contatos* criarContatos() {
     Contatos* contatos = malloc(sizeof (Contatos));
     if (contatos != NULL) {
@@ -131,7 +117,7 @@ void editarPessoa(Contatos* contatos, int id, char nome[100], char telefone[14],
     }
 }
 
-void salvarArquivo(Contatos* contatos) {
+bool salvarArquivoTxt(Contatos* contatos) {
     FILE *arq = fopen("./contatos.txt", "w");
     if (arq) {
         int tamanho = getTamanhoContatos(contatos);
@@ -144,24 +130,13 @@ void salvarArquivo(Contatos* contatos) {
             }
         }
         fclose(arq);
-    } else {
-        printf("Não foi possível abrir o arquivo\n");
-    }
-}
-
-bool salvarArquivoBin(Contatos* contatos) {
-    FILE *arq = fopen("./contatosbin.bin", "wb+");
-    if (arq) {
-        int t = getTamanhoContatos(contatos);
-        fwrite(contatos->pessoa, sizeof(Pessoa), t, arq);
-        fclose(arq);
         return true;
     } else {
         return false;
     }
 }
 
-void lerArquivo(Contatos* contatos) {
+bool lerArquivoTxt(Contatos* contatos) {
     FILE *arq = fopen("./contatos.txt", "r");
     char nome[100], telefone[20], email[50];
     if (arq) {
@@ -177,8 +152,9 @@ void lerArquivo(Contatos* contatos) {
             adicionarPessoa(contatos, nome, telefone, email);
         }
         fclose(arq);
+        return true;
     } else {
-        printf("Não foi possível abrir o arquivo\n");
+        return false;
     }
 }
 
