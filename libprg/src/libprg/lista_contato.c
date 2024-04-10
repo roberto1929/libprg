@@ -16,7 +16,7 @@ contato_t* criar_contato(int tamanho){
         free(contato);
         return NULL;
     }
-    contato->tamanho = 100;
+    contato->tamanho = tamanho;
     contato->total = 0;
     return contato;
 }
