@@ -39,7 +39,7 @@ contato_t* criar_contato(){
 }
 
 bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char telefone[15]){
-    if (contato->total > contato->tamanho) {
+    if (contato->total < contato->tamanho) {
         pessoa_t nova_pessoa;
         strcpy(nova_pessoa.nome, nome);
         strcpy(nova_pessoa.email, email);
