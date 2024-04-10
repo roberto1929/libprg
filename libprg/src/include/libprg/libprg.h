@@ -69,7 +69,7 @@ typedef struct Contato{
 }contato_t;
 
 
-contato_t* criar_contato();
+contato_t* criar_contato(int tamanho);
 bool adicionar_pessoa(contato_t* contato, char nome[100], char email[50], char telefone[15]);
 int buscar_contato(contato_t* lista_contatos, char nome[100], int* resultados);
 int editar_contato(contato_t *contato, int pos_lista, char *nome, char *email, char *telefone);
