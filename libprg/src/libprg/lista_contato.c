@@ -1,21 +1,36 @@
 #include <libprg/libprg.h>
 #include <string.h>
 
+#define TAMANHO_P 10
 
-contato_t* criar_contato(int tamanho){
+contato_t* criar_contato(){
     contato_t* contato = (contato_t*) malloc(sizeof (&contato));
     if (contato == NULL) {
         printf("Erro ao alocar memória para o contato.\n");
         return NULL;
     }
-    contato->vetor = (pessoa_t *) malloc(sizeof (pessoa_t) * tamanho);
-    if (contato->vetor == NULL) {
-        printf("Erro ao alocar memória para o vetor de pessoas.\n");
-        free(contato);
-        return NULL;
+    if(contato != NULL){
+        contato->total = TAMANHO_P;
+        contato->vetor = malloc(sizeof(pessoa_t) * contato->total);
+        contato->tamanho = 0;
     }
-    contato->tamanho = tamanho;
-    contato->total = 0;
+    FILE *arq = fopen("contato.bin", "rb");
+
+    if(arq){
+        fseek(arq, 0, SEEK_END);
+        long tam_arq = ftell(arq);
+        rewind(arq);
+
+        contato->tamanho = tam_arq / sizeof(pessoa_t);
+
+        while (contato->tamanho >= contato->total) {
+            contato->total = contato->total * 2;
+            contato->vetor = (pessoa_t *) realloc(&contato->vetor, sizeof (pessoa_t) * contato->total);
+        }
+    }
+
+
+
     return contato;
 }
 
