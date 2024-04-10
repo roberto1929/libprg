@@ -151,6 +151,7 @@ bool lerArquivoBin(Contatos* contatos) {
         int count = 0;
         while (fread(&contatos->pessoa[count], sizeof(Pessoa), 1, arq) == 1) {
             count++;
+            contatos->tamanho = contatos->tamanho + 1;
         }
         fclose(arq);
         return true;
