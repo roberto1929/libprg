@@ -21,14 +21,23 @@ void adiciona_lista(listaEncadeada_t *queue, no_t** no, int valor){
 
 }
 
-int remove_lista(listaEncadeada_t *queue, no_t **no){
-    if(*no == NULL){
-        return 0;
+bool remove_lista(no_t** inicio, int dado){
+    no_t* atual = *inicio;
+    no_t* anterior = NULL;
+    while (atual != NULL){
+        if(atual->dado == dado){
+            if(anterior == NULL){
+                *inicio = atual->proximo;
+            } else {
+                anterior->proximo = atual->proximo;
+            }
+            free(atual);
+            return true;
+        }
+        anterior = atual;
+        atual = atual->proximo;
     }
-    no_t *atual = *no;
-    free(atual);
-    queue->size--;
-    return 1;
+    return false;
 }
 
 int busca_lista(no_t **no, int element){
