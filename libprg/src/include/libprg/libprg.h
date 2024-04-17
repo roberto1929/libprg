@@ -122,7 +122,49 @@ int pop(pilha_t* pilha);
 int size_p(pilha_t pilha);
 int empty_p(pilha_t* pilha);
 
+// ======================LISTA ENCADEADA============================ //
 
+            // SIMPLES
+
+typedef struct {
+    int dado;
+    struct no* proximo;
+}no_t;
+
+typedef struct {
+    no_t *inicio;
+    int size;
+}listaEncadeada_t;
+
+typedef struct {
+    no_t *topo;
+    int size;
+}stacklist_t;
+
+void adiciona_lista(listaEncadeada_t *queue, no_t** no, int valor);
+
+int remove_lista(listaEncadeada_t *queue, no_t **no);
+int busca_lista(no_t **no, int element);
+
+void adiciona_pilha(stacklist_t *stack, no_t **no, int element);
+int remove_pilha(stacklist_t *stack, no_t **no);
+int busca_pilha(no_t **no, int element);
+
+void adiciona_circular(no_t **no, bool op, int value);
+int remove_circular(no_t **no, int value);
+int busca_circular(no_t **no,int value);
+
+void imprime_no(no_t *no);
+
+
+
+            // DUPLAMENTE ENCADEADA
+
+typedef struct {
+    int elemento;
+    struct nod_t* proximo;
+    struct nod_t* anterior;
+}nod_t;
 
 
 #endif
