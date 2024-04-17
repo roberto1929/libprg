@@ -44,7 +44,7 @@ bool remove_lista(no_t** inicio, int dado, listaEncadeada_t * queue){
 int busca_lista(no_t **no, int element){
     int i = 0;
     while (*no != NULL){
-        if((*no)->dado = element){
+        if((*no)->dado == element){
             return i;
         }
         *no = (*no)->proximo;
