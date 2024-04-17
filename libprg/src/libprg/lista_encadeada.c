@@ -21,7 +21,7 @@ void adiciona_lista(listaEncadeada_t *queue, no_t** no, int valor){
 
 }
 
-bool remove_lista(no_t** inicio, int dado){
+bool remove_lista(no_t** inicio, int dado, listaEncadeada_t * queue){
     no_t* atual = *inicio;
     no_t* anterior = NULL;
     while (atual != NULL){
@@ -32,6 +32,7 @@ bool remove_lista(no_t** inicio, int dado){
                 anterior->proximo = atual->proximo;
             }
             free(atual);
+            queue->size--;
             return true;
         }
         anterior = atual;
