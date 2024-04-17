@@ -165,6 +165,17 @@ int remove_circular(no_t **no, int value){
     
 
 }
+void destruir(no_t** no){
+    no_t* atual = *no;
+    no_t* prox;
+    while (atual != NULL){
+        prox = atual->proximo;
+        free(atual);
+        atual = prox;
+    }
+    *no = NULL;
+}
+
 
 int busca_circular(no_t **no,int value){
     int i = 0;

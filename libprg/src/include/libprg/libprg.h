@@ -142,9 +142,9 @@ typedef struct {
 }stacklist_t;
 
 void adiciona_lista(listaEncadeada_t *queue, no_t** no, int valor);
-
 bool remove_lista(no_t** inicio, int dado, listaEncadeada_t * queue);
 int busca_lista(no_t **no, int element);
+void destruir(no_t** no);
 
 void adiciona_pilha(stacklist_t *stack, no_t **no, int element);
 int remove_pilha(stacklist_t *stack, no_t **no);
