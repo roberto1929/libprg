@@ -126,7 +126,7 @@ int empty_p(pilha_t* pilha);
 
             // SIMPLES
 
-typedef struct {
+typedef struct no {
     int dado;
     struct no* proximo;
 }no_t;
@@ -143,12 +143,12 @@ typedef struct {
 
 void adiciona_lista(listaEncadeada_t *queue, no_t** no, int valor);
 bool remove_lista(no_t** inicio, int dado, listaEncadeada_t * queue);
-int busca_lista(no_t **no, int element);
+no_t* busca_lista(no_t* inicio, int dado);
 void destruir(no_t** no);
 
 void adiciona_pilha(stacklist_t *stack, no_t **no, int elemento);
 int remove_pilha(stacklist_t *stack, no_t **no);
-int busca_pilha(no_t **no, int element);
+no_t* busca_pilha(no_t* inicio, int dado);
 
 void adiciona_circular(no_t **no, bool op, int value);
 int remove_circular(no_t **no, int value);

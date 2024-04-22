@@ -41,16 +41,14 @@ bool remove_lista(no_t** inicio, int dado, listaEncadeada_t * queue){
     return false;
 }
 
-int busca_lista(no_t **no, int element){
-    int i = 0;
-    while (*no != NULL){
-        if((*no)->dado == element){
-            return i;
+no_t* busca_lista(no_t* inicio, int dado){
+    while (inicio != NULL){
+        if(inicio->dado == dado){
+            return inicio;
         }
-        *no = (*no)->proximo;
-        i++;
+        inicio = inicio->proximo;
     }
-    return -1;
+    return NULL;
 }
 
 void adiciona_pilha(stacklist_t *stack, no_t **no, int elemento){
@@ -77,16 +75,15 @@ int remove_pilha(stacklist_t *stack, no_t **no){
     return 1;
 
 }
-int busca_pilha(no_t **no, int element){
-    int i = 0;
-    while (*no != NULL){
-        if((*no)->dado == element){
-            return i;
+
+no_t *busca_pilha(no_t* inicio, int dado){
+    while (inicio != NULL){
+        if(inicio->dado == dado){
+            return inicio;
         }
-    *no = (*no)->proximo;
-    i++;
+        inicio = inicio->proximo;
     }
-    return -1;
+    return NULL;
 }
 
 
