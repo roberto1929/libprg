@@ -73,6 +73,7 @@ int remove_pilha(stacklist_t *stack, no_t **no){
     *no = stack->topo->proximo;
     free(atual);
     stack->topo = *no;
+    stack->size--;
     return 1;
 
 }
@@ -87,6 +88,10 @@ int busca_pilha(no_t **no, int element){
     }
     return -1;
 }
+
+
+
+
 void addCircle(no_t **node, bool op, int value) {
     no_t *new = (no_t *) malloc(sizeof(no_t));
     if (new == NULL) {
