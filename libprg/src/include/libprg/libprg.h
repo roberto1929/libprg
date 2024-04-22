@@ -160,11 +160,14 @@ void imprime_no(no_t *no);
 
             // DUPLAMENTE ENCADEADA
 
-typedef struct {
+typedef struct nod{
     int elemento;
     struct nod_t* proximo;
     struct nod_t* anterior;
 }nod_t;
 
+bool criar_d(int dado);
+
+nod_t * add_do(nod_t *nod, int dado);
 
 #endif

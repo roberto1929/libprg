@@ -91,82 +91,46 @@ no_t *busca_pilha(no_t* inicio, int dado){
 
 void addCircle(no_t **node, bool op, int value) {
     no_t *new = (no_t *) malloc(sizeof(no_t));
-    if (new == NULL) {
-        return; // Retorna se a alocação de memória falhar
-    }
-
     new->dado = value;
+    new->proximo = *node;
 
-    if (*node == NULL) { // Se a lista estiver vazia
-        new->proximo = new; // O próximo do novo nó aponta para ele mesmo
-        *node = new; // O ponteiro para o nó recebe o novo nó
-    } else if (!op) { // Se op for false, adiciona no final
+    if (*node == NULL) {
+        *node = new;
+        return;
+    }
+    if(!op){
         no_t *atual = *node;
-        while (atual->proximo != *node) {
+        while (atual->proximo != *node){
             atual = atual->proximo;
         }
         atual->proximo = new;
-        new->proximo = *node;
-    } else { // Se op for true, adiciona ordenado
-        no_t *atual = *node;
-        no_t *prev = NULL;
-        while (atual->dado > value && atual->proximo != *node) {
-            prev = atual;
+    } else {
+        no_t* atual = *node;
+        while (atual->proximo != *node && atual->dado > value){
             atual = atual->proximo;
         }
-        if (prev == NULL) { // Se o novo nó for o menor da lista
-            while (atual->proximo != *node) {
-                atual = atual->proximo;
-            }
-            atual->proximo = new;
-            new->proximo = *node;
-            *node = new;
-        } else { // Caso contrário, insere o novo nó entre prev e atual
-            prev->proximo = new;
-            new->proximo = atual;
-        }
+        new->proximo = atual->proximo;
+        atual->proximo = new;
     }
 }
 
-int remove_circular(no_t **no, int value){
-    
-        if (*no == NULL) {
-            return 0; // Retorna 0 se a lista estiver vazia
+int remove_circular(no_t **node, int value){
+
+    if(*node == NULL){
+        return -1;
+    }
+    no_t *current = *node;
+    while(current != NULL){
+        if(current->proximo->dado == value){
+            current->proximo = current->proximo->proximo;
+            return 1;
         }
-
-        no_t *prev = NULL;
-        no_t *atual = *no;
-
-        // Percorre a lista circular
-        do {
-            if (atual->dado == value) {
-                if (prev == NULL) { // Se o nó a ser removido é o primeiro da lista
-                    no_t *last = *no;
-                    while (last->proximo != *no) {
-                        last = last->proximo;
-                    }
-                    if (last == atual) { // Se a lista tem apenas um nó
-                        free(*no);
-                        *no = NULL;
-                    } else {
-                        last->proximo = atual->proximo;
-                        *no = atual->proximo;
-                        free(atual);
-                    }
-                } else {
-                    prev->proximo = atual->proximo;
-                    free(atual);
-                }
-                return 1; // Retorna 1 para indicar que a remoção foi bem-sucedida
-            }
-            prev = atual;
-            atual = atual->proximo;
-        } while (atual != *no); // O loop continua até voltar ao início da lista
-
-        return 0; // Retorna 0 se o elemento não for encontrado na lista
-    
+        current = current->proximo;
+    }
+    return 0;
 
 }
+
 void destruir(no_t** no){
     no_t* atual = *no;
     no_t* prox;
@@ -179,22 +143,37 @@ void destruir(no_t** no){
 }
 
 
-int busca_circular(no_t **no,int value){
-    int i = 0;
-    no_t *atual = *no;
-    do {
-        if (atual->proximo == value) {
-            return i;
-        }
-        atual = atual->proximo;
-        i++;
-    } while (atual != *no);
-    return -1;
-}
-
 void imprime_no(no_t *no){
     while (no != NULL){
         printf("%d ", no->dado);
         no = no->proximo;
     }
+}
+
+// Duplamente encadeada
+
+bool criar_d(int dado){
+    nod_t *inicio = malloc(sizeof (nod_t));
+    if(inicio == NULL){
+        return false;
+    }
+    inicio->elemento = dado;
+    inicio->proximo = NULL;
+    inicio->anterior = NULL;
+    return true;
+}
+
+nod_t * add_do(nod_t *nod, int dado){
+    nod_t *novo = malloc(sizeof (nod_t));
+    novo->elemento = dado;
+    while (nod->proximo != NULL){
+        if(dado < nod->elemento){
+            novo->proximo = nod;
+            novo->anterior = nod->anterior;
+            nod->anterior = novo;
+        }else{
+            novo->proximo = nod;
+        }
+    }
+    return nod;
 }
