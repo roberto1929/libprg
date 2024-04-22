@@ -53,13 +53,13 @@ int busca_lista(no_t **no, int element){
     return -1;
 }
 
-void adiciona_pilha(stacklist_t *stack, no_t **no, int element){
+void adiciona_pilha(stacklist_t *stack, no_t **no, int elemento){
     no_t *novo = (no_t*) malloc(sizeof(no_t));
-    if(novo = NULL){
+    if(novo == NULL){
         return;
     }
 
-    novo->dado = element;
+    novo->dado = elemento;
     novo->proximo = *no;
     *no = novo;
     stack->topo = novo;
