@@ -168,7 +168,8 @@ nod_t add_d(nod_t *nod, int dado){
     novo->elemento = dado;
     nod->anterior = novo->proximo;
     novo->proximo = nod->proximo;
-    nod->proximo = novo;
+    nod->proximo = (struct nod_t *) novo;
+    return *novo;
 }
 
 nod_t * add_do(nod_t *nod, int dado){
