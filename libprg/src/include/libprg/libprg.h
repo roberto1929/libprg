@@ -167,7 +167,7 @@ typedef struct nod{
 }nod_t;
 
 bool criar_d(int dado);
-
+nod_t add_d(nod_t *nod, int dado);
 nod_t * add_do(nod_t *nod, int dado);
 
 #endif

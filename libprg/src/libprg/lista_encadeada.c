@@ -163,6 +163,14 @@ bool criar_d(int dado){
     return true;
 }
 
+nod_t add_d(nod_t *nod, int dado){
+    nod_t *novo = malloc(sizeof (novo));
+    novo->elemento = dado;
+    nod->anterior = novo->proximo;
+    novo->proximo = nod->proximo;
+    nod->proximo = novo;
+}
+
 nod_t * add_do(nod_t *nod, int dado){
     nod_t *novo = malloc(sizeof (nod_t));
     novo->elemento = dado;
