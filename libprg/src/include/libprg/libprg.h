@@ -170,4 +170,35 @@ bool criar_d(int dado);
 nod_t add_d(nod_t *nod, int dado);
 nod_t * add_do(nod_t *nod, int dado);
 
+// TOMADA DE TEMPO
+
+
+void inicio(struct timeval *inicio_t);
+double finaliza(struct timeval *inicio_t);
+
+double finaliza_cpu(clock_t start);
+
+
+// ALGORITMOS DE ORDENAÇÃO
+
+typedef struct{
+    int *vetor;
+    int n;
+} sort_t;
+
+bool troca_posicao(sort_t *sort, int i, int j);
+bool create_S(sort_t *sort, int n);
+void povoar_S(sort_t *sort, int n);
+
+void bubble_sort(sort_t *sort, bool crescente); // MÉTODO BOLHA
+void insertion_sort(sort_t *sort); // MÉTODO INSERÇÃO
+void selection_sort(sort_t *sort, bool crescente); // MÉTODO SELEÇÃO
+
+int particiona(sort_t *sort, int start, int end);
+void merge(sort_t *sort, int mid, int left, int right);
+void merge_sort(sort_t *sort, int left, int right);
+void quick_sort(sort_t *sort, int start, int end);
+
+
+
 #endif
