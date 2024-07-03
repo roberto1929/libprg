@@ -158,7 +158,7 @@ void imprime_no(no_t *no);
 
 
 
-            // DUPLAMENTE ENCADEADA
+//============// DUPLAMENTE ENCADEADA
 
 typedef struct nod{
     int elemento;
@@ -183,22 +183,14 @@ double finaliza_cpu(clock_t start);
 
 typedef struct{
     int *vetor;
-    int n;
+    int tamanho;
 } sort_t;
 
-bool troca_posicao(sort_t *sort, int i, int j);
-bool create_S(sort_t *sort, int n);
-void povoar_S(sort_t *sort, int n);
+int cria_sort(sort_t* sort, int tamanho);
+void preenche_sort(sort_t* sort, int tamanho);
 
-void bubble_sort(sort_t *sort, bool crescente); // MÉTODO BOLHA
-void insertion_sort(sort_t *sort); // MÉTODO INSERÇÃO
-void selection_sort(sort_t *sort, bool crescente); // MÉTODO SELEÇÃO
-
-int particiona(sort_t *sort, int start, int end);
-void merge(sort_t *sort, int mid, int left, int right);
-void merge_sort(sort_t *sort, int left, int right);
-void quick_sort(sort_t *sort, int start, int end);
-
-
+void bubble_sort(sort_t* sort, bool crescente);
+void insertion_sort(sort_t* sort);
+void selection_sort(sort_t* sort, bool crescente);
 
 #endif
