@@ -17,7 +17,7 @@ void preencher_sort(sort_t* sort, int tamanho){
     }
 }
 
-void bubble_sor(sort_t* sort, bool crescente){
+void bubble_sort(sort_t* sort, bool crescente){
     for (int i = 0; i < sort->tamanho; ++i) {
         for (int j = 0; j < sort->tamanho - i; ++j) {
             if(sort->vetor[j] > sort->vetor[j+1] && crescente == true
