@@ -188,6 +188,7 @@ typedef struct{
 
 int cria_sort(sort_t* sort, int tamanho);
 void preencher_sort(sort_t* sort, int tamanho);
+void imprimir_ord(sort_t* sort);
 
 void bubble_sort(sort_t* sort, bool crescente);
 void insertion_sort(sort_t* sort);

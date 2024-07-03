@@ -17,6 +17,14 @@ void preencher_sort(sort_t* sort, int tamanho){
     }
 }
 
+void imprimir_ord(sort_t *sort)
+{
+    for(int i = 0; i < sort->tamanho;i++){
+        printf("%d ",sort->vetor[i]);
+    }
+    printf("\n");
+}
+
 void bubble_sort(sort_t* sort, bool crescente){
     for (int i = 0; i < sort->tamanho; ++i) {
         for (int j = 0; j < sort->tamanho - i; ++j) {
