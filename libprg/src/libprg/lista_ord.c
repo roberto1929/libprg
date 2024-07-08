@@ -54,8 +54,8 @@ void selection_sort(sort_t* sort, bool crescente){
     for (int i = 0; i < sort->tamanho - 1; ++i) {
         int min = i;
         for (int j = i; j < sort->tamanho; ++j) {
-            if(sort->vetor[j] > sort->vetor[min] && crescente == true
-            || sort->vetor[j] < sort->vetor[min] && crescente == false){
+            if(sort->vetor[j] < sort->vetor[min] && crescente == true
+            || sort->vetor[j] > sort->vetor[min] && crescente == false){
                 min = j;
             }
         }
