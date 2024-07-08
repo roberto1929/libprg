@@ -190,8 +190,16 @@ int cria_sort(sort_t* sort, int tamanho);
 void preencher_sort(sort_t* sort, int tamanho);
 void imprimir_ord(sort_t* sort);
 
+//============ TROCA E SELEÇÃO=================//
 void bubble_sort(sort_t* sort, bool crescente);
 void insertion_sort(sort_t* sort);
 void selection_sort(sort_t* sort, bool crescente);
+
+//============ DIVISÃO E CONQUISTA=============//
+void merge_sort(sort_t* sort, int esquerda, int direita);
+void merge(sort_t* sort, int meio, int esquerda, int direita);
+void quick_sort(sort_t* sort, int inicio, int fim);
+int particiona(sort_t* sort, int inicio, int fim);
+void troca_posicao(sort_t* sort, int i, int j);
 
 #endif
