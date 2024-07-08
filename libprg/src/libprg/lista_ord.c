@@ -39,7 +39,7 @@ void bubble_sort(sort_t* sort, bool crescente){
 }
 
 void insertion_sort(sort_t* sort){
-    for (int i = 0; i < sort->tamanho - 1; ++i) {
+    for (int i = 0; i < sort->tamanho; ++i) {
         int chave = sort->vetor[i];
         int j = i - 1;
         while (j >= 0 && sort->vetor[j] > chave){
