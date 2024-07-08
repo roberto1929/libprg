@@ -28,8 +28,8 @@ void imprimir_ord(sort_t *sort)
 void bubble_sort(sort_t* sort, bool crescente){
     for (int i = 0; i < sort->tamanho; ++i) {
         for (int j = 0; j < sort->tamanho - i; ++j) {
-            if(sort->vetor[j] < sort->vetor[j+1] && crescente == true
-            || sort->vetor[j] > sort->vetor[j+1] && crescente == false){
+            if(sort->vetor[j] > sort->vetor[j+1] && crescente == true
+            || sort->vetor[j] < sort->vetor[j+1] && crescente == false){
                 int aux = sort->vetor[j];
                 sort->vetor[j] = sort->vetor[j + 1];
                 sort->vetor[j+1] = aux;
