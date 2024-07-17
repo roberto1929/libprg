@@ -1,6 +1,10 @@
 #include <libprg/libprg.h>
 
 int cria_sort(sort_t* sort, int tamanho){
+    if (tamanho <= 0) {
+        printf("Tamanho inválido\n");
+        exit(EXIT_FAILURE);
+    }
     sort->vetor = (int*) malloc(tamanho * sizeof(int));
     sort->tamanho = tamanho;
     if(sort->vetor == NULL){
@@ -78,29 +82,25 @@ void merge_sort(sort_t* sort, int esquerda, int direita){
 }
 
 void merge(sort_t* sort, int meio, int esquerda, int direita){
-    int *aux = (int *) malloc((direita - esquerda +1)* sizeof(int));
+    int *aux = (int *) malloc((direita - esquerda + 1) * sizeof(int));
     int i = esquerda;
     int j = meio + 1;
     int k = 0;
-    while ((i <= meio) && (j<= direita)){
+
+    while ((i <= meio) && (j <= direita)){
         if(sort->vetor[i] <= sort->vetor[j]){
-            aux[k] = sort->vetor[i];
-            i++;
+            aux[k++] = sort->vetor[i++];
         } else{
-            aux[k] = sort->vetor[j];
-            j++;
+            aux[k++] = sort->vetor[j++];
         }
-        k++;
     }
     while (i <= meio){
-        aux[k] = sort->vetor[i];
-        i++; k++;
+        aux[k++] = sort->vetor[i++];
     }
     while (j <= direita){
-        aux[k] = sort->vetor[j];
-        j++; k++;
+        aux[k++] = sort->vetor[j++];
     }
-    for (i = esquerda; i < direita; i++) {
+    for (i = esquerda; i <= direita; i++) {
         sort->vetor[i] = aux[i - esquerda];
     }
     free(aux);
@@ -130,6 +130,8 @@ int particiona(sort_t* sort, int inicio, int fim){
 }
 
 void troca_posicao(sort_t* sort, int i, int j){
+    int aux = sort->vetor[i];
     sort->vetor[i] = sort->vetor[j];
+    sort->vetor[j] = aux;
 }
 
