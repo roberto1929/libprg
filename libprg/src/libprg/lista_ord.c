@@ -5,7 +5,9 @@ int cria_sort(sort_t* sort, int tamanho){
         printf("Tamanho inválido\n");
         exit(EXIT_FAILURE);
     }
+    printf("Aqui\n");
     sort->vetor = (int*) malloc(tamanho * sizeof(int));
+    printf("Ali\n");
     sort->tamanho = tamanho;
     if(sort->vetor == NULL){
         printf("Não foi possível criar o vetor\n");
