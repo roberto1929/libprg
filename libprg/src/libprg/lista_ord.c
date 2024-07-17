@@ -15,7 +15,7 @@ int cria_sort(sort_t* sort, int tamanho){
 }
 
 void preencher_sort(sort_t* sort, int tamanho){
-    srand(1);
+    srand(time(NULL));
     for(int i = 0; i < tamanho; i++){
         sort->vetor[i] = rand() % 100 + 1;
     }
