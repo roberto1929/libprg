@@ -82,44 +82,30 @@ void merge_sort(sort_t* sort, int esquerda, int direita){
 }
 
 void merge(sort_t* sort, int meio, int esquerda, int direita){
-    int tamanho_esquerda = meio - esquerda + 1;
-    int tamanho_direita = direita - meio;
+    int temp = direita - esquerda + 1;
+    printf("%d \n", temp);
+    int *aux = (int *) malloc((direita - esquerda + 1) * sizeof(int));
+    int i = esquerda;
+    int j = meio + 1;
+    int k = 0;
 
-    int *vetor_esquerda = (int *) malloc(tamanho_esquerda * sizeof(int));
-    int *vetor_direita = (int *) malloc(tamanho_direita * sizeof(int));
-
-    for (int i = 0; i < tamanho_esquerda; i++)
-        vetor_esquerda[i] = sort->vetor[esquerda + i];
-    for (int i = 0; i < tamanho_direita; i++)
-        vetor_direita[i] = sort->vetor[meio + 1 + i];
-
-    int i = 0, j = 0, k = esquerda;
-
-    while (i < tamanho_esquerda && j < tamanho_direita) {
-        if (vetor_esquerda[i] <= vetor_direita[j]) {
-            sort->vetor[k] = vetor_esquerda[i];
-            i++;
-        } else {
-            sort->vetor[k] = vetor_direita[j];
-            j++;
+    while ((i <= meio) && (j <= direita)){
+        if(sort->vetor[i] <= sort->vetor[j]){
+            aux[k++] = sort->vetor[i++];
+        } else{
+            aux[k++] = sort->vetor[j++];
         }
-        k++;
     }
-
-    while (i < tamanho_esquerda) {
-        sort->vetor[k] = vetor_esquerda[i];
-        i++;
-        k++;
+    while (i <= meio){
+        aux[k++] = sort->vetor[i++];
     }
-
-    while (j < tamanho_direita) {
-        sort->vetor[k] = vetor_direita[j];
-        j++;
-        k++;
+    while (j <= direita){
+        aux[k++] = sort->vetor[j++];
     }
-
-    free(vetor_esquerda);
-    free(vetor_direita);
+    for (i = esquerda; i <= direita; i++) {
+        sort->vetor[i] = aux[i - esquerda];
+    }
+    free(aux);
 }
 
 void quick_sort(sort_t* sort, int inicio, int fim){
