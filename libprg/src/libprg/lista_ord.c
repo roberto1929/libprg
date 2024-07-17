@@ -77,7 +77,7 @@ void merge_sort(sort_t* sort, int esquerda, int direita){
         meio = esquerda + (direita - esquerda)/2;
         merge_sort(sort, esquerda,meio);
         merge_sort(sort, meio + 1, direita);
-        merge(sort, esquerda, meio, direita);
+        merge(sort, meio, esquerda, direita);
     }
 }
 
