@@ -77,7 +77,7 @@ void merge_sort(sort_t* sort, int esquerda, int direita){
         meio = esquerda + (direita - esquerda)/2;
         merge_sort(sort, esquerda,meio);
         merge_sort(sort, meio + 1, direita);
-        merge(sort, esquerda, meio, direita);
+        merge(sort, meio, esquerda, direita);
     }
 }
 
@@ -102,7 +102,7 @@ void merge(sort_t* sort, int meio, int esquerda, int direita){
     while (j <= direita){
         aux[k++] = sort->vetor[j++];
     }
-    for (i = esquerda; i < direita; i++) {
+    for (i = esquerda; i <= direita; i++) {
         sort->vetor[i] = aux[i - esquerda];
     }
     free(aux);
