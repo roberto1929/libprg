@@ -82,7 +82,7 @@ void merge_sort(sort_t* sort, int esquerda, int direita){
 }
 
 void merge(sort_t* sort, int meio, int esquerda, int direita){
-    int temp = direita - esquerda;
+    int temp = direita - esquerda + 1;
     printf("%d \n", temp);
     int *aux = (int *) malloc((temp) * sizeof(int));
     int i = esquerda;
@@ -102,7 +102,7 @@ void merge(sort_t* sort, int meio, int esquerda, int direita){
     while (j <= direita){
         aux[k++] = sort->vetor[j++];
     }
-    for (i = esquerda; i <= direita; i++) {
+    for (i = esquerda; i < direita; i++) {
         sort->vetor[i] = aux[i - esquerda];
     }
     free(aux);
