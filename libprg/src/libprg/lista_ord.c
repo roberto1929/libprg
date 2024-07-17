@@ -82,9 +82,9 @@ void merge_sort(sort_t* sort, int esquerda, int direita){
 }
 
 void merge(sort_t* sort, int meio, int esquerda, int direita){
-    printf("Aqui\n");
+    int temp = direita - esquerda + 1;
+    printf("%d \n", temp);
     int *aux = (int *) malloc((direita - esquerda + 1) * sizeof(int));
-    printf("Ali\n");
     int i = esquerda;
     int j = meio + 1;
     int k = 0;
