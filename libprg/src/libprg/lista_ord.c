@@ -5,9 +5,7 @@ int cria_sort(sort_t* sort, int tamanho){
         printf("Tamanho inválido\n");
         exit(EXIT_FAILURE);
     }
-    printf("Aqui\n");
     sort->vetor = (int*) malloc(tamanho * sizeof(int));
-    printf("Ali\n");
     sort->tamanho = tamanho;
     if(sort->vetor == NULL){
         printf("Não foi possível criar o vetor\n");
@@ -84,7 +82,9 @@ void merge_sort(sort_t* sort, int esquerda, int direita){
 }
 
 void merge(sort_t* sort, int meio, int esquerda, int direita){
+    printf("Aqui\n");
     int *aux = (int *) malloc((direita - esquerda + 1) * sizeof(int));
+    printf("Ali\n");
     int i = esquerda;
     int j = meio + 1;
     int k = 0;
