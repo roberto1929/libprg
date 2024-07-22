@@ -198,7 +198,6 @@ void selection_sort(sort_t* sort, bool crescente);
 //============ DIVISÃO E CONQUISTA=============//
 void merge_sort(sort_t* sort, int esquerda, int direita);
 void quick_sort(sort_t* sort, int inicio, int fim);
-int particiona(sort_t* sort, int inicio, int fim);
-void troca_posicao(sort_t* sort, int i, int j);
+
 
 #endif

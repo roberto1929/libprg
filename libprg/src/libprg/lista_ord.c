@@ -2,6 +2,8 @@
 
 void merge(sort_t* sort, int meio, int esquerda, int direita);
 
+int particiona(sort_t* sort, int inicio, int fim);
+void troca_posicao(sort_t* sort, int i, int j);
 
 int cria_sort(sort_t* sort, int tamanho){
     if (tamanho <= 0) {
