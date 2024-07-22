@@ -1,4 +1,6 @@
 #include <libprg/libprg.h>
+void merge(sort_t* sort, int meio, int esquerda, int direita);
+
 
 int cria_sort(sort_t* sort, int tamanho){
     if (tamanho <= 0) {
