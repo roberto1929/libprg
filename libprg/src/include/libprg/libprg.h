@@ -199,5 +199,4 @@ void selection_sort(sort_t* sort, bool crescente);
 void merge_sort(sort_t* sort, int esquerda, int direita);
 void quick_sort(sort_t* sort, int inicio, int fim);
 
-
 #endif
