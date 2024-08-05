@@ -201,7 +201,7 @@ void quick_sort(sort_t* sort, int inicio, int fim);
 
 // ÁRVORE BINÁRIA
 
-typedef struct {
+typedef struct arvore{
     int valor;
     struct no* esquerda;
     struct no* direita;
