@@ -199,4 +199,45 @@ void selection_sort(sort_t* sort, bool crescente);
 void merge_sort(sort_t* sort, int esquerda, int direita);
 void quick_sort(sort_t* sort, int inicio, int fim);
 
+// ÁRVORE BINÁRIA
+
+typedef struct {
+    int valor;
+    struct no* esquerda;
+    struct no* direita;
+}arvore_t;
+
+arvore_t *criar_arvore(int valor);
+void destruir_arvore(arvore_t *arvore);
+arvore_t *inserir_valor(arvore_t *raiz, int valor);
+bool busca_arvore(arvore_t *raiz, int valor);
+arvore_t *remover_numero(arvore_t *raiz, int valor);
+void imprime_filho_nivel(arvore_t *raiz, int valor, int nivel);
+void imprime_arvore_in_order(arvore_t *raiz);
+void imprime_arvore_pre_order(arvore_t *raiz);
+void imprime_arvore_post_order(arvore_t *raiz);
+void imprimir_texto_grafo(arvore_t *raiz);
+void imprime_arvore_grafo(arvore_t *raiz);
+
+//------------// ARVORE DE BUSCA BINARIA BALANCEADA
+typedef struct no_avl{
+    int valor;
+    int altura;
+    struct no_avl *esquerda;
+    struct no_avl *direita;
+} no_avl_t;
+
+no_avl_t *criar_arvore_avl(int valor);
+int altura(no_avl_t *v);
+int fator_balanceamento(no_avl_t *v);
+no_avl_t *rotacao_esquerda(no_avl_t *v);
+no_avl_t *rotacao_direita(no_avl_t *v);
+no_avl_t *rotacao_dupla_direita(no_avl_t *v);
+no_avl_t *rotacao_dupla_esquerda(no_avl_t *v);
+no_avl_t *balancear(no_avl_t  *v);
+no_avl_t *inserir(no_avl_t *v, int valor);
+no_avl_t *remover(no_avl_t *v, int valor);
+
+
+
 #endif
