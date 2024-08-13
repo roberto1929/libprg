@@ -10,7 +10,7 @@ arvore_t *criar_arvore(int valor){
     return arvore;
 }
 
-void destruir_arvore(arvore_t *arvore){
+void destruir_arvore(arvore_t* arvore){
     if(arvore != NULL){
         destruir_arvore(arvore->esquerda);
         destruir_arvore(arvore->direita);
@@ -18,7 +18,7 @@ void destruir_arvore(arvore_t *arvore){
     }
 }
 
-arvore_t *inserir_valor(arvore_t *raiz, int valor){
+arvore_t *inserir_valor(arvore_t* raiz, int valor){
     if(raiz == NULL){
         return criar_arvore(valor);
     } else if(valor < raiz->valor){
@@ -29,7 +29,7 @@ arvore_t *inserir_valor(arvore_t *raiz, int valor){
     return raiz;
 }
 
-bool busca_arvore(arvore_t *raiz, int valor){
+bool busca_arvore(arvore_t* raiz, int valor){
     if (raiz == NULL) return false;
     if (valor == raiz->valor) return true;
     if (valor < raiz->valor) return busca_arvore(raiz->esquerda, valor);
@@ -37,7 +37,7 @@ bool busca_arvore(arvore_t *raiz, int valor){
 }
 
 
-arvore_t *remover_numero(arvore_t *raiz, int valor) {
+arvore_t *remover_numero(arvore_t* raiz, int valor) {
     if (raiz == NULL)
         return raiz;
 
@@ -68,7 +68,7 @@ arvore_t *remover_numero(arvore_t *raiz, int valor) {
 }
 
 
-void imprime_filho_nivel(arvore_t *raiz, int valor, int nivel){
+void imprime_filho_nivel(arvore_t* raiz, int valor, int nivel){
     if(raiz == NULL){
         printf("Número não encontrado na árvore\n");
         return;
@@ -76,12 +76,12 @@ void imprime_filho_nivel(arvore_t *raiz, int valor, int nivel){
     if (valor == raiz->valor) {
         printf("Número encontrado na árvore.\n");
         if (raiz->esquerda != NULL)
-            printf("Filho a esquerda: %d\n", raiz->esquerda->dado);
+            printf("Filho a esquerda: %d\n", raiz->esquerda->valor);
         else
             printf("Não tem filho à esquerda.\n");
 
         if (raiz->direita != NULL)
-            printf("Filho a direita: %d\n", raiz->direita->dado);
+            printf("Filho a direita: %d\n", raiz->direita->valor);
         else
             printf("Não tem filho à direita.\n");
 
@@ -95,21 +95,21 @@ void imprime_filho_nivel(arvore_t *raiz, int valor, int nivel){
     }
 }
 
-void imprime_arvore_in_order(arvore_t *raiz){
+void imprime_arvore_in_order(arvore_t* raiz){
     if(raiz != NULL){
         imprime_arvore_in_order(raiz->esquerda);
         printf("%d ", raiz->valor);
         imprime_arvore_in_order(raiz->direita);
     }
 }
-void imprime_arvore_pre_order(arvore_t *raiz){
+void imprime_arvore_pre_order(arvore_t* raiz){
     if (raiz != NULL){
         printf("%d ", raiz->valor);
         imprime_arvore_pre_order(raiz->esquerda);
         imprime_arvore_pre_order(raiz->direita);
     }
 }
-void imprime_arvore_post_order(arvore_t *raiz){
+void imprime_arvore_post_order(arvore_t* raiz){
     if(raiz != NULL){
     imprime_arvore_post_order(raiz->esquerda);
     imprime_arvore_post_order(raiz->direita);
@@ -130,15 +130,36 @@ void imprime_arvore_grafo(arvore_t *raiz){
     if(raiz != NULL){
 
         if (raiz->esquerda != NULL) {
-            printf("%d -- %d\n", raiz->valor, raiz->esquerda->dado);
+            printf("%d -- %d\n", raiz->valor, raiz->esquerda->valor);
         }
         if (raiz->direita != NULL) {
-            printf("%d -- %d\n", raiz->valor, raiz->direita->dado);
+            printf("%d -- %d\n", raiz->valor, raiz->direita->valor);
         }
         imprime_arvore_grafo(raiz->esquerda);
         imprime_arvore_grafo(raiz->direita);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //
 //no_avl_t *criar_arvore_avl(int valor){
 //    no_avl_t *raiz;
