@@ -140,135 +140,117 @@ void imprime_arvore_grafo(arvore_t *raiz){
     }
 }
 
+#define  max(a,b) (((a) > (b)) ? (a) : (b));
 
 
+no_avl_t *criar_arvore_avl(int valor){
+    no_avl_t *raiz;
+    raiz = (no_avl_t *) malloc(sizeof(no_avl_t));
+    raiz->valor = valor;
+    raiz->esquerda = raiz->direita = NULL;
+    raiz->altura = 0;
+    return raiz;
+}
 
+int altura(no_avl_t *v) {
+    if (v == NULL) {
+        return 0;
+    } else {
+        return v->altura;
+    }
+}
 
+int fator_balanceamento(no_avl_t *v){
+    if (v == NULL){
+        return 0;
+    } else {
+        return altura(v->esquerda) - altura(v->direita);
+    }
+}
 
+no_avl_t *rotacao_esquerda(no_avl_t *v){
+    no_avl_t *u = v->direita;
+    v->direita = u->esquerda;
+    u->esquerda = v;
+    v->altura = max(altura(v->esquerda), altura(v->direita)) + 1;
+    u->altura = max(altura(u->esquerda), altura(u->direita)) + 1;
+    return u;
+}
 
+no_avl_t *rotacao_direita(no_avl_t *v){
+    no_avl_t *u = v->esquerda;
+    v->esquerda = u->direita;
+    u->direita = v;
+    v->altura = max(altura(v->esquerda), altura(v->direita)) + 1;
+    u->altura = max(altura(u->esquerda), altura(u->direita)) + 1;
+    return u;
+}
 
+no_avl_t *rotacao_dupla_direita(no_avl_t *v){
+    v->esquerda = rotacao_esquerda(v->esquerda);
 
+    return rotacao_direita(v);
+}
 
+no_avl_t *rotacao_dupla_esquerda(no_avl_t *v){
+    v->direita = rotacao_direita(v->direita);
 
+    return rotacao_esquerda(v);
+}
 
+no_avl_t *balancear(no_avl_t  *v){
+    int fb = fator_balanceamento(v);
+    if (fb > 1){// nó desregulado tem filho desregulado à esquerda
+        if (fator_balanceamento(v->esquerda) > 0) {
+            return rotacao_direita(v);
+        } else {
+            return rotacao_dupla_direita(v);
+        }
+    } else if (fb < -1) { // nó desregulado tem filho desregulado à direita
+        if (fator_balanceamento(v->direita) < 0) {
+            return rotacao_esquerda(v);
+        } else {
+            return rotacao_dupla_esquerda(v);
+        }
+    }
+    return v;
+}
 
+no_avl_t *inserir(no_avl_t *v, int valor){
+ if (v == NULL) {
+     v = criar_arvore_avl(valor);
+ } else if (valor < v->valor) {
+        v->esquerda = inserir(v->esquerda, valor);
+    } else if (valor > v->valor) {
+        v->direita = inserir(v->direita, valor);
+    }
+    v->altura= 1 + max(altura(v->esquerda), altura(v->direita));
+    v = balancear(v);
+    return v;
+}
 
-
-
-
-
-
-
-
-//
-//no_avl_t *criar_arvore_avl(int valor){
-//    no_avl_t *raiz;
-//    raiz = (no_avl_t *) malloc(sizeof(no_avl_t));
-//    raiz->valor = valor;
-//    raiz->esquerda = raiz->direita = NULL;
-//    raiz->altura = 0;
-//    return raiz;
-//}
-//
-//int altura(no_avl_t *v) {
-//    if (v == NULL) {
-//        return 0;
-//    } else {
-//        return v->altura;
-//    }
-//}
-//
-//int fator_balanceamento(no_avl_t *v){
-//    if (v == NULL){
-//        return 0;
-//    } else {
-//        return altura(v->esquerda) - altura(v->direita);
-//    }
-//}
-//
-//no_avl_t *rotacao_esquerda(no_avl_t *v){
-//    no_avl_t *u = v->direita;
-//    v->direita = u->esquerda;
-//    u->esquerda = v;
-//    v->altura = max(altura(v->esquerda), altura(v->direita)) + 1;
-//    u->altura = max(altura(u->esquerda), altura(u->direita)) + 1;
-//    return u;
-//}
-//
-//no_avl_t *rotacao_direita(no_avl_t *v){
-//    no_avl_t *u = v->esquerda;
-//    v->esquerda = u->direita;
-//    u->direita = v;
-//    v->altura = max(altura(v->esquerda), altura(v->direita)) + 1;
-//    u->altura = max(altura(u->esquerda), altura(u->direita)) + 1;
-//    return u;
-//}
-//
-//no_avl_t *rotacao_dupla_direita(no_avl_t *v){
-//    v->esquerda = rotacao_esquerda(v->esquerda);
-//
-//    return rotacao_direita(v);
-//}
-//
-//no_avl_t *rotacao_dupla_esquerda(no_avl_t *v){
-//    v->direita = rotacao_direita(v->direita);
-//
-//    return rotacao_esquerda(v);
-//}
-//
-//no_avl_t *balancear(no_avl_t  *v){
-//    int fb = fator_balanceamento(v);
-//    if (fb > 1){// nó desregulado tem filho desregulado à esquerda
-//        if (fator_balanceamento(v->esquerda) > 0) {
-//            return rotacao_direita(v);
-//        } else {
-//            return rotacao_dupla_direita(v);
-//        }
-//    } else if (fb < -1) { // nó desregulado tem filho desregulado à direita
-//        if (fator_balanceamento(v->direita) < 0) {
-//            return rotacao_esquerda(v);
-//        } else {
-//            return rotacao_dupla_esquerda(v);
-//        }
-//    }
-//    return v;
-//}
-//
-//no_avl_t *inserir(no_avl_t *v, int valor){
-// if (v == NULL) {
-//     v = criar_arvore_avl(valor);
-// } else if (valor < v->valor) {
-//        v->esquerda = inserir(v->esquerda, valor);
-//    } else if (valor > v->valor) {
-//        v->direita = inserir(v->direita, valor);
-//    }
-//    v->altura= 1 + max(altura(v->esquerda), altura(v->direita));
-//    v = balancear(v);
-//    return v;
-//}
-//
-//no_avl_t *remover(no_avl_t *v, int valor){
-//    if (v == NULL) {
-//        return NULL;
-//    } else if (valor < v->valor) {
-//        v->esquerda = remover(v->esquerda, valor);
-//    } else if (valor > v->valor) {
-//        v->direita = remover(v->direita, valor);
-//    } else { // valor == v−>valor
-//        if (v->esquerda == NULL ||v->direita == NULL) {
-//            no_avl_t *aux = v->esquerda = v->direita;
-//            free(v);
-//            return aux;
-//        } else{
-//            no_avl_t *aux = v->esquerda;
-//            while (aux->direita != NULL) {
-//                aux = aux->direita;
-//            }
-//            v->valor = aux->valor;
-//            v->esquerda = remover(v->esquerda, aux->valor);
-//        }
-//    }
-//    v->altura = 1 + max(altura(v->esquerda), altura(v->direita));
-//    v = balancear(v);
-//    return v;
-//}
+no_avl_t *remover(no_avl_t *v, int valor){
+    if (v == NULL) {
+        return NULL;
+    } else if (valor < v->valor) {
+        v->esquerda = remover(v->esquerda, valor);
+    } else if (valor > v->valor) {
+        v->direita = remover(v->direita, valor);
+    } else { // valor == v−>valor
+        if (v->esquerda == NULL ||v->direita == NULL) {
+            no_avl_t *aux = v->esquerda = v->direita;
+            free(v);
+            return aux;
+        } else{
+            no_avl_t *aux = v->esquerda;
+            while (aux->direita != NULL) {
+                aux = aux->direita;
+            }
+            v->valor = aux->valor;
+            v->esquerda = remover(v->esquerda, aux->valor);
+        }
+    }
+    v->altura = 1 + max(altura(v->esquerda), altura(v->direita));
+    v = balancear(v);
+    return v;
+}
