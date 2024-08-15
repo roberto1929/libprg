@@ -232,6 +232,8 @@ typedef struct no_avl{
     struct no_avl *direita;
 } no_avl_t;
 
+extern int contador_rotacoes;
+
 no_avl_t *criar_arvore_avl(int valor);
 int altura(no_avl_t *v);
 int fator_balanceamento(no_avl_t *v);

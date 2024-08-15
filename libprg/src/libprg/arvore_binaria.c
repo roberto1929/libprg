@@ -142,6 +142,7 @@ void imprime_arvore_grafo(arvore_t *raiz){
 
 #define  max(a,b) (((a) > (b)) ? (a) : (b));
 
+int contador_rotacoes = 0;
 
 no_avl_t *criar_arvore_avl(int valor){
     no_avl_t *raiz;
@@ -169,6 +170,7 @@ int fator_balanceamento(no_avl_t *v){
 }
 
 no_avl_t *rotacao_esquerda(no_avl_t *v){
+    contador_rotacoes++;
     no_avl_t *u = v->direita;
     v->direita = u->esquerda;
     u->esquerda = v;
@@ -178,6 +180,7 @@ no_avl_t *rotacao_esquerda(no_avl_t *v){
 }
 
 no_avl_t *rotacao_direita(no_avl_t *v){
+    contador_rotacoes++;
     no_avl_t *u = v->esquerda;
     v->esquerda = u->direita;
     u->direita = v;
@@ -187,12 +190,14 @@ no_avl_t *rotacao_direita(no_avl_t *v){
 }
 
 no_avl_t *rotacao_dupla_direita(no_avl_t *v){
+    contador_rotacoes++;
     v->esquerda = rotacao_esquerda(v->esquerda);
 
     return rotacao_direita(v);
 }
 
 no_avl_t *rotacao_dupla_esquerda(no_avl_t *v){
+    contador_rotacoes++;
     v->direita = rotacao_direita(v->direita);
 
     return rotacao_esquerda(v);
