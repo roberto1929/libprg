@@ -217,8 +217,10 @@ no_avl_t *inserir(no_avl_t *v, int valor){
         v->direita = inserir(v->direita, valor);
     }
     v->altura= 1 + max(altura(v->esquerda), altura(v->direita));
-    return balancear(v);
+    //return balancear(v);
+    return v;
 }
+
 
 no_avl_t *remover(no_avl_t *v, int valor){
     if (v == NULL) {
