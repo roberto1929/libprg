@@ -136,6 +136,7 @@ void imprime_arvore_grafo(arvore_t *raiz){
 #define  max(a,b) (((a) > (b)) ? (a) : (b));
 
 void imprimir_texto_grafo(no_avl_t *raiz){
+    printf("\n");
     printf("strict graph{\n");
     printf("label=\"Árvore de busca binária\";\n");
     printf("node [shape=\"oval\", color=\"#339966\", style=\"filled\", fontcolor=\"black\"\n");
