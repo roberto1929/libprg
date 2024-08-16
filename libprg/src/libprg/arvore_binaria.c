@@ -138,7 +138,7 @@ void imprime_arvore_grafo(arvore_t *raiz){
 void imprimir_texto_grafo(no_avl_t *raiz){
     printf("strict graph{\n");
     printf("label=\"Árvore de busca binária\";\n");
-    printf("node [shape=\"oval\", color=\"blue\", style=\"filled\", fontcolor=\"white\"\n");
+    printf("node [shape=\"oval\", color=\"green\", style=\"filled\", fontcolor=\"black\"\n");
     printf("\tfixedsize=true];\n");
     imprime_arvore_avl_grafo(raiz);
     printf("}\n");
