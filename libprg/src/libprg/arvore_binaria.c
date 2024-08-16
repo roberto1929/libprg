@@ -174,13 +174,7 @@ int altura(no_avl_t *v) {
     }
 }
 
-int fator_balanceamento(no_avl_t *v){
-    if (v == NULL){
-        return 0;
-    } else {
-        return altura(v->esquerda) - altura(v->direita);
-    }
-}
+
 
 no_avl_t *rotacao_esquerda(no_avl_t *v){
     no_avl_t *u = v->direita;
@@ -212,23 +206,7 @@ no_avl_t *rotacao_dupla_esquerda(no_avl_t *v){
     return rotacao_esquerda(v);
 }
 
-no_avl_t *balancear(no_avl_t  *v){
-    int fb = fator_balanceamento(v);
-    if (fb > 1){// nó desregulado tem filho desregulado à esquerda
-        if (fator_balanceamento(v->esquerda) > 0) {
-            return rotacao_direita(v);
-        } else {
-            return rotacao_dupla_direita(v);
-        }
-    } else if (fb < -1) { // nó desregulado tem filho desregulado à direita
-        if (fator_balanceamento(v->direita) < 0) {
-            return rotacao_esquerda(v);
-        } else {
-            return rotacao_dupla_esquerda(v);
-        }
-    }
-    return v;
-}
+
 
 no_avl_t *inserir(no_avl_t *v, int valor){
  if (v == NULL) {
@@ -267,6 +245,32 @@ no_avl_t *remover(no_avl_t *v, int valor){
     return balancear(v);
 }
 
+int fator_balanceamento(no_avl_t *v){
+    if (v == NULL){
+        return 0;
+    } else {
+        return altura(v->esquerda) - altura(v->direita);
+    }
+}
+
+no_avl_t *balancear(no_avl_t  *v){
+    int fb = fator_balanceamento(v);
+    if (fb > 1){// nó desregulado tem filho desregulado à esquerda
+        if (fator_balanceamento(v->esquerda) > 0) {
+            return rotacao_direita(v);
+        } else {
+            return rotacao_dupla_direita(v);
+        }
+    } else if (fb < -1) { // nó desregulado tem filho desregulado à direita
+        if (fator_balanceamento(v->direita) < 0) {
+            return rotacao_esquerda(v);
+        } else {
+            return rotacao_dupla_esquerda(v);
+        }
+    }
+    return v;
+}
+
 int verificar_balanceamento(no_avl_t *raiz){
     if(raiz == NULL){
         return 1;
@@ -274,7 +278,7 @@ int verificar_balanceamento(no_avl_t *raiz){
     int fb = fator_balanceamento(raiz);
     printf("Nó %d - Fator de Balanceamento: %d\n", raiz->valor, fb);
 
-    if (fb < -1 || fb > 1){
+    if (fb <= -1 || fb >= 1){
         printf("Árvore desbalanceada no nó %d\n", raiz->valor);
         return 0;
     }
