@@ -212,44 +212,53 @@ no_avl_t *rotacao_dupla_esquerda(no_avl_t *v){
     return rotacao_esquerda(v);
 }
 
-no_avl_t *balancear(no_avl_t  *v){
+int contador(int *i){
+    return (int) i + 1;
+}
+
+no_avl_t *balancear(no_avl_t  *v, int *i){
     int fb = fator_balanceamento(v);
+    i = 0;
     if (fb > 1){// nó desregulado tem filho desregulado à esquerda
         if (fator_balanceamento(v->esquerda) > 0) {
+            contador(i);
             return rotacao_direita(v);
         } else {
+            contador(i);
             return rotacao_dupla_direita(v);
         }
     } else if (fb < -1) { // nó desregulado tem filho desregulado à direita
         if (fator_balanceamento(v->direita) < 0) {
+            contador(i);
             return rotacao_esquerda(v);
         } else {
+            contador(i);
             return rotacao_dupla_esquerda(v);
         }
     }
     return v;
 }
 
-no_avl_t *inserir(no_avl_t *v, int valor){
+no_avl_t *inserir(no_avl_t *v, int valor, int *i){
  if (v == NULL) {
      v = criar_arvore_avl(valor);
  } else if (valor < v->valor) {
-        v->esquerda = inserir(v->esquerda, valor);
+        v->esquerda = inserir(v->esquerda, valor, i);
     } else if (valor > v->valor) {
-        v->direita = inserir(v->direita, valor);
+        v->direita = inserir(v->direita, valor, i);
     }
     v->altura= 1 + max(altura(v->esquerda), altura(v->direita));
-    v = balancear(v);
+    v = balancear(v, i);
     return v;
 }
 
-no_avl_t *remover(no_avl_t *v, int valor){
+no_avl_t *remover(no_avl_t *v, int valor, int *i){
     if (v == NULL) {
         return NULL;
     } else if (valor < v->valor) {
-        v->esquerda = remover(v->esquerda, valor);
+        v->esquerda = remover(v->esquerda, valor, i);
     } else if (valor > v->valor) {
-        v->direita = remover(v->direita, valor);
+        v->direita = remover(v->direita, valor, i);
     } else { // valor == v−>valor
         if (v->esquerda == NULL ||v->direita == NULL) {
             no_avl_t *aux = v->esquerda = v->direita;
@@ -261,10 +270,10 @@ no_avl_t *remover(no_avl_t *v, int valor){
                 aux = aux->direita;
             }
             v->valor = aux->valor;
-            v->esquerda = remover(v->esquerda, aux->valor);
+            v->esquerda = remover(v->esquerda, aux->valor, i);
         }
     }
     v->altura = 1 + max(altura(v->esquerda), altura(v->direita));
-    v = balancear(v);
+    v = balancear(v, i);
     return v;
 }
