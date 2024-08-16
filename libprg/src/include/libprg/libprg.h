@@ -244,7 +244,7 @@ no_avl_t *inserir(no_avl_t *v, int valor);
 no_avl_t *remover(no_avl_t *v, int valor);
 void imprime_arvore_avl_grafo(no_avl_t *raiz);
 void imprimir_texto_grafo(no_avl_t *raiz);
-int verificar_balanceamento(no_avl_t *raiz);
+
 
 
 

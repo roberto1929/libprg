@@ -217,10 +217,8 @@ no_avl_t *inserir(no_avl_t *v, int valor){
         v->direita = inserir(v->direita, valor);
     }
     v->altura= 1 + max(altura(v->esquerda), altura(v->direita));
-    //return balancear(v);
-    return v;
+    return balancear(v);
 }
-
 
 no_avl_t *remover(no_avl_t *v, int valor){
     if (v == NULL) {
@@ -271,19 +269,4 @@ no_avl_t *balancear(no_avl_t  *v){
         }
     }
     return v;
-}
-
-int verificar_balanceamento(no_avl_t *raiz){
-    if(raiz == NULL){
-        return 1;
-    }
-    int fb = fator_balanceamento(raiz);
-    printf("Nó %d - Fator de Balanceamento: %d\n", raiz->valor, fb);
-
-    if (fb < -1 || fb > 1){
-        printf("Árvore desbalanceada no nó %d\n", raiz->valor);
-        return 0;
-    }
-
-    return verificar_balanceamento(raiz->esquerda) && verificar_balanceamento(raiz->direita);
 }
