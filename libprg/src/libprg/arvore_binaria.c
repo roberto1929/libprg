@@ -117,14 +117,7 @@ void imprime_arvore_post_order(arvore_t* raiz){
     }
 }
 
-void imprimir_texto_grafo(no_avl_t *raiz){
-    printf("strict graph{\n");
-    printf("label=\"Árvore de busca binária\";\n");
-    printf("node [shape=\"circle\", color=\"#339966\", style=\"filled\",\n");
-    printf("\tfixedsize=true];\n");
-    imprime_arvore_avl_grafo(raiz);
-    printf("}\n");
-}
+
 
 void imprime_arvore_grafo(arvore_t *raiz){
     if(raiz != NULL){
@@ -142,7 +135,14 @@ void imprime_arvore_grafo(arvore_t *raiz){
 
 #define  max(a,b) (((a) > (b)) ? (a) : (b));
 
-int contador_rotacoes = 0;
+void imprimir_texto_grafo(no_avl_t *raiz){
+    printf("strict graph{\n");
+    printf("label=\"Árvore de busca binária\";\n");
+    printf("node [shape=\"circle\", color=\"#339966\", style=\"filled\",\n");
+    printf("\tfixedsize=true];\n");
+    imprime_arvore_avl_grafo(raiz);
+    printf("}\n");
+}
 
 no_avl_t *criar_arvore_avl(int valor){
     no_avl_t *raiz;
@@ -183,7 +183,6 @@ int fator_balanceamento(no_avl_t *v){
 }
 
 no_avl_t *rotacao_esquerda(no_avl_t *v){
-    contador_rotacoes++;
     no_avl_t *u = v->direita;
     v->direita = u->esquerda;
     u->esquerda = v;
@@ -193,7 +192,6 @@ no_avl_t *rotacao_esquerda(no_avl_t *v){
 }
 
 no_avl_t *rotacao_direita(no_avl_t *v){
-    contador_rotacoes++;
     no_avl_t *u = v->esquerda;
     v->esquerda = u->direita;
     u->direita = v;
@@ -203,14 +201,12 @@ no_avl_t *rotacao_direita(no_avl_t *v){
 }
 
 no_avl_t *rotacao_dupla_direita(no_avl_t *v){
-    contador_rotacoes++;
     v->esquerda = rotacao_esquerda(v->esquerda);
 
     return rotacao_direita(v);
 }
 
 no_avl_t *rotacao_dupla_esquerda(no_avl_t *v){
-    contador_rotacoes++;
     v->direita = rotacao_direita(v->direita);
 
     return rotacao_esquerda(v);
@@ -271,4 +267,16 @@ no_avl_t *remover(no_avl_t *v, int valor){
     v->altura = 1 + max(altura(v->esquerda), altura(v->direita));
     v = balancear(v);
     return v;
+}
+
+int verificar_balanceamento(no_avl_t *raiz){
+    if(raiz == NULL){
+        return 1;
+    }
+    int fb = fator_balanceamento(raiz);
+    if (fb < -1 || fb > 1){
+        return 0;
+    }
+
+    return verificar_balanceamento(raiz->esquerda) && verificar_balanceamento(raiz->direita);
 }
