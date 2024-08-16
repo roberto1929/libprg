@@ -174,7 +174,13 @@ int altura(no_avl_t *v) {
     }
 }
 
-
+int fator_balanceamento(no_avl_t *v){
+    if (v == NULL){
+        return 0;
+    } else {
+        return altura(v->esquerda) - altura(v->direita);
+    }
+}
 
 no_avl_t *rotacao_esquerda(no_avl_t *v){
     no_avl_t *u = v->direita;
@@ -206,18 +212,35 @@ no_avl_t *rotacao_dupla_esquerda(no_avl_t *v){
     return rotacao_esquerda(v);
 }
 
-
+no_avl_t *balancear(no_avl_t  *v){
+    int fb = fator_balanceamento(v);
+    if (fb > 1){// nó desregulado tem filho desregulado à esquerda
+        if (fator_balanceamento(v->esquerda) > 0) {
+            return rotacao_direita(v);
+        } else {
+            return rotacao_dupla_direita(v);
+        }
+    } else if (fb < -1) { // nó desregulado tem filho desregulado à direita
+        if (fator_balanceamento(v->direita) < 0) {
+            return rotacao_esquerda(v);
+        } else {
+            return rotacao_dupla_esquerda(v);
+        }
+    }
+    return v;
+}
 
 no_avl_t *inserir(no_avl_t *v, int valor){
  if (v == NULL) {
-     return criar_arvore_avl(valor);
+     v = criar_arvore_avl(valor);
  } else if (valor < v->valor) {
         v->esquerda = inserir(v->esquerda, valor);
     } else if (valor > v->valor) {
         v->direita = inserir(v->direita, valor);
     }
     v->altura= 1 + max(altura(v->esquerda), altura(v->direita));
-    return balancear(v);
+    v = balancear(v);
+    return v;
 }
 
 no_avl_t *remover(no_avl_t *v, int valor){
@@ -229,7 +252,7 @@ no_avl_t *remover(no_avl_t *v, int valor){
         v->direita = remover(v->direita, valor);
     } else { // valor == v−>valor
         if (v->esquerda == NULL ||v->direita == NULL) {
-            no_avl_t *aux = (v->esquerda) ? v->esquerda : v->direita;
+            no_avl_t *aux = v->esquerda = v->direita;
             free(v);
             return aux;
         } else{
@@ -242,31 +265,6 @@ no_avl_t *remover(no_avl_t *v, int valor){
         }
     }
     v->altura = 1 + max(altura(v->esquerda), altura(v->direita));
-    return balancear(v);
-}
-
-int fator_balanceamento(no_avl_t *v){
-    if (v == NULL){
-        return 0;
-    } else {
-        return altura(v->esquerda) - altura(v->direita);
-    }
-}
-
-no_avl_t *balancear(no_avl_t  *v){
-    int fb = fator_balanceamento(v);
-    if (fb > 1){// nó desregulado tem filho desregulado à esquerda
-        if (fator_balanceamento(v->esquerda) >= 0) {
-            return rotacao_direita(v);
-        } else {
-            return rotacao_dupla_direita(v);
-        }
-    } else if (fb < -1) { // nó desregulado tem filho desregulado à direita
-        if (fator_balanceamento(v->direita) <= 0) {
-            return rotacao_esquerda(v);
-        } else {
-            return rotacao_dupla_esquerda(v);
-        }
-    }
+    v = balancear(v);
     return v;
 }
