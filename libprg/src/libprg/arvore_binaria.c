@@ -232,15 +232,14 @@ no_avl_t *balancear(no_avl_t  *v){
 
 no_avl_t *inserir(no_avl_t *v, int valor){
  if (v == NULL) {
-     v = criar_arvore_avl(valor);
+     return criar_arvore_avl(valor);
  } else if (valor < v->valor) {
         v->esquerda = inserir(v->esquerda, valor);
     } else if (valor > v->valor) {
         v->direita = inserir(v->direita, valor);
     }
     v->altura= 1 + max(altura(v->esquerda), altura(v->direita));
-    v = balancear(v);
-    return v;
+    return balancear(v);
 }
 
 no_avl_t *remover(no_avl_t *v, int valor){
@@ -252,7 +251,7 @@ no_avl_t *remover(no_avl_t *v, int valor){
         v->direita = remover(v->direita, valor);
     } else { // valor == v−>valor
         if (v->esquerda == NULL ||v->direita == NULL) {
-            no_avl_t *aux = v->esquerda = v->direita;
+            no_avl_t *aux = (v->esquerda) ? v->esquerda : v->direita;
             free(v);
             return aux;
         } else{
@@ -265,8 +264,7 @@ no_avl_t *remover(no_avl_t *v, int valor){
         }
     }
     v->altura = 1 + max(altura(v->esquerda), altura(v->direita));
-    v = balancear(v);
-    return v;
+    return balancear(v);
 }
 
 int verificar_balanceamento(no_avl_t *raiz){
