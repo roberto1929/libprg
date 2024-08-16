@@ -239,12 +239,11 @@ no_avl_t *rotacao_esquerda(no_avl_t *v);
 no_avl_t *rotacao_direita(no_avl_t *v);
 no_avl_t *rotacao_dupla_direita(no_avl_t *v);
 no_avl_t *rotacao_dupla_esquerda(no_avl_t *v);
-no_avl_t *balancear(no_avl_t  *v, int *i);
-no_avl_t *inserir(no_avl_t *v, int valor, int *i);
-no_avl_t *remover(no_avl_t *v, int valor, int *i);
+no_avl_t *balancear(no_avl_t  *v);
+no_avl_t *inserir(no_avl_t *v, int valor);
+no_avl_t *remover(no_avl_t *v, int valor);
 void imprime_arvore_avl_grafo(no_avl_t *raiz);
 void imprimir_texto_grafo(no_avl_t *raiz);
-
 
 
 
