@@ -278,7 +278,7 @@ int verificar_balanceamento(no_avl_t *raiz){
     int fb = fator_balanceamento(raiz);
     printf("Nó %d - Fator de Balanceamento: %d\n", raiz->valor, fb);
 
-    if (fb <= -1 || fb >= 1){
+    if (fb < -1 || fb > 1){
         printf("Árvore desbalanceada no nó %d\n", raiz->valor);
         return 0;
     }
