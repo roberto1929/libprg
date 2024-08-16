@@ -256,13 +256,13 @@ int fator_balanceamento(no_avl_t *v){
 no_avl_t *balancear(no_avl_t  *v){
     int fb = fator_balanceamento(v);
     if (fb > 1){// nó desregulado tem filho desregulado à esquerda
-        if (fator_balanceamento(v->esquerda) > 0) {
+        if (fator_balanceamento(v->esquerda) >= 0) {
             return rotacao_direita(v);
         } else {
             return rotacao_dupla_direita(v);
         }
     } else if (fb < -1) { // nó desregulado tem filho desregulado à direita
-        if (fator_balanceamento(v->direita) < 0) {
+        if (fator_balanceamento(v->direita) <= 0) {
             return rotacao_esquerda(v);
         } else {
             return rotacao_dupla_esquerda(v);
