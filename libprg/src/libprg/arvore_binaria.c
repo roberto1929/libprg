@@ -184,7 +184,7 @@ int fator_balanceamento(no_avl_t *v){
 }
 
 no_avl_t *rotacao_esquerda(no_avl_t *v, int* contador){
-    (*contador)++;
+    *contador++;
     no_avl_t *u = v->direita;
     v->direita = u->esquerda;
     u->esquerda = v;
@@ -194,7 +194,7 @@ no_avl_t *rotacao_esquerda(no_avl_t *v, int* contador){
 }
 
 no_avl_t *rotacao_direita(no_avl_t *v, int* contador){
-    (*contador)++;
+    *contador++;
     no_avl_t *u = v->esquerda;
     v->esquerda = u->direita;
     u->direita = v;
