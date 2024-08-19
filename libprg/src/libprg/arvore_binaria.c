@@ -183,7 +183,8 @@ int fator_balanceamento(no_avl_t *v){
     }
 }
 
-no_avl_t *rotacao_esquerda(no_avl_t *v){
+no_avl_t *rotacao_esquerda(no_avl_t *v, int* contador){
+    (*contador)++;
     no_avl_t *u = v->direita;
     v->direita = u->esquerda;
     u->esquerda = v;
@@ -192,7 +193,8 @@ no_avl_t *rotacao_esquerda(no_avl_t *v){
     return u;
 }
 
-no_avl_t *rotacao_direita(no_avl_t *v){
+no_avl_t *rotacao_direita(no_avl_t *v, int* contador){
+    (*contador)++;
     no_avl_t *u = v->esquerda;
     v->esquerda = u->direita;
     u->direita = v;
@@ -201,56 +203,56 @@ no_avl_t *rotacao_direita(no_avl_t *v){
     return u;
 }
 
-no_avl_t *rotacao_dupla_direita(no_avl_t *v){
-    v->esquerda = rotacao_esquerda(v->esquerda);
+no_avl_t *rotacao_dupla_direita(no_avl_t *v, int* contador){
+    v->esquerda = rotacao_esquerda(v->esquerda, contador);
 
-    return rotacao_direita(v);
+    return rotacao_direita(v, contador);
 }
 
-no_avl_t *rotacao_dupla_esquerda(no_avl_t *v){
-    v->direita = rotacao_direita(v->direita);
+no_avl_t *rotacao_dupla_esquerda(no_avl_t *v, int* contador){
+    v->direita = rotacao_direita(v->direita, contador);
 
-    return rotacao_esquerda(v);
+    return rotacao_esquerda(v, contador);
 }
 
-no_avl_t *balancear(no_avl_t  *v){
+no_avl_t *balancear(no_avl_t  *v, int *contador){
     int fb = fator_balanceamento(v);
     if (fb > 1){// nó desregulado tem filho desregulado à esquerda
         if (fator_balanceamento(v->esquerda) > 0) {
-            return rotacao_direita(v);
+            return rotacao_direita(v, contador);
         } else {
-            return rotacao_dupla_direita(v);
+            return rotacao_dupla_direita(v, contador);
         }
     } else if (fb < -1) { // nó desregulado tem filho desregulado à direita
         if (fator_balanceamento(v->direita) < 0) {
-            return rotacao_esquerda(v);
+            return rotacao_esquerda(v, contador);
         } else {
-            return rotacao_dupla_esquerda(v);
+            return rotacao_dupla_esquerda(v, contador);
         }
     }
     return v;
 }
 
-no_avl_t *inserir(no_avl_t *v, int valor){
+no_avl_t *inserir(no_avl_t *v, int valor, int *contador){
  if (v == NULL) {
      v = criar_arvore_avl(valor);
  } else if (valor < v->valor) {
-        v->esquerda = inserir(v->esquerda, valor);
+        v->esquerda = inserir(v->esquerda, valor, contador);
     } else if (valor > v->valor) {
-        v->direita = inserir(v->direita, valor);
+        v->direita = inserir(v->direita, valor, contador);
     }
     v->altura= 1 + max(altura(v->esquerda), altura(v->direita));
-    v = balancear(v);
+    v = balancear(v, contador);
     return v;
 }
 
-no_avl_t *remover(no_avl_t *v, int valor){
+no_avl_t *remover(no_avl_t *v, int valor, int *contador){
     if (v == NULL) {
         return NULL;
     } else if (valor < v->valor) {
-        v->esquerda = remover(v->esquerda, valor);
+        v->esquerda = remover(v->esquerda, valor, contador);
     } else if (valor > v->valor) {
-        v->direita = remover(v->direita, valor);
+        v->direita = remover(v->direita, valor, contador);
     } else { // valor == v−>valor
         if (v->esquerda == NULL ||v->direita == NULL) {
             no_avl_t *aux = v->esquerda = v->direita;
@@ -262,10 +264,10 @@ no_avl_t *remover(no_avl_t *v, int valor){
                 aux = aux->direita;
             }
             v->valor = aux->valor;
-            v->esquerda = remover(v->esquerda, aux->valor);
+            v->esquerda = remover(v->esquerda, aux->valor, contador);
         }
     }
     v->altura = 1 + max(altura(v->esquerda), altura(v->direita));
-    v = balancear(v);
+    v = balancear(v, contador);
     return v;
 }
